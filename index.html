@@ -827,13 +827,23 @@ async function doFetch(){
   setMsg('loading','🔄 読み込み中...');
   document.getElementById('fetchBtn').disabled=true;
   document.getElementById('urlChips').innerHTML='';
-  try{
-    const res=await fetch('https://api.allorigins.win/get?url='+encodeURIComponent(url),{signal:AbortSignal.timeout(12000)});
-    if(!res.ok) throw new Error();
-    const j=await res.json(); parseUrl(j.contents||'',url);
-  }catch(e){setMsg('err','⚠️ 読み込み不可。手動で入力してください。');}
-  finally{document.getElementById('fetchBtn').disabled=false;}
+  const proxies=[
+    async u=>{const r=await fetch('https://api.allorigins.win/get?url='+encodeURIComponent(u),{signal:AbortSignal.timeout(8000)});if(!r.ok)throw new Error();return(await r.json()).contents||'';},
+    async u=>{const r=await fetch('https://corsproxy.io/?'+encodeURIComponent(u),{signal:AbortSignal.timeout(8000)});if(!r.ok)throw new Error();return await r.text();},
+    async u=>{const r=await fetch('https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(u),{signal:AbortSignal.timeout(8000)});if(!r.ok)throw new Error();return await r.text();}
+  ];
+  let html='',ok=false;
+  for(let i=0;i<proxies.length;i++){
+    try{
+      setMsg('loading','🔄 読み込み中... ('+(i+1)+'/'+proxies.length+')');
+      html=await proxies[i](url);ok=true;break;
+    }catch(e){}
+  }
+  document.getElementById('fetchBtn').disabled=false;
+  if(ok){parseUrl(html,url);}
+  else{setMsg('err','⚠️ 読み込み不可。手動で入力してください。');}
 }
+
 function setMsg(t,m){const el=document.getElementById('urlMsg');el.className='url-msg '+t;el.textContent=m;}
 function parseUrl(html,url){
   const tmp=document.createElement('div'); tmp.innerHTML=html;
