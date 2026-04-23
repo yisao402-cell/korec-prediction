@@ -10,12 +10,12 @@
 body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);}
 header{background:linear-gradient(135deg,#1a56db,#0e9f6e);color:#fff;padding:16px 28px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(26,86,219,.2);}
 .logo{font-size:20px;font-weight:800;}.sub{font-size:12px;opacity:.8;margin-top:2px;}
-.hstats{margin-left:auto;display:flex;gap:16px;font-size:12px;opacity:.85;}
+.hstats{margin-left��uto;display:flex;gap:16px;font-size:12px;opacity:.85;}
 .hstats span strong{font-weight:800;}
 .data-pill{background:rgba(255,255,255,.18);border-radius:14px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.3);white-space:nowrap;}
 .data-pill:hover{background:rgba(255,255,255,.28);}
 .badge{background:rgba(255,255,255,.15);border-radius:14px;padding:3px 11px;font-size:11px;font-weight:700;}
-.layout{display:grid;grid-template-columns:380px 1fr;gap:22px;padding:24px 28px;max-width:1360px;margin:0 auto;}
+.layout{display:grid;grid-template-columns:380px 1fr;gap:22px;padding:24px 28px;max-width:1360px;margin:0 �uto;}
 .card{background:var(--card);border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.06);padding:20px;border:1px solid var(--border);margin-bottom:18px;}
 .card-title{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;display:flex;align-items:center;gap:7px;}
 .card-title::before{content:'';display:inline-block;width:3px;height:14px;background:var(--blue);border-radius:2px;}
@@ -79,14 +79,14 @@ label.lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);margin
 .insight{background:linear-gradient(135deg,#e8f0fe,#d1fae5);border-radius:10px;padding:14px 16px;border:1px solid #c7d7fd;}
 .insight h4{font-size:13px;color:#1a56db;margin-bottom:8px;font-weight:700;}
 .insight li{font-size:13px;padding:3px 0 3px 16px;position:relative;line-height:1.55;list-style:none;}
-.insight li::before{content:"▶";position:absolute;left:0;color:var(--blue);font-size:9px;top:6px;}
+.insight li::before{content:"▶";position:absolute;left�0;color:var(--blue);font-size:9px;top:6px;}
 .memo-box{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;font-size:13px;color:#78350f;line-height:1.65;white-space:pre-wrap;}
 .err-box{background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:14px;color:#991b1b;font-size:13px;}
 .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;color:var(--muted);gap:12px;text-align:center;}
 .placeholder .ico{font-size:46px;}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:center;justify-content:center;}
+.modal{display:none;position:fixed;inset�0;background:rgba(0,0,0,.5);z-index:100;align-items:center;justify-content:center;}
 .modal.open{display:flex;}
-.modal-box{background:#fff;border-radius:14px;padding:24px;max-width:780px;width:92%;max-height:80vh;overflow-y:auto;}
+.modal-box{background:#fff;border-radius:14px;padding:24px;max-width:780px;width:92%;max-height:80vh;overflow-y:�uto;}
 .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
 .modal-head h3{font-size:15px;font-weight:700;}
 .btn-x{border:none;background:none;font-size:20px;cursor:pointer;color:var(--muted);}
@@ -843,67 +843,79 @@ async function doFetch(){
   if(ok){parseUrl(html,url);}
   else{setMsg('err','⚠️ 読み込み不可。手動で入力してください。');}
 }
-
 function setMsg(t,m){const el=document.getElementById('urlMsg');el.className='url-msg '+t;el.textContent=m;}
 function parseUrl(html,url){
-  const tmp=document.createElement('div'); tmp.innerHTML=html;
+  // script/styleを除去してtextContent汚染を防ぐ
+  const stripped=html.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<style[\s\S]*?<\/style>/gi,'');
+  const tmp=document.createElement('div'); tmp.innerHTML=stripped;
   const text=(tmp.textContent||'').replace(/\s+/g,' ');
   const chips=[]; const infoItems=[];
+  const decHtml=s=>s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&nbsp;/g,' ').replace(/&#(\d+);/g,(_,c)=>String.fromCharCode(c)).replace(/&[a-z]+;/gi,'');
 
-  // ── 企業名 ──
-  const og=html.match(/og:title.*?content="([^"]+)"/i);
-  const ti=html.match(/<title[^>]*>([^<]+)<\/title>/i);
+  // ── 企業名（og:title属性順不問・改行対応）──
+  const ogPats=[
+    /property=["']og:title["'][\s\S]*?content=["']([^"'<>\n]{1,60})["']/i,
+    /content=["']([^"'<>\n]{1,60})["'][\s\S]*?property=["']og:title["']/i,
+    /og:title[\s\S]{0,80}?content=["']([^"'<>\n]{1,60})["']/i,
+  ];
+  const ti=html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   let name='';
-  if(og) name=og[1].split(/[|｜\-–]/)[0].trim().slice(0,30);
-  else if(ti) name=ti[1].split(/[|｜\-–\/]/)[0].trim().slice(0,30);
+  for(const p of ogPats){const m=html.match(p);if(m&&m[1]){name=decHtml(m[1]).split(/[|｜\-–]/)[0].trim().slice(0,30);if(name.length>1)break;}}
+  if(!name&&ti&&ti[1]){name=decHtml(ti[1]).replace(/<[^>]+>/g,'').split(/[|｜\-–\/]/)[0].trim().slice(0,30);}
   if(name){document.getElementById('companyName').value=name;chips.push('企業名：'+name.slice(0,18));}
 
-  // ── 上場有無（最優先シグナル）──
-  const listedKw=['東証プライム','東証スタンダード','東証グロース','東京証券取引所','上場企業','上場会社','プライム市場','スタンダード市場','グロース市場','NASDAQ','NYSE','東証一部','東証二部'];
+  // ── 上場有無 ──
+  const listedKw=['東証プライム','東証スタンダード','東証グロース','東京証券取引所','上場企業','上場会社','プライム市場','スタンダード市場','グロース市場','NASDAQ','NYSE','東証一部','東証二部','証券コード'];
   const isListed=listedKw.some(k=>text.includes(k)||html.includes(k));
   setListed(isListed);
   if(isListed) chips.push('📈 上場企業');
 
-  // ── 従業員数 ──
-  const empM=text.match(/従業員[数]?[:\s：]*([0-9,，]+)\s*名?|社員[数]?[:\s：]*([0-9,，]+)\s*名?/);
-  if(empM){
-    const rawNum=parseInt((empM[1]||empM[2]).replace(/[,，]/g,''));
-    if(rawNum>0&&rawNum<500000){
-      const bk=rawNum<=50?'small':rawNum<=300?'medium':rawNum<=1000?'large':'enterprise';
-      const bl={'small':'〜50名','medium':'51〜300名','large':'301〜1000名','enterprise':'1001名以上'}[bk];
-      setEmpSize(bk);
-      chips.push('従業員：'+rawNum+'名');
-      infoItems.push('👥 '+rawNum+'名');
+  // ── 従業員数（複数パターン・万人単位・約付き対応）──
+  let empFound=false;
+  const empPats=[
+    /従業員[数]?\s*[：:]\s*約?\s*([0-9,，]+)\s*名/,
+    /従業員[数]?\s*[：:]\s*([0-9,，]+)/,
+    /社員[数]?\s*[：:]\s*約?\s*([0-9,，]+)\s*名/,
+    /グループ.{0,10}従業員[数]?\s*[：:]*\s*約?\s*([0-9,，]+)/,
+    /連結.{0,10}従業員[数]?\s*[：:]*\s*約?\s*([0-9,，]+)/,
+    /従業員.{0,20}?約?\s*([0-9,，]{3,})\s*名/
+  ];
+  for(const p of empPats){
+    const m=text.match(p);
+    if(m&&m[1]){
+      const n=parseInt(m[1].replace(/[,，]/g,''));
+      if(n>0&&n<1000000){const bk=n<=50?'small':n<=300?'medium':n<=1000?'large':'enterprise';setEmpSize(bk);chips.push('従業員：'+n.toLocaleString()+'名');infoItems.push('👥 '+n.toLocaleString()+'名');empFound=true;break;}
     }
   }
+  if(!empFound){const mw=text.match(/従業員[数]?\s*[：:]?\s*約?\s*([0-9.]+)\s*万\s*[人名]?/);if(mw){const n=Math.round(parseFloat(mw[1])*10000);if(n>0&&n<1000000){setEmpSize(n<=1000?'large':'enterprise');chips.push('従業員：約'+mw[1]+'万名');infoItems.push('👥 約'+mw[1]+'万名');}}}
 
-  // ── 売上高（表示のみ）──
-  const salesM=text.match(/売上高?[:\s：]*([0-9,，．億万兆千百]+円?)/);
+  // ── 売上高 ──
+  const salesM=text.match(/売上高?\s*[：:]\s*([0-9,，．億万兆千百]+円?)/);
   if(salesM) infoItems.push('💰 売上 '+salesM[1].slice(0,14));
 
-  // ── 資本金（表示のみ）──
-  const capM=text.match(/資本金[:\s：]*([0-9,，万億円]+)/);
+  // ── 資本金 ──
+  const capM=text.match(/資本金\s*[：:]\s*([0-9,，万億円]+)/);
   if(capM) infoItems.push('🏦 資本金 '+capM[1].slice(0,10));
 
-  // ── 設立年（表示のみ）──
-  const foundM=text.match(/設立[\s：:]*([0-9]{4})年/);
+  // ── 設立年 ──
+  const foundM=text.match(/設立\s*[：:\s]*([0-9]{4})\s*年/);
   if(foundM) infoItems.push('📅 '+foundM[1]+'年設立');
 
   // ── 給与 ──
-  const sm=text.match(/月給\s*(\d{2,3})[,，]?万|(\d{2,3})万円[^台億]/);
+  const sm=text.match(/月給\s*(\d{2,3})[,，万]|(\d{2,3})\s*万円[^台億万]/);
   if(sm){const s=parseInt(sm[1]||sm[2]);if(s>=15&&s<=80){document.getElementById('salary').value=s;chips.push('給与：'+s+'万円');}}
 
   // ── 勤務地 ──
-  const lmap=[['東京','東京'],['大阪','大阪・近畿'],['名古屋','名古屋'],['愛知','名古屋'],['福岡','福岡'],['札幌','札幌'],['海外','海外']];
+  const lmap=[['東京','東京'],['渋谷','東京'],['新宿','東京'],['品川','東京'],['大阪','大阪・近畿'],['京都','大阪・近畿'],['神戸','大阪・近畿'],['名古屋','名古屋'],['愛知','名古屋'],['福岡','福岡'],['札幌','札幌'],['海外','海外']];
   for(const[k,v] of lmap){if(text.includes(k)){setSel('location',v);chips.push('勤務地：'+v);break;}}
 
   // ── 業種 ──
-  const imap=[['IT','ソフトウェア','クラウド','SaaS','テック','システム開発'],['メーカー','製造','部品','機械'],['コンサルティング','コンサル'],['商社','流通','卸売'],['不動産','建設'],['人材','HR'],['金融','銀行','証券','保険'],['医療','製薬','バイオ']];
+  const imap=[['IT','ソフトウェア','クラウド','SaaS','テック','システム開発','DX','AI','アプリ'],['メーカー','製造','部品','機械','電機','工業'],['コンサルティング','コンサル','アドバイザリー'],['商社','流通','卸売','商事'],['不動産','建設','ゼネコン','住宅'],['人材','HR','採用支援','リクルート'],['金融','銀行','証券','保険','フィンテック'],['医療','製薬','バイオ','ヘルスケア']];
   const inms=['IT','製造','コンサル','商社','不動産・建設','人材','金融','医療'];
   for(let i=0;i<imap.length;i++){if(imap[i].some(k=>text.includes(k))){setSel('industry',inms[i]);chips.push('業種：'+inms[i]);break;}}
 
   // ── 職種 ──
-  const jmap=[['エンジニア','開発','プログラマ','バックエンド','フロントエンド'],['営業','セールス'],['企画','経営企画'],['デザイン','クリエイティブ']];
+  const jmap=[['エンジニア','開発','プログラマ','バックエンド','フロントエンド','エンジニアリング','技術職'],['営業','セールス','フィールドセールス','インサイドセールス'],['企画','経営企画','プロダクト','プロデューサー'],['デザイン','クリエイティブ','デザイナー','UI','UX']];
   const jnms=['開発・エンジニア','営業','企画','クリエイティブ'];
   for(let i=0;i<jmap.length;i++){if(jmap[i].some(k=>text.includes(k))){setSel('jobType',jnms[i]);chips.push('職種：'+jnms[i]);break;}}
 
