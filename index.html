@@ -264,7 +264,38 @@ label.lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);margin
     </div>
 
     <button class="btn-go" onclick="predict()">🔮 応募を予測する</button>
+    <div id="saveStatus" style="display:none;font-size:12px;font-weight:600;padding:7px 12px;border-radius:7px;margin-top:8px;text-align:center;"></div>
   </div>
+
+  <!-- スプレッドシート連携設定 -->
+  <div class="card" style="margin-top:0;">
+    <div class="card-title" style="cursor:pointer;user-select:none;" onclick="toggleSettings()">
+      📊 スプレッドシート連携設定
+      <span id="settingsArrow" style="margin-left:auto;font-size:11px;color:var(--muted);">▶ 開く</span>
+    </div>
+    <div id="settingsPanel" style="display:none;">
+      <div style="background:#eff6ff;border-radius:8px;padding:10px 13px;font-size:12px;color:#1e40af;margin-bottom:12px;line-height:1.6;">
+        予測実行のたびに自動でスプレッドシートに1行追記されます。<br>
+        Google Apps Scriptを設定すると有効になります。<br>
+        <span style="color:#64748b;">（未設定の場合も予測機能は通常通り動作します）</span>
+      </div>
+      <div class="fg">
+        <label class="lbl">Google Apps Script URL</label>
+        <input type="url" id="gasUrlInput" placeholder="https://script.google.com/macros/s/..." style="font-size:12px;">
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <button class="btn-sm" onclick="saveGasUrl()" style="background:var(--blue);color:#fff;border-color:var(--blue);">💾 URLを保存</button>
+        <button class="btn-sm" onclick="testGas()">🧪 テスト送信</button>
+        <button class="btn-sm" onclick="clearGasUrl()" style="color:#dc2626;border-color:#fca5a5;">✕ クリア</button>
+        <div id="gasConfigStatus" style="font-size:12px;font-weight:600;"></div>
+      </div>
+      <div style="margin-top:12px;padding:10px 13px;background:#f8fafc;border-radius:8px;font-size:11.5px;color:#475569;line-height:1.75;">
+        <strong>記録されるデータ：</strong><br>
+        日時 / 企業名 / 業種 / 職種 / 勤務地 / 給与 / 掲載日数 / 掲載回数 / 入社時期 / 対象学部 / 従業員規模 / 上場区分 / グループ会社 / JLPT要件 / 予測応募数（中央値・下限・上限） / 有効応募数 / 予測精度 / 文理比率 / JLPT内訳 / URL / メモ
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <!-- RIGHT -->
@@ -1357,12 +1388,67 @@ function resetData(){
 }
 
 // ── 予測データ自動保存（サイレント）────────────────────────────
+// ── スプレッドシート連携 ──
+const GAS_DEFAULT='https://script.google.com/macros/s/AKfycby61PCnjrpiGCPmBs04I4UHKeXzv6GdNTLkJ8EVs12xSmJxBvd4I0rCo70dgEPCa--dNg/exec';
+
+function getGasUrl(){
+  return localStorage.getItem('korec_gas_url') || GAS_DEFAULT;
+}
+
 function saveToSheets(row){
+  const url=getGasUrl();
+  if(!url) return;
   try{
-    fetch('https://script.google.com/macros/s/AKfycby61PCnjrpiGCPmBs04I4UHKeXzv6GdNTLkJ8EVs12xSmJxBvd4I0rCo70dgEPCa--dNg/exec',
-      {method:'POST',body:JSON.stringify({row:row}),mode:'no-cors'});
+    fetch(url,{method:'POST',body:JSON.stringify({row:row}),mode:'no-cors'})
+      .then(()=>{
+        const el=document.getElementById('saveStatus');
+        if(el){el.textContent='📊 スプレッドシートに保存しました';el.style.background='#d1fae5';el.style.color='#065f46';el.style.display='block';setTimeout(()=>{el.style.display='none';},3000);}
+      })
+      .catch(()=>{});
   }catch(e){}
 }
+
+function toggleSettings(){
+  const p=document.getElementById('settingsPanel');
+  const a=document.getElementById('settingsArrow');
+  const open=p.style.display==='none';
+  p.style.display=open?'block':'none';
+  a.textContent=open?'▼ 閉じる':'▶ 開く';
+}
+
+function saveGasUrl(){
+  const url=document.getElementById('gasUrlInput').value.trim();
+  if(!url){document.getElementById('gasConfigStatus').textContent='❌ URLを入力してください';return;}
+  localStorage.setItem('korec_gas_url',url);
+  const st=document.getElementById('gasConfigStatus');
+  st.textContent='✅ 保存しました';st.style.color='#059669';
+  setTimeout(()=>{st.textContent='';},3000);
+}
+
+function clearGasUrl(){
+  localStorage.removeItem('korec_gas_url');
+  document.getElementById('gasUrlInput').value='';
+  const st=document.getElementById('gasConfigStatus');
+  st.textContent='🗑️ クリアしました（デフォルトURLを使用）';st.style.color='#64748b';
+  setTimeout(()=>{st.textContent='';},3000);
+}
+
+function testGas(){
+  const url=document.getElementById('gasUrlInput').value.trim()||getGasUrl();
+  const st=document.getElementById('gasConfigStatus');
+  if(!url){st.textContent='❌ URLを入力してください';return;}
+  const now=new Date().toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'});
+  st.textContent='📡 送信中...';st.style.color='#1a56db';
+  fetch(url,{method:'POST',body:JSON.stringify({row:[now,'【テスト送信】','テスト企業','IT','総合職','東京',30,1,'随時','全学部','-','非上場','なし','なし',5,3,8,'-','標準',3,60,40,50,25,5,0,0,'','']}),mode:'no-cors'})
+    .then(()=>{st.textContent='✅ 送信完了（スプレッドシートを確認してください）';st.style.color='#059669';setTimeout(()=>{st.textContent='';},5000);})
+    .catch(e=>{st.textContent='❌ 送信エラー: '+e.message;st.style.color='#dc2626';});
+}
+
+// ページ読み込み時にURLをフォームに反映
+window.addEventListener('DOMContentLoaded',()=>{
+  const saved=localStorage.getItem('korec_gas_url');
+  if(saved) document.getElementById('gasUrlInput').value=saved;
+});
 </script>
 
 </body>
