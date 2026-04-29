@@ -22,8 +22,8 @@ header{background:linear-gradient(135deg,#1a56db,#0e9f6e);color:#fff;padding:16p
 .url-row{display:flex;gap:7px;}
 .url-row input{flex:1;padding:8px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;outline:none;background:#fafbfc;}
 .url-row input:focus{border-color:var(--blue);background:#fff;}
-.btn-�etch{padding:8px 14px;background:var(--blue);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;}
-.btn-�etch:hover{opacity:.88;}
+.btn-fetch{padding:8px 14px;background:var(--blue);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-fetch:hover{opacity:.88;}
 .url-msg{font-size:12px;font-weight:600;padding:6px 10px;border-radius:6px;margin-top:7px;display:none;}
 .url-msg.ok{background:#d1fae5;color:#065f46;display:block;}
 .url-msg.err{background:#fee2e2;color:#991b1b;display:block;}
@@ -117,9 +117,9 @@ label.lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);margin
     <div class="card-title">求人ページから企業情報を読み込む（任意）</div>
     <div class="url-row">
       <input type="url" id="urlInput" placeholder="マイナビ・リクナビ等の求人ページURL（任意）">
-      <button class="btn-�etch" id="�etchBtn" onclick="doFetch()">🔍 読み込む</button>
+      <button class="btn-fetch" id="fetchBtn" onclick="doFetch()">🔍 読み込む</button>
     </div>
-    <div style="�ont-size:11px;color:var(--muted);margin-top:5px;">💡 マイナビ・リクナビ・各社採用ページを貼ると、企業名・規模・業種などを自動入力できます</div>
+    <div style="font-size:11px;color:var(--muted);margin-top:5px;">💡 マイナビ・リクナビ・各社採用ページを貼ると、企業名・規模・業種などを自動入力できます</div>
     <div id="urlMsg" class="url-msg"></div>
     <div id="urlChips" class="chips"></div>
   </div>
@@ -199,7 +199,7 @@ label.lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);margin
         <div class="tag" data-v="N2">N2以上</div>
         <div class="tag" data-v="N1">N1のみ</div>
       </div>
-      <div id="jlptReqNote" style="display:none;margin-top:5px;�ont-size:11.5px;color:#64748b;"></div>
+      <div id="jlptReqNote" style="display:none;margin-top:5px;font-size:11.5px;color:#64748b;"></div>
     </div>
 
     <div class="fg">
@@ -212,13 +212,13 @@ label.lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);margin
 
     <div class="fg">
       <label class="lbl">掲載回数（この企業×職種での通算）</label>
-      <div class="tags" id="postingCountTags" style="�lex-wrap:wrap;">
+      <div class="tags" id="postingCountTags" style="flex-wrap:wrap;">
         <div class="tag" data-v="1">初回</div>
         <div class="tag on" data-v="2">2回目</div>
         <div class="tag" data-v="3">3回目</div>
         <div class="tag" data-v="4">4回目以降</div>
       </div>
-      <div id="postingCountNote" style="margin-top:5px;�ont-size:11.5px;color:#64748b;">
+      <div id="postingCountNote" style="margin-top:5px;font-size:11.5px;color:#64748b;">
         💡 実績データから：2回目=初回の62%、3回目=41%、4回目以降=23%に減衰（DBの30社×職種から算出）
       </div>
     </div>
@@ -236,10 +236,10 @@ label.lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);margin
 
     <div class="fg">
       <label class="lbl">企業情報</label>
-      <div style="display:flex;gap:8px;align-items:center;�lex-wrap:wrap;margin-bottom:6px;">
-        <div class="tag" id="listedTag" data-v="listed" onclick="toggleCond(this)" style="�ont-weight:600;">📈 上場企業</div>
-        <div class="tag" id="groupTag" data-v="group" onclick="toggleCond(this)" style="�ont-weight:600;">🏢 大手グループ会社</div>
-        <select id="empSize" style="�lex:1;min-width:130px;padding:6px 10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;background:#fff;color:#334155;">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px;">
+        <div class="tag" id="listedTag" data-v="listed" onclick="toggleCond(this)" style="font-weight:600;">📈 上場企業</div>
+        <div class="tag" id="groupTag" data-v="group" onclick="toggleCond(this)" style="font-weight:600;">🏢 大手グループ会社</div>
+        <select id="empSize" style="flex:1;min-width:130px;padding:6px 10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:13px;background:#fff;color:#334155;">
           <option value="">従業員数（任意）</option>
           <option value="small">〜50名（スタートアップ）</option>
           <option value="medium">51〜300名（中小企業）</option>
@@ -252,7 +252,7 @@ label.lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);margin
 
     <div class="fg">
       <label class="lbl">待遇・条件</label>
-      <div class="tags" id="condTags" style="�lex-wrap:wrap;">
+      <div class="tags" id="condTags" style="flex-wrap:wrap;">
         <div class="tag" data-v="noReloc" onclick="toggleCond(this)">転勤なし</div>
         <div class="tag" data-v="trial" onclick="toggleCond(this)">試用期間あり</div>
       </div>
@@ -289,7 +289,7 @@ label.lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);margin
     <div style="background:#d1fae5;color:#065f46;padding:9px 12px;border-radius:7px;font-size:13px;font-weight:600;margin-bottom:14px;">
       ✅ KORECオンライン実績データ（378件）が常に読み込まれています
     </div>
-    <div style="display:flex;gap:8px;�lex-wrap:wrap;margin-bottom:14px;">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
       <label style="padding:7px 14px;background:var(--blue);color:#fff;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;">
         📂 CSVを追加<input type="file" accept=".csv" onchange="addCsv(event)" style="display:none">
       </label>
@@ -617,698 +617,752 @@ const REAL_DATA = [
   {"company": "株式会社トレンドキャスケット", "jobName": "日本No.１のTikTokアカウント一緒に作りませんか？※未経験OK", "industry": "商社", "jobType": "クリエイティブ", "location": "東京", "salary": 23.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 27, "liberalPct": 78, "sciencePct": 7, "jlptN1Pct": 63, "jlptN2Pct": 26, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 11, "highToeicPct": 0, "hasCertPct": 56, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 40, "url": "https://trecas.co.jp/"},
   {"company": "株式会社ナビック", "jobName": "【종합직】종합 건설 프로듀서   【総合職】総合建設プロデューサー", "industry": "不動産・建設", "jobType": "総合職", "location": "大阪・近畿", "salary": 22.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 14, "liberalPct": 57, "sciencePct": 36, "jlptN1Pct": 50, "jlptN2Pct": 29, "jlptN3Pct": 7, "jlptBelowPct": 0, "jlptNonePct": 14, "highToeicPct": 0, "hasCertPct": 79, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://na-vic.co.jp/"},
   {"company": "株式会社ハステック［KOREC内定実績あり/外国人社員多数在籍★］", "jobName": "[엔지니어직] 시스템 개발 경력사원 상시채용", "industry": "コンサル", "jobType": "開発・エンジニア", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 2, "liberalPct": 0, "sciencePct": 100, "jlptN1Pct": 0, "jlptN2Pct": 0, "jlptN3Pct": 50, "jlptBelowPct": 0, "jlptNonePct": 50, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://www.hastec.jp/"},
-  {"company": "株式会社ハステック［korec内定実績あり/外国人社員多数在籍★］", "jobName": "[엔지니어직] 시스템 개발 경력사원 상시채용", "industry": "コンサル", "jobType": "開発・エンジニア", "location": "東京", "salary": 25.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 15, "liberalPct": 20, "sciencePct": 73, "jlptN1Pct": 27, "jlptN2Pct": 27, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 67, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://www.hastec.jp/"},
-  {"company": "株式会社㑆ッション���ーキス", "jobName": "》幹部候裷】��場�経騰か㉼マ㍳ジ㡦ン�や店舗�のプロデュー�、�エ�Dアマ㍳ー㸷ャ�等�", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":27, "liberalPct":867, "sciencePct": 14, "jlptN1Pct": 57, "jlptN2Pct": 29, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 14, "highToeicPct": 0, "hasCertPct": 86, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum":7150, "url": "https://wwwnakasho.group/passtio-geeks/"},
-  {"company": "株式会社㓦ルド・サポーワ", "jobName": "【종합직】��묖�직 ��미�경� OK 【総合職〺事���� �※未経験OK", "industry": "不動産・建設", "jobType": "総合職", "location": "その他", "salary": 6.05, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":97, "liberalPct": 78, "sciencePct": 11, "jlptN1Pct":657, "jlptN2Pct":117, "jlptN3Pct": 11, "jlptBelowPct": 0, "jlptNonePct": 11, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/build-support.info//"},
-  {"company": "株式会社㓦ルド・サポーワ", "jobName": "【종합직】��공관�리직 ��미�경� OK 【総合職�施工管理�� �※未経験OK", "industry": "不動産・建設", "jobType": "総合職", "location": "その他", "salary": 25.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 4, "liberalPct": 50, "sciencePct":560, "jlptN1Pct": 50, "jlptN2Pct": 0, "jlptN3Pct": 0, "jlptBelowPct": 50, "jlptNonePct": 50, "highToeicPct": 0, "hasCertPct":507, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/build-support.info//"},
-  {"company": "株式会社㓦㼫ウ���ル", "jobName": "〾あ���た�感性が��来�を��る�】㰗ラ㕆ィック�"WEBデザイナ�募集�", "industry": "コンサル", "jobType": "クリエイティブ", "location": "大阪・近畿", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 8, "liberalPct":384, "sciencePct": 38, "jlptN1Pct": 50, "jlptN2Pct":380, "jlptN3Pct": 12, "jlptBelowPct": 12, "jlptNonePct": 35, "highToeicPct": 0, "hasCertPct": 62, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/bwellc.jp/"},
-  {"company": "株式会社㓦㼫ウ���ル", "jobName": "〾マーケティング聽�韓��向け�プロ㢡ーショ�"�般��運用管理担彨��募集✨�", "industry": "コンサル", "jobType": "総合職", "location": "大阪・近畿", "salary": 25.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 23, "liberalPct": 54, "sciencePct":14, "jlptN1Pct": 16, "jlptN2Pct": 22, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 17, "highToeicPct": 0, "hasCertPct":572, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/bwellc.jp/"},
-  {"company": "株式会社㓦㼫ウ���ル", "jobName": "【종합직】채용 지�·�인�� 컨설팅 �영업�기�업��� 채용과제를 해결하�는 ���리어 지원 포지션【総合職��採甗支援��人材"も", "industry": "コンサル", "jobType": "総合職", "location": "大阪・近畿", "salary": 25.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 53, "liberalPct": 54, "sciencePct": 11, "jlptN1Pct":637, "jlptN2Pct":117, "jlptN3Pct":90, "jlptBelowPct": 0, "jlptNonePct": 17, "highToeicPct": 0, "hasCertPct": 32, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/bwellc.jp/"},
-  {"company": "株式会社㓦㼫ウ���ポインター㊼ショ㊵ル", "jobName": [�KORE엀�� 성장하자★BtoB 영업�(RA)] �인��이나� ��탠 �� 준����로 채욅�니다!  〻KOREで成長�し��぀��K", "industry": "��材�", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":17, "liberalPct": 71, "sciencePct":60, "jlptN1Pct":868, "jlptN2Pct": 14, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":20, "highToeicPct": 0, "hasCertPct": 39, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/app.�korec.jp/"},
-  {"company": "株式会社㓦㼫ウ���ポインター㊼ショ㊵ル", "jobName": [�KORE엀�� 성장하자★�キャ�Dアアド㐝イザ��(CA)] �인��이나� ��탠 �� 준����로 채욅�니다!  �韓��"�����日�就�職��K", "industry": "��材�", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":523, "liberalPct": 94, "sciencePct": 11, "jlptN1Pct":648, "jlptN2Pct": 92, "jlptN3Pct": 4, "jlptBelowPct": 0, "jlptNonePct": 39, "highToeicPct": 0, "hasCertPct": 64, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/app.�korec.jp/"},
-  {"company": "株式会社㓦㼫ウ���ポインター㊼ショ㊵ル", "jobName":  〻KORE엀�� 성장하자★�종합�(�채용 ��설턴트（CA·RA）·대학 �영�)�】 인��이나� ��탠 �� 준����로 채욅�니다!K", "industry": "��材�", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":317, "liberalPct": 71, "sciencePct":36, "jlptN1Pct": 38, "jlptN2Pct":213, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":190, "highToeicPct": 0, "hasCertPct": 55, "noRelocation": false, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/app.�korec.jp/"},
-  {"company": "株式会社㓦㼫ウ���ポインター㊼ショ㊵ル", "jobName":  〻KORE엀�� 성장하자★�종합�(���설턴트（CA·RA）·대학 �영�)�】 인��이나� ��탠 �� 준����로 채욅�니다!  〻K", "industry": "��材�", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 53, "liberalPct":931, "sciencePct":60, "jlptN1Pct":857, "jlptN2Pct":79, "jlptN3Pct": 7, "jlptBelowPct": 0, "jlptNonePct":50, "highToeicPct": 0, "hasCertPct":535, "noRelocation": false, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/app.�korec.jp/"},
-  {"company": "株式会社㓦㼫ウ���ポインター㊼ショ㊵�(K-Village事業��)�", "jobName":  �韓��語講師��日韓���繋ぐ、����り�い�を���え�講師※"大�勤務※�", "industry": "㵿ー㓭ス", "jobType": "総合職", "location": "大阪・近畿", "salary": 2545, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 62, "liberalPct": 75, "sciencePct":20, "jlptN1Pct": 50, "jlptN2Pct":255, "jlptN3Pct":60, "jlptBelowPct": 0, "jlptNonePct":190, "highToeicPct": 0, "hasCertPct": 62, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/bwell-i."co/�korep/"},
-  {"company": "株式会社�ァ�イ㖑㰗㫿ー㗑", "jobName": "総合� （調理�、��客��店舗運営�����）�トレ㼤ナ�、�ディレキ㿊�、�本��"スタヾ�の�キャ�Dア��"ス���ありま�！��K", "industry": "㵿ー㓭ス", "jobType": "総合職", "location": "東京", "salary": 28.5, "postingDays": 150, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":3 4, "liberalPct":675, "sciencePct": 76, "jlptN1Pct": 48, "jlptN2Pct":417, "jlptN3Pct":32, "jlptBelowPct": 0, "jlptNonePct": 12, "highToeicPct": 0, "hasCertPct":764, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https:/oreruit.five-groupc.co.jp/"},
-  {"company": "株式会社㕦���㋣ッキス", "jobName": "コンサヱティン�(DX、"経�管理、財務戦略の立案)�", "industry": "コンサル", "jobType": "企画", "location": "東京", "salary":335.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 12, "liberalPct": 84, "sciencePct":251, "jlptN1Pct":657, "jlptN2Pct":157, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 67, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum":50, "url": "https:/phoenixc.co.jp/"},
-  {"company": "株式会社㕦���㋣ッキス", "jobName": 컨설팅(DX,� 겈�관��, 재묖���략� 입��) "コンサヱティン�(DX、"経�管理、財務戦略の立案)�", "industry": "コンサル", "jobType": "企画", "location": "東京", "salary":335.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 8, "liberalPct": 62, "sciencePct":251, "jlptN1Pct":620, "jlptN2Pct":255, "jlptN3Pct":04, "jlptBelowPct": 0, "jlptNonePct": 39, "highToeicPct": 0, "hasCertPct":387, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum":50, "url": "https:/phoenixc.co.jp/"},
-  {"company": "株式会社プロ㆗ラス", "jobName": ��業�職", "industry": "IT", "jobType": ��業�", "location": "東京", "salary": 30.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants": 12, "liberalPct":831, "sciencePct":170, "jlptN1Pct": 75, "jlptN2Pct":255, "jlptN3Pct":04, "jlptBelowPct": 0, "jlptNonePct":50, "highToeicPct": 0, "hasCertPct":924, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https://wwwprotbersc.co.jp/"},
-  {"company": "株式会社プロ㆗ラス", "jobName": "開癢職", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 28.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants": 17, "liberalPct": 29, "sciencePct":615, "jlptN1Pct": 35, "jlptN2Pct": 29, "jlptN3Pct":60, "jlptBelowPct": 0, "jlptNonePct": 30, "highToeicPct": 0, "hasCertPct": 74, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https://wwwprotbersc.co.jp/"},
-  {"company": "株式会社㙵ル", "jobName": [�종합�]�영�, ���공관�� �신입사�/ 경력사원26년4월�입�　["総合�]��業��施工管理E 26��"4月入社", "industry": "不動産・建設", "jobType": "総合職", "location": "大阪・近畿", "salary": 50.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":62, "liberalPct":831, "sciencePct":01, "jlptN1Pct":657, "jlptN2Pct":335, "jlptN3Pct":04, "jlptBelowPct": 0, "jlptNonePct":50, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https:/ai-kandco.jp/"},
-  {"company": "株式会社㙵ル", "jobName": 清掃�ロ㜱ッ�も活用！安定�し�働け����㓦ル㡦ンㆤナン㹈職�20 26��"4月入礁】", "industry": "不動産・建設", "jobType": "総合職", "location": "大阪・近畿", "salary": 85.5, "postingDays": 90, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 12, "liberalPct":367, "sciencePct":593, "jlptN1Pct": 27, "jlptN2Pct":431, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 20, "highToeicPct": 0, "hasCertPct":507, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https:/ai-kandco.jp/"},
-  {"company": "株式会社㙵ル", "jobName": 鳩対策事業��　��業��施工管理�", "industry": "不動産・建設", "jobType": ��業�", "location": "東京", "salary": 50.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants": 5, "liberalPct":430, "sciencePct": 60, "jlptN1Pct": 20, "jlptN2Pct": 20, "jlptN3Pct":4 0, "jlptBelowPct": 0, "jlptNonePct": 20, "highToeicPct": 0, "hasCertPct": 60, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https:/ai-kandco.jp/"},
-  {"company": "株式会社㙵� �韓��"���社�活躍中c】", "jobName": "「�業�職��未経験O｜若手�か㉼ねャ㬨ンジ����き�日机礏�を支�えゾプロ㕦���ーショ㊵�に�", "industry": "不動産・建設", "jobType": ��業�", "location": "東京", "salary": 50.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 12, "liberalPct":831, "sciencePct":170, "jlptN1Pct": 38, "jlptN2Pct":425, "jlptN3Pct":04, "jlptBelowPct": 0, "jlptNonePct":50, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https:/ai-kandco.jp/"},
-  {"company": "株式会社㙵ーシック", "jobName": [�신�] �인사�듄 세일즈_SLG� 사�부"�7新卽】㤳ンサ㤳�セ�ー㫳�_SLG事業�郷", "industry": "IT", "jobType": ��業�", "location": "東京", "salary": 28.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 53, "liberalPct":878, "sciencePct": 7, "jlptN1Pct": 57, "jlptN2Pct":335, "jlptN3Pct":04, "jlptBelowPct": 0, "jlptNonePct":50, "highToeicPct": 0, "hasCertPct":807, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https:/basicinco.jp/"},
-  {"company": "株式会社㙵ーシック", "jobName": [�신�] �� 프일 엔지니�_PLG 사�부"�7新卽】㤳ン㕦ラエンジニ�_PLG事業�郷", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 20.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants":  8, "liberalPct":115, "sciencePct": 82, "jlptN1Pct": 36, "jlptN2Pct": 29, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":354, "highToeicPct": 0, "hasCertPct": 79, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https:/basicinco.jp/"},
-  {"company": "株式会社㚨ン㷵ル", "jobName": 256��54�〆切　[백 �듄 �엔지니�　미�경� 가능]​ �자�� ���품, EC 패키��,� ��크래치 EC  시스템도�� 및 수�", "industry": "IT", "jobType": "開発・エンジニア", "location": 福岡�", "salary": 22.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":357, "liberalPct": 29, "sciencePct":673, "jlptN1Pct":318, "jlptN2Pct": 31, "jlptN3Pct":30, "jlptBelowPct": 0, "jlptNonePct":354, "highToeicPct": 0, "hasCertPct": 71, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https://wwwpienilc.co.jp/"},
-  {"company": "株式会社㚨ン㷵ル", "jobName": 256��54�〆切　[수 � �입� 가능 · �종합� (WEB� ��설턴트)] web� 프로듀� ��随晈入�可能��"総合�（"WEBも", "industry": "IT", "jobType": "総合職", "location": 福岡�", "salary": 22.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":217, "liberalPct": 71, "sciencePct":193, "jlptN1Pct":562, "jlptN2Pct": 29, "jlptN3Pct":50, "jlptBelowPct": 0, "jlptNonePct": 14, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https://wwwpienilc.co.jp/"},
-  {"company": "株式会社㚨ン㷵ル", "jobName": [수 � �입� 가능 · �종합� (WEB� ��설턴트)] web� 프로듀� ��随晈入�可能��"総合�（"WEBコンサヱタン�）�】", "industry": "IT", "jobType": "総合職", "location": 福岡�", "salary": 22.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":97, "liberalPct":898, "sciencePct": 11, "jlptN1Pct":657, "jlptN2Pct":335, "jlptN3Pct":04, "jlptBelowPct": 0, "jlptNonePct":50, "highToeicPct": 0, "hasCertPct": 62, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https://wwwpienilc.co.jp/"},
-  {"company": "株式会社㚨ン㷵ル", "jobName": 　[백 �듄 �엔지니�　미�경� 가능]​ �자�� ���품, EC 패키��,� ��크래치 EC  시스템도�� 및 수정 등"〾㐷ック", "industry": "IT", "jobType": "開発・エンジニア", "location": 福岡�", "salary": 22.5, "postingDays":360, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":217, "liberalPct":194, "sciencePct": 76, "jlptN1Pct": 38, "jlptN2Pct": 89, "jlptN3Pct":50, "jlptBelowPct": 0, "jlptNonePct": 90, "highToeicPct": 0, "hasCertPct":812, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https://wwwpienilc.co.jp/"},
-  {"company": "株式会社㝳ジティモド㪿ー㠞パー㽨ン㺑", "jobName": "�관��� 근무／기���·��문� 지��·국��� ��무 비�쐴 지웬】 ����를 활�욅혐는�리��션� �무 ― ��본엀�� 컋�리�를  시��할�", "industry": "コンサル", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 8, "liberalPct":878, "sciencePct": 21, "jlptN1Pct":620, "jlptN2Pct":255, "jlptN3Pct":04, "jlptBelowPct": 0, "jlptNonePct": 39, "highToeicPct": 0, "hasCertPct":507, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum":7150, "url": "https://www"poitivec.co.jp/"},
-  {"company": "株式会社㝳ジティモド㪿ー㠞パー㽨ン㺑", "jobName": "�복��후생충실!�】����, 파�티��� ��태 픘【��利厚生充実�！�調理�・パティ㷵��"スタヾ㕂", "industry": "コンサル", "jobType": "総合職", "location": "東京", "salary": 65.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":42, "liberalPct": 75, "sciencePct":20, "jlptN1Pct": 50, "jlptN2Pct":255, "jlptN3Pct":254, "jlptBelowPct": 0, "jlptNonePct":50, "highToeicPct": 0, "hasCertPct":757, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum":7150, "url": "https://www"poitivec.co.jp/"},
-  {"company": "株式会社㝳ジティモド㪿ー㠞パー㽨ン㺑", "jobName": "㤳ン㐫ウン㉾マーケティン�／新規事業�プロジ��"ク㈉㪿ー〿�（中��語�・��語�ス㭾�活�かせ�）�", "industry": "コンサル", "jobType": "企画", "location": "大阪・近畿", "salary": 85.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants":61, "liberalPct": 100, "sciencePct": 0, "jlptN1Pct": 50, "jlptN2Pct":5 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct":507, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum":7150, "url": "https://www"poitivec.co.jp/"},
-  {"company": "株式会社㞝イ㯗ロアド��"�証�㰗㭥ー�市場上場c】", "jobName": "【신�｜27년 4월 �입�】비����니����｜ 데이터마케팅 ���설턴트 (광고×빅 데이�)　"�7新�｜276��"4月入礁〼㓭㸞㍳㹢職", "industry": �㞝�"コ㟣・��告�", "jobType": "総合職", "location": "東京", "salary":328.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants":362, "liberalPct":811, "sciencePct":170, "jlptN1Pct": 85, "jlptN2Pct": 8, "jlptN3Pct":80, "jlptBelowPct": 0, "jlptNonePct": 6, "highToeicPct": 0, "hasCertPct":697, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://wwwmicroadc.co.jp/"},
-  {"company": "株式会社㟹㭾㏫ウ���", "jobName": ■Genbera Staff ("総合�)"コ㼦���", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 78, "liberalPct":878, "sciencePct":68, "jlptN1Pct": 29, "jlptN2Pct":350, "jlptN3Pct": 12, "jlptBelowPct": 0, "jlptNonePct": 14, "highToeicPct": 0, "hasCertPct":477, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum":7150, "url": "https://wwwmikihousec.co.jp/"},
-  {"company": "株式会社㟹ラ㓭ス", "jobName": "々기�  영업�】당�신�� 힘�으로미��실� 겈�을 ��끌��갈 수 �숐는 라� 해보 � 않�윑��겠습��까?"�"企甌�業�職�自分の力�", "industry": "商社", "jobType": ��業�", "location": "東京", "salary": 28.5, "postingDays": 120, "joinTime": "4月入社", "targetDept": "全学部", "season": "秋", "totalApplicants": 38, "liberalPct":878, "sciencePct":68, "jlptN1Pct":657, "jlptN2Pct":187, "jlptN3Pct":32, "jlptBelowPct": 0, "jlptNonePct": 12, "highToeicPct": 0, "hasCertPct":674, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https:/miravisc.co.jp/"},
-  {"company": "株式会社㢉㐝イル�ァ�ク㈉㪿ル", "jobName": [UI/UX 디자이너(���마트폰� ��플 /� �임)] ��본 �읅긠 ��플�리���이�� 기�업���� 활���!��UI/UXBデザイナ�（�", "industry": "IT", "jobType": "クリエイティブ", "location": "東京", "salary": 98.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants": 13, "liberalPct":460, "sciencePct": 0, "jlptN1Pct":318, "jlptN2Pct":426, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":239, "highToeicPct": 0, "hasCertPct":462, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https://wwwmobilefactoryo.jp/"},
-  {"company": "株式会社㢉㐝イル�ァ�ク㈉㪿ル", "jobName": [ �임, Web� 개�] ��본���� 자��  개발 ���업으로풀� ��택!� 프�그래밍을 ���아하�는 ��람 대환�� (20 2년 �", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 18.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants":297, "liberalPct":271, "sciencePct":363, "jlptN1Pct":318, "jlptN2Pct": 87, "jlptN3Pct":32, "jlptBelowPct": 0, "jlptNonePct":218, "highToeicPct": 0, "hasCertPct":662, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https://wwwmobilefactoryo.jp/"},
-  {"company": "株式会社㢉㐝イル�ァ�ク㈉㪿ル", "jobName": [ �임, Web� 개�] ��본���� 자��  개발 ���업으로풀� ��택!� 프�그래밍을 ���아하�는 ��람 대환�� (20 7년 �", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 18.5, "postingDays": 150, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants": 042, "liberalPct":275, "sciencePct":638, "jlptN1Pct": 87, "jlptN2Pct":431, "jlptN3Pct": 4, "jlptBelowPct":12, "jlptNonePct":25,, "highToeicPct": 0, "hasCertPct": 64, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https://wwwmobilefactoryo.jp/"},
-  {"company": "株式会社㪝ク㫿ート����본 ���가총액 랭킹: 0위※c】", "jobName": [ 데이터 사이언티스�/ 데이터 엔지니�/머��러닝� 엔지니�/소 픤�웨�어 엔지니�( 데이터 ��플�리���이��)]"〾デーコサ㤷", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 20.5, "postingDays": 90, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":33 4, "liberalPct": 18, "sciencePct": 93, "jlptN1Pct":168, "jlptN2Pct": 37, "jlptN3Pct": 2, "jlptBelowPct": 0, "jlptNonePct":6 9, "highToeicPct": 0, "hasCertPct": 71, "noRelocation": false, "trialPeriod": false, "isListed": true, "empBucket": enterprisel", "empNum": 2050, "url": "https://wwworeruit..co.jp/"},
-  {"company": "株式会社㪝ク㫿ート����본 ���가총액 랭킹: 0위※c】", "jobName":  데이터 사이언티스트/  데이터 엔지니언/  ����러닝� 엔지니얩 / �� 픤�웨�어 엔지니� ( 데이터 ��플�리���이��) �", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 32.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":5 8, "liberalPct":278, "sciencePct":693, "jlptN1Pct":450, "jlptN2Pct":249, "jlptN3Pct":50, "jlptBelowPct": 0, "jlptNonePct": 31, "highToeicPct": 0, "hasCertPct":721, "noRelocation": false, "trialPeriod": false, "isListed": true, "empBucket": enterprisel", "empNum": 2050, "url": "https://wwworeruit..co.jp/"},
-  {"company": "株式会社㪝ク㫿ート���ー㫳ディンゼ�【��본 ���가총액 랭킹: 0위※c】", "jobName":  데이터 사이언티스트/  데이터 엔지니언/  ����러닝� 엔지니얩 / �� 픤�웨�어 엔지니� ( 데이터 ��플�리���이��) �", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary":335.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 12, "liberalPct":154, "sciencePct":863, "jlptN1Pct":148, "jlptN2Pct":55, "jlptN3Pct":04, "jlptBelowPct":50, "jlptNonePct":7 6, "highToeicPct": 0, "hasCertPct":451, "noRelocation": false, "trialPeriod": false, "isListed": true, "empBucket": enterprisel", "empNum": 2050, "url": "https://wwworeruit..co.jp/"},
-  {"company": "株式会社㪝��ァ�ン㗑", "jobName": DX �실��형 ���설턴트 (Associate) �㏫ン�オ��"��DXBコンサヱタン�（Dア㽣㷵��"㤳�）�", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary":425.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants":120, "liberalPct":430, "sciencePct":551, "jlptN1Pct":635, "jlptN2Pct":1 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":25,, "highToeicPct": 0, "hasCertPct": 57, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https:/revamp..co.jp/"},
-  {"company": "株式会社㪝��ァ�ン㗑", "jobName": [ 2년 졸�업��� ��종모집!] �신�� [엔지니어짷�26卒 最終募集�！�7新� �エンジニア職", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary":325.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "秋", "totalApplicants": 20, "liberalPct":475, "sciencePct":450, "jlptN1Pct": 50, "jlptN2Pct":309, "jlptN3Pct":50, "jlptBelowPct": 0, "jlptNonePct": 50, "highToeicPct": 0, "hasCertPct": 60, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https:/revamp..co.jp/"},
-  {"company": "株式会社㪝��ァ�ン㗑", "jobName": [ 2년 졸�업��� ��종모집] �신��  겈� ���설턴트�짷�26卒 最終募集�！�7新� "経�Bコンサヱタンモ職", "industry": "IT", "jobType": "総合職", "location": "東京", "salary":325.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "秋", "totalApplicants":117, "liberalPct":971, "sciencePct":60, "jlptN1Pct":826, "jlptN2Pct": 18, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":06, "highToeicPct": 0, "hasCertPct":451, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https:/revamp..co.jp/"},
-  {"company": "株式会社㪝��ァ�ン㗑", "jobName": ��26����】신�� [엔지니어짷�26卒��7新卻エンジニア職", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary":325.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants":657, "liberalPct":375, "sciencePct":538, "jlptN1Pct":459, "jlptN2Pct":350, "jlptN3Pct": 2, "jlptBelowPct": 0, "jlptNonePct":118, "highToeicPct": 0, "hasCertPct":781, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https:/revamp..co.jp/"},
-  {"company": "株式会社㪝��ァ�ン㗑", "jobName": ��제2�신�� 한정  채�/연수 ���실】미�경� DX ���설턴트/�엔지니�【第二7新�限定�採�/研修充実���未経�DXBコンサヱタヷ", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary":375.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants":557, "liberalPct":335, "sciencePct":538, "jlptN1Pct":406, "jlptN2Pct": 22, "jlptN3Pct": 4, "jlptBelowPct": 0, "jlptNonePct":314, "highToeicPct": 0, "hasCertPct": 31, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https:/revamp..co.jp/"},
-  {"company": "株式会社㪝��ァ�ン�kアカデ㟿ル", "jobName": 미�경헠쐴환��! 대 ���엠 �료 ���작에 참��하�는 ��피 �� ��무��수 � �입삷��未経験O！大手企業���資料に携わ�ゾ���㕆ィス㯂", "industry": "コンサル", "jobType": "事����"��理�", "location": "東京", "salary": 72.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 13, "liberalPct":460, "sciencePct":236, "jlptN1Pct": 38, "jlptN2Pct": 89, "jlptN3Pct":80, "jlptBelowPct": 0, "jlptNonePct": 67, "highToeicPct": 0, "hasCertPct":772, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/revamp..co.jpacademy/"inex.php/"},
-  {"company": "株式会社㯝ク㈑", "jobName": ��27년 졸��· 엔지니�  �무】도쿄 근무｜ 시스템 엔지니�·�� 프일 엔지니� 모집!��27年�卻・エンジニア職��東�勤務�", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 50.5, "postingDays": 90, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants":357, "liberalPct":371, "sciencePct":363, "jlptN1Pct": 29, "jlptN2Pct":497, "jlptN3Pct":32, "jlptBelowPct": 0, "jlptNonePct": 90, "highToeicPct": 0, "hasCertPct":807, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https://wwwwakuto.net//"},
-  {"company": "株式会社㯝ク㈑", "jobName": ��PL 미�경헠쐴OK!�】 ��성형 AI 활�� ◎ 복수  프�젝트를 리드하���� ���리어 업�� ��현　"�PL�未経�者�O！�", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary":50.05, "postingDays":930, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":  8, "liberalPct":454, "sciencePct":393, "jlptN1Pct":397, "jlptN2Pct":335, "jlptN3Pct": 11, "jlptBelowPct": 0, "jlptNonePct": 71, "highToeicPct": 0, "hasCertPct":721, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https://wwwwakuto.net//"},
-  {"company": "株式会社㯝ク㈑", "jobName": ��PM 미�경헠쐴OK!�】 ��성 AI 활�� ◎ ��러  프�젝트를 리드하���� ���리어 � ��현　"�PM�未経�者�O！�】���", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary":50.05, "postingDays":930, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":217, "liberalPct":578, "sciencePct":336, "jlptN1Pct": 37, "jlptN2Pct":439, "jlptN3Pct":50, "jlptBelowPct": 0, "jlptNonePct": 90, "highToeicPct": 0, "hasCertPct":812, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https://wwwwakuto.net//"},
-  {"company": "株式会社㯝ク㈑", "jobName": ��백 �듄�】��성형 AI 활��｜팀 배정 ◎｜ �� �� � 0~8���간"〾㐷ッセエンド�����成AI活用｜�ねー㠞アサ㤳�◎｜残業4�0�", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary":405.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":  8, "liberalPct":178, "sciencePct": 28, "jlptN1Pct": 87, "jlptN2Pct":395, "jlptN3Pct": 11, "jlptBelowPct": 0, "jlptNonePct":220, "highToeicPct": 0, "hasCertPct": 62, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https://wwwwakuto.net//"},
-  {"company": "株式会�三栄Bコンサヱタンル", "jobName": "〾エンジニア職〈レ㼤��計渂��ＧＩＳ�支援エンジニア", "industry": "不動産・建設", "jobType": "開発・エンジニア", "location": "東京", "salary": 45.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants":42, "liberalPct":275, "sciencePct":758, "jlptN1Pct": 50, "jlptN2Pct":5 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":25,, "highToeicPct": 0, "hasCertPct":754, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https://wwwsanei-consulc.co.jp/"},
-  {"company": "株式会�三栄Bコンサヱタンル", "jobName": "〻��報�】", "industry": "不動産・建設", "jobType": "総合職", "location": "��古屋�", "salary": 45.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants":120, "liberalPct":830, "sciencePct":160, "jlptN1Pct":750, "jlptN2Pct":309, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":06, "highToeicPct": 0, "hasCertPct":704, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https://wwwsanei-consulc.co.jp/"},
-  {"company": "株式会�三栄Bコンサヱタンル", "jobName": "�7新卐総合職〻建�Bコンサヱタンル", "industry": "不動産・建設", "jobType": "総合職", "location": "東京", "salary": 45.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants":37, "liberalPct":335, "sciencePct":336, "jlptN1Pct":657, "jlptN2Pct":09, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":339, "highToeicPct": 0, "hasCertPct":334, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https://wwwsanei-consulc.co.jp/"},
-  {"company": "株式会�八光殿�", "jobName": "〻��定残業����㗷��未経騰か�挑戦��き��葬祭�ディレキ㿊�｜心に寄B�添う仕事��地域に安心を届け����", "industry": "㵿ー㓭ス", "jobType": "総合職", "location": "大阪・近畿", "salary": 65.5, "postingDays":1830, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants":157, "liberalPct":684, "sciencePct":214, "jlptN1Pct": 50, "jlptN2Pct":122, "jlptN3Pct": 4, "jlptBelowPct": 0, "jlptNonePct": 14, "highToeicPct": 0, "hasCertPct":682, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https://www8510.net//"},
-  {"company": "株式会�和心【"�証�㰗㭥ー�市場上場c】", "jobName": 25/7/31〆切_MD�기�, ���안  영� �㰗�ズ"企町�提案��業�", "industry": "コンサル", "jobType": ��業�", "location": "東京", "salary": 28.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants":320, "liberalPct":730, "sciencePct":160, "jlptN1Pct":730, "jlptN2Pct": 20, "jlptN3Pct":32, "jlptBelowPct": 0, "jlptNonePct":40, "highToeicPct": 0, "hasCertPct": 60, "noRelocation": true, "trialPeriod": false, "isListed": true, "empBucket": mediNum", "empNum":1150, "url": "https://wwwwagokoroc.co.jp"inex.html/"},
-  {"company": "株式会�和心【"�証�㰗㭥ー�市場上場c】", "jobName": 25/7/31〆切_마케팅, ���략��기� �マーケティン�、���略"企画", "industry": "コンサル", "jobType": "事����"��理�", "location": "東京", "salary": 28.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 12, "liberalPct":778, "sciencePct":93, "jlptN1Pct":559, "jlptN2Pct":326, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":94, "highToeicPct": 0, "hasCertPct": 31, "noRelocation": true, "trialPeriod": false, "isListed": true, "empBucket": mediNum", "empNum":1150, "url": "https://wwwwagokoroc.co.jp"inex.html/"},
-  {"company": "株式会�和心【"�証�㰗㭥ー�市場上場c】", "jobName": 25/7/31〆切_ ��픈 포 지�� (직종은 면접�� 통해 결정)����㼾プ㳾㝳ジショ�(��種を迷わ��てい��方はと�㡋㉼��)�", "industry": "コンサル", "jobType": "総合職", "location": "東京", "salary": 28.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants":777, "liberalPct": 71, "sciencePct":146, "jlptN1Pct": 38, "jlptN2Pct":295, "jlptN3Pct": 2, "jlptBelowPct": 0, "jlptNonePct": 12, "highToeicPct": 0, "hasCertPct":651, "noRelocation": true, "trialPeriod": false, "isListed": true, "empBucket": mediNum", "empNum":1150, "url": "https://wwwwagokoroc.co.jp"inex.html/"},
-  {"company": "株式会�大中環境�", "jobName": "々�술계 �종합직】��면 분�����현미��　※초보 쐴환��【"��術系�総合職〞ア㹾㙵㹾�の分析��顕微鏡　※�未経�歓迎�", "industry": "不動産・建設", "jobType": "開発・エンジニア", "location": "��古屋�", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":12, "liberalPct": 30, "sciencePct":560, "jlptN1Pct":50, "jlptN2Pct":5 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":506, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/daichuo.jp/"},
-  {"company": "株式会�大中環境�", "jobName": "【종합직�건축 ���설팅 �영�【�総合職〻�築"コンサヱティンれ�業�", "industry": "不動産・建設", "jobType": ��業�", "location": "��古屋�", "salary": 45.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 5, "liberalPct":630, "sciencePct":208, "jlptN1Pct":406, "jlptN2Pct":4 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":206, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/daichuo.jp/"},
-  {"company": "株式会�家元�", "jobName": "々�술�직】��계�짷�"��術�職�設訃�職", "industry": "不動産・建設", "jobType": "開発・エンジニア", "location": その他�", "salary": 45.5, "postingDays":630, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":12, "liberalPct":30, "sciencePct":1660, "jlptN1Pct":50, "jlptN2Pct":5 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":506, "highToeicPct": 0, "hasCertPct":500, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum":420, "url": "https:/kanazawaiemotoo.jp/"},
-  {"company": "株式会�家元�", "jobName": "【종합직】��공관�릩� ※미�경� OK【�総合職�施工管理�� ※�未経�OK�", "industry": "不動産・建設", "jobType": "総合職", "location": その他�", "salary": 45.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":77, "liberalPct": 71, "sciencePct":293, "jlptN1Pct":148, "jlptN2Pct":557, "jlptN3Pct":140, "jlptBelowPct": 0, "jlptNonePct": 50, "highToeicPct": 0, "hasCertPct":430, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum":420, "url": "https:/kanazawaiemotoo.jp/"},
-  {"company": "株式会�家元�", "jobName": "【종합직】��테�리어 ��디네�이�／ 디자츩� ※미�경� OK 【�総合職�"㤳ンㆾ㪝�"コ㼦ディ㍇ーコ�／Bデザイ㳈� ※�未経�OK�", "industry": "不動産・建設", "jobType": "総合職", "location": その他�", "salary": 45.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":120, "liberalPct":230, "sciencePct":560, "jlptN1Pct":320, "jlptN2Pct": 20, "jlptN3Pct":2 0, "jlptBelowPct": 0, "jlptNonePct":306, "highToeicPct": 0, "hasCertPct":704, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum":420, "url": "https:/kanazawaiemotoo.jp/"},
-  {"company": "株式会��日�"��術���団 ( JET )�", "jobName": 　��미�경헠�OK】 시스템 엔지니� /  프�젝트 매�니지��트　"�7未経�者�O��"㷵㹾ㆼ㠞エンジニ�/�プロジ��"ク㈉㞞㍳㸫㡦ヷ", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 50.5, "postingDays": 150, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 20, "liberalPct":462, "sciencePct":493, "jlptN1Pct":348, "jlptN2Pct": 89, "jlptN3Pct":90, "jlptBelowPct": 0, "jlptNonePct": 90, "highToeicPct": 0, "hasCertPct":757, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/jampa-et..co.jp/"},
-  {"company": "株式会���立�㏫イテク", "jobName": [�엔지니어�] ���계  개�· �굦  개발등 (��계, �����, ���보, 물�� ������ 쐴대환��★)"〾エンジニア職�設訃"開発ヷ", "industry": 製造T", "jobType": "開発・エンジニア", "location": "東京", "salary": 50.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": 理系�", "season": "冬", "totalApplicants":12, "liberalPct":30, "sciencePct":1660, "jlptN1Pct":50, "jlptN2Pct":1660, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":06, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": false, "trialPeriod": false, "isListed": false, "empBucket": enterprisel", "empNum": 2050, "url": "https://wwwhitachi-"higtech..cm/.jpjap/"},
-  {"company": "株式会���輝製作所�", "jobName": "々�술��(풋�� 보 ��)��수 신입�가능】 ��품 풋�� 관�� 및 제조 ��� ��  � 신�� 관�릷�"��術��(品質保証)���随晈入�可能�】", "industry": 製造T", "jobType": "開発・エンジニア", "location": その他�", "salary": 4595, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 13, "liberalPct":371, "sciencePct":463, "jlptN1Pct":318, "jlptN2Pct": 31, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":318, "highToeicPct": 0, "hasCertPct":627, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "large", "empNum": 350, "url": "htts://wwwnikkimfc..cm/"},
-  {"company": "株式会�晃商（KOSHO）�", "jobName": [�종합�] �신입사�/ 경력사원상 신채욹", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 35.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants":37, "liberalPct":30, "sciencePct": 70, "jlptN1Pct":50, "jlptN2Pct":679, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":339, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://wwwk-kosho..co.jp/"},
-  {"company": "株式会�晃商（kosho）�", "jobName": [�종합�] �신입사�/ 경력사원상 신채욹", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 35.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":67, "liberalPct":335, "sciencePct":506, "jlptN1Pct": 37, "jlptN2Pct":5 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 71, "highToeicPct": 0, "hasCertPct":837, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://wwwk-kosho..co.jp/"},
-  {"company": "株式会�暁電機製作所�", "jobName": ��계���계(메카 개�, 메카트���엔지니�) 機械設訃（D㡦��"開発・㡦���㈉㭻エンジニ�）�", "industry": 製造T", "jobType": "開発・エンジニア", "location": "東京", "salary": 45.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":47, "liberalPct":30, "sciencePct":758, "jlptN1Pct": 50, "jlptN2Pct":05, "jlptN3Pct":254, "jlptBelowPct": 0, "jlptNonePct":506, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https:/arunas..co.jp/"},
-  {"company": "株式会�暁電機製作所�", "jobName": ���산��술, ���산�����, ��� �������(메카�니�� 관���)　生産"��術、生産管理、工程管理（D㡦��"�連）�", "industry": 製造T", "jobType": "事����"��理�", "location": "東京", "salary": 45.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":37, "liberalPct":30, "sciencePct": 70, "jlptN1Pct": 37, "jlptN2Pct": 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":676, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https:/arunas..co.jp/"},
-  {"company": "株式会�暁電機製作所�", "jobName": ��� 픤�웨�어 ��계(메카 제�어��애플�리���이��) �㽨㕯㈉ウ���ア��訃（D㡦��制御�・㢾プ㪼ケ㼸ショ�）�", "industry": 製造T", "jobType": "開発・エンジニア", "location": "東京", "salary": 45.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":32, "liberalPct":30, "sciencePct":1660, "jlptN1Pct":50, "jlptN2Pct":20, "jlptN3Pct":330, "jlptBelowPct": 0, "jlptNonePct":676, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https:/arunas..co.jp/"},
-  {"company": "株式会�結一産"���", "jobName": "【종합직��기� 영업� ※서류 ��격 �는 9/28(일)� ��울엀�� 면접 예 ��!（교통비� �급 ��음)　"��総合職�"企甌�業�", "industry": 製造T", "jobType": "総合職", "location": "大阪・近畿", "salary": 55.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants":  8, "liberalPct":798, "sciencePct": 38, "jlptN1Pct":648, "jlptN2Pct":142, "jlptN3Pct": 4, "jlptBelowPct": 0, "jlptNonePct":118, "highToeicPct": 0, "hasCertPct":710, "noRelocation": false, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/yuy..co.jp/"},
-  {"company": "株式会�船井"総�研究所�", "jobName": �겈� ���설턴트�� "経�Bコンサヱタンモ職", "industry": "コンサル", "jobType": "総合職", "location": "東京", "salary":308.5, "postingDays": 120, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":662, "liberalPct":838, "sciencePct": 21, "jlptN1Pct":850, "jlptN2Pct":90, "jlptN3Pct": 2, "jlptBelowPct": 0, "jlptNonePct":90, "highToeicPct": 0, "hasCertPct":521, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": enterprisel", "empNum": 2050, "url": "https://wwwfunaisoken..co.jp/"},
-  {"company": "株式会�船井"総�研究所�", "jobName": �겈� ���설턴트�� ＜276���入�＞"経�Bコンサヱタンモ職", "industry": "コンサル", "jobType": "総合職", "location": "東京", "salary":308.5, "postingDays": 120, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants": 37, "liberalPct":971, "sciencePct":46, "jlptN1Pct":918, "jlptN2Pct":40, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":59, "highToeicPct": 0, "hasCertPct":391, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": enterprisel", "empNum": 2050, "url": "https://wwwfunaisoken..co.jp/"},
-  {"company": "株式会�西武�・プ㪼ン㹈���ㆵヱ㺾㯝ー㫳㉾㯝㤢ド��西武�㰗㫧㼾プ】", "jobName": "�미�경헺�제 2�신�� 환��】호텔  프��트  ��태 픘��未経騰�"��二7新�歓迎�〈㛿ㆵヱ㕯㭿ン�"スタヾ㕂", "industry": "㵿ー㓭ス", "jobType": "総合職", "location": 福岡�", "salary": 35.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants":3 5, "liberalPct":748, "sciencePct":93, "jlptN1Pct":430, "jlptN2Pct": 60, "jlptN3Pct":32, "jlptBelowPct":30, "jlptNonePct":25,, "highToeicPct": 0, "hasCertPct":571, "noRelocation": false, "trialPeriod": false, "isListed": true, "empBucket": enterprisel", "empNum": 2050, "url": "https://wwwseibuprienc..cm/ko/"},
-  {"company": "株式会�銀座十字屋�", "jobName": "【종합직】영업�(하 �·악�긠배송 납품/�����/문����대��) ※미�경헓O��"��総合職「�業��（D㏧㼾プ�楽器の配送納品／"���", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 45.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants":97, "liberalPct":560, "sciencePct":226, "jlptN1Pct":657, "jlptN2Pct": 22, "jlptN3Pct": 11, "jlptBelowPct": 0, "jlptNonePct":06, "highToeicPct": 0, "hasCertPct":894, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum":420, "url": "https://wwwginzajujiya..cm//"},
-  {"company": "株式会�ｉｉｍｏｎ�", "jobName": "エンジニ�（Web）｜"不動�×SaaS「速い��ん」�シ㪧㼾��"開�｜�㕈レッセ�＆週2�㪧㢿ー�｜�㡝ンコ�伴走�", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 95.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 8, "liberalPct":378, "sciencePct":620, "jlptN1Pct": 50, "jlptN2Pct":122, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":318, "highToeicPct": 0, "hasCertPct":382, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https:/iimon..co.jp/"},
-  {"company": 辻和�建�"株式会礹", "jobName": �종합�(�영�＆���공관��) 　�総合�（��業＆施工管理）�", "industry": "不動産・建設", "jobType": "総合職", "location": "大阪・近畿", "salary": 65.5, "postingDays":1120, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":3 5, "liberalPct":830, "sciencePct":114, "jlptN1Pct": 50, "jlptN2Pct":2 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":206, "highToeicPct": 0, "hasCertPct":710, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://wwwtujiwa..co.jp/"},
-  {"company": 青楓館高等�学���", "jobName": [�종합�] 강사·교사·�츩스�럭�터겸  프�젝트 매�니����"��総合職� 講師��教師��"㤳ン㹾�ラ�キ㿊�兼�プロジ��"ク㈉㞞㍳㸫㣂", "industry": "��の他�", "jobType": "総合職", "location": "大阪・近畿", "salary":308.5, "postingDays":2730, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":1072, "liberalPct":778, "sciencePct":151, "jlptN1Pct":618, "jlptN2Pct":160, "jlptN3Pct":32, "jlptBelowPct": 0, "jlptNonePct":206, "highToeicPct": 0, "hasCertPct":740, "noRelocation": false, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https:/seifukan-gakuin..cm//"},
-  {"company": 高橋����㼿ㆵ㳉ウ���ー�工業4株式会礹", "jobName":  [ 2년 4월 �입� /� ��졸���� 짬원가능]� �계 ���유율 1위! 초고층 빌딩�� 담당하�는 ��벽 제조�업������ ��공�", "industry": 製造T", "jobType": "総合職", "location": "東京", "salary": 50.5, "postingDays": 820, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants":412, "liberalPct":768, "sciencePct":151, "jlptN1Pct":715, "jlptN2Pct":1 0, "jlptN3Pct":21, "jlptBelowPct": 0, "jlptNonePct": 71, "highToeicPct": 0, "hasCertPct":762, "noRelocation": true, "trialPeriod": true, "isListed": true, "empBucket": mediNum", "empNum":1150, "url": "https:/t-cw..co.jp/"},
-  {"company": 高橋����㼿ㆵ㳉ウ���ー�工業4株式会礹", "jobName": [ 2년 4월 �입� /� ��졸���� 짬원가능]� ��계�� ◎실짋���이고 믿��� ��� �숐는교육���계  ��26年"4月入�/既卒�", "industry": 製造T", "jobType": "開発・エンジニア", "location": "東京", "salary": 50.5, "postingDays": 150, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants": 97, "liberalPct":268, "sciencePct":636, "jlptN1Pct":210, "jlptN2Pct": 60, "jlptN3Pct": 11, "jlptBelowPct": 0, "jlptNonePct":426, "highToeicPct": 0, "hasCertPct":740, "noRelocation": true, "trialPeriod": true, "isListed": true, "empBucket": mediNum", "empNum":1150, "url": "https:/t-cw..co.jp/"},
-  {"company": 주식회�� Bank of Innovcatio [도쿄증권 그로 �� 상장]�"株式会社㐨ン㯺・㘪㖗�"㤳㎾㙵㼸ショ�【"�証�㰗㭥ー�上場c】", "jobName": [엔지니어짷�주식 상장,� �임  개�, 급여 34만[�~��"エンジニア職�"�証�㰗㭥ー�上場c�ゲ�ー�"開発��給与34万円～�】", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary":345.5, "postingDays":630, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":3 5, "liberalPct":238, "sciencePct":693, "jlptN1Pct":546, "jlptN2Pct":4 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":66, "highToeicPct": 0, "hasCertPct":710, "noRelocation": true, "trialPeriod": true, "isListed": true, "empBucket": mediNum", "empNum":1150, "url": "https:/boio.jp/"},
-  {"company": 주식회�� bBuckeplace jampa（오늘���집）�", "jobName": [도쿄근무]� �� ��인턴(6 �월) 長期"㤳ン㿭ー�（6ヶ4�）�", "industry": "IT", "jobType": "総合職", "location": "東京", "salary": 28.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants":  8, "liberalPct":771, "sciencePct":146, "jlptN1Pct":618, "jlptN2Pct":250, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 40, "highToeicPct": 0, "hasCertPct":577, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "large", "empNum":7350, "url": "https://wwwbBuckeplace..cm/.ap/"},
-  {"company": 주식회�� 빔��에이 |�"株式会社㓿ヾ㈻エ�(bita)［6�����36億を目指し積極�採�中！］�", "jobName": ��26년 4월 �입� ★ �신�� [�� [엔지니어짷� 시스� ��계��� �개���무를 통해�� 대 ���업���과제를 해결�합��다!��26年�", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 20.5, "postingDays":1120, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":990, "liberalPct":230, "sciencePct":638, "jlptN1Pct":370, "jlptN2Pct": 60, "jlptN3Pct":80, "jlptBelowPct": 0, "jlptNonePct":298, "highToeicPct": 0, "hasCertPct":781, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https:/bitao.jp/"},
-  {"company": 주식회�� 빔��에이 |�"株式会社㓿ヾ㈻エ�(bita)［6�����36億を目指し積極�採�中！］�", "jobName": ��26년 4월 �입�★�신�� [��디렉터�짷� 프�잭��의� ��요한 ���사결정�� 맡아� 사��확대 ���� ��량권�� 활��하�����26年"�", "industry": "IT", "jobType": "総合職", "location": "東京", "salary":308.5, "postingDays": 120, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":510, "liberalPct":730, "sciencePct":66, "jlptN1Pct":657, "jlptN2Pct":160, "jlptN3Pct":60, "jlptBelowPct": 0, "jlptNonePct": 12, "highToeicPct": 0, "hasCertPct":651, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": mediNum", "empNum":1150, "url": "https:/bitao.jp/"},
-  {"company": 주식회�� 에이 �� �지��키�"株式会社エ㼼��事��機�", "jobName": "々기� 영업짷� �����실의� �� �� ��나 리모델�� 등 고객님��� 희망에 대해 ���안! ��"企甌�業�職�"㪧㕆ィス��移転や改装�����お�", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 55.5, "postingDays":630, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":157, "liberalPct":720, "sciencePct":208, "jlptN1Pct":648, "jlptN2Pct":249, "jlptN3Pct":82, "jlptBelowPct": 0, "jlptNonePct":40, "highToeicPct": 0, "hasCertPct": 82, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https://wwwacejimki..co.jp/"},
-  {"company": 주식회�� 에이 �� �지��키�"株式会社エ㼼��事��機�", "jobName":  ��피 ��  디자�너��크�리��이�터(���공관��)｜도면�� 현�실�� 바꾸�는 프�젝트��  ㅣ ����㕆ィスデザイ㊭ー㻳㯺㪵��"㤳コ�（�", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 55.5, "postingDays":630, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":47, "liberalPct":751, "sciencePct":60, "jlptN1Pct":758, "jlptN2Pct":250, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":06, "highToeicPct": 0, "hasCertPct":251, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https://wwwacejimki..co.jp/"},
-  {"company": 토카이금속��� � ���식회�� "�海金属工業4株式会礹", "jobName":  프�덕트  엔지니� (CAD ��계) ㅣ 글��벌�가굦 제조�� ㅣ 해���  프�젝트 ��음 / �プロ��"ク㈉デザイ㳴エンジニア", "industry": 製造T", "jobType": "開発・エンジニア", "location": "��古屋�", "salary": 65.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants":42, "liberalPct":275, "sciencePct":758, "jlptN1Pct": 50, "jlptN2Pct":05, "jlptN3Pct":254, "jlptBelowPct": 0, "jlptNonePct":506, "highToeicPct": 0, "hasCertPct":757, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": mediNum", "empNum":750, "url": "https://wwwnoritsuisu..co.jp/"},
-  {"company": ｗ２4株式会礹", "jobName": [��술��] �개�+ ���엠 ��충(상류��� ��) ��무�", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 50.5, "postingDays":330, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":127, "liberalPct":335, "sciencePct":506, "jlptN1Pct":427, "jlptN2Pct":5 0, "jlptN3Pct":80, "jlptBelowPct": 0, "jlptNonePct":06, "highToeicPct": 0, "hasCertPct":757, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://wwww2soluatio..co.jp/"},
-  {"company": ｗ２4株式会礹", "jobName": �종합� "総合職", "industry": "IT", "jobType": "総合職", "location": "東京", "salary": 50.5, "postingDays":330, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants":172, "liberalPct":940, "sciencePct":66, "jlptN1Pct":715, "jlptN2Pct":295, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct":06, "highToeicPct": 0, "hasCertPct":717, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://wwww2soluatio..co.jp/"
+  {"company": "株式会社ハステック［korec内定実績あり/外国人社員多数在籍★］", "jobName": "[엔지니어직] 시스템 개발 경력사원 상시채용", "industry": "コンサル", "jobType": "開発・エンジニア", "location": "東京", "salary": 25.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 15, "liberalPct": 20, "sciencePct": 73, "jlptN1Pct": 27, "jlptN2Pct": 27, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 46, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://www.hastec.jp/"},
+  {"company": "株式会社パッションギークス", "jobName": "【幹部候補】現場経験からマネジメントや店舗のプロデュース、エリアマネージャー等", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 7, "liberalPct": 86, "sciencePct": 14, "jlptN1Pct": 57, "jlptN2Pct": 29, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 14, "highToeicPct": 0, "hasCertPct": 86, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 750, "url": "https://www.nakasho.group/passion-geeks"},
+  {"company": "株式会社ビルド・サポート", "jobName": "【종합직】사무직 ※미경험 OK【総合職】事務職 ※未経験OK", "industry": "不動産・建設", "jobType": "総合職", "location": "その他", "salary": 26.0, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 9, "liberalPct": 78, "sciencePct": 11, "jlptN1Pct": 67, "jlptN2Pct": 11, "jlptN3Pct": 11, "jlptBelowPct": 0, "jlptNonePct": 11, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://build-support.info/"},
+  {"company": "株式会社ビルド・サポート", "jobName": "【종합직】시공관리직 ※미경험 OK【総合職】施工管理職 ※未経験OK", "industry": "不動産・建設", "jobType": "総合職", "location": "その他", "salary": 25.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 4, "liberalPct": 50, "sciencePct": 50, "jlptN1Pct": 25, "jlptN2Pct": 0, "jlptN3Pct": 0, "jlptBelowPct": 25, "jlptNonePct": 50, "highToeicPct": 0, "hasCertPct": 50, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://build-support.info/"},
+  {"company": "株式会社ビーウェル", "jobName": "【あなたの感性が未来を創る】グラフィック＆WEBデザイナー募集", "industry": "コンサル", "jobType": "クリエイティブ", "location": "大阪・近畿", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 8, "liberalPct": 38, "sciencePct": 38, "jlptN1Pct": 25, "jlptN2Pct": 38, "jlptN3Pct": 12, "jlptBelowPct": 12, "jlptNonePct": 13, "highToeicPct": 0, "hasCertPct": 62, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://bwell.jp/"},
+  {"company": "株式会社ビーウェル", "jobName": "【マーケティング職】韓国向けプロモーション全般の運用管理担当者募集✨", "industry": "コンサル", "jobType": "総合職", "location": "大阪・近畿", "salary": 25.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 23, "liberalPct": 74, "sciencePct": 4, "jlptN1Pct": 61, "jlptN2Pct": 22, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 17, "highToeicPct": 0, "hasCertPct": 57, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://bwell.jp/"},
+  {"company": "株式会社ビーウェル", "jobName": "【종합직】채용 지원·인재 컨설팅 영업｜기업의 채용 과제를 해결하는 커리어 지원 포지션【総合職】採用支援・人材コ", "industry": "コンサル", "jobType": "総合職", "location": "大阪・近畿", "salary": 25.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 35, "liberalPct": 74, "sciencePct": 11, "jlptN1Pct": 63, "jlptN2Pct": 11, "jlptN3Pct": 9, "jlptBelowPct": 0, "jlptNonePct": 17, "highToeicPct": 0, "hasCertPct": 63, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://bwell.jp/"},
+  {"company": "株式会社ビーウェルインターナショナル", "jobName": "[KOREC에서 성장하자★BtoB영업직(RA)] 인성이나 스탠스 중시로 채용합니다! 【KORECで成長しよう★", "industry": "人材", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 7, "liberalPct": 71, "sciencePct": 0, "jlptN1Pct": 86, "jlptN2Pct": 14, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 43, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://app.korec.jp/"},
+  {"company": "株式会社ビーウェルインターナショナル", "jobName": "[KOREC에서 성장하자★キャリアアドバイザー(CA)] 인성이나 스탠스 중시로 채용합니다! 【韓国人の日本就職を", "industry": "人材", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 53, "liberalPct": 79, "sciencePct": 11, "jlptN1Pct": 64, "jlptN2Pct": 19, "jlptN3Pct": 4, "jlptBelowPct": 0, "jlptNonePct": 13, "highToeicPct": 0, "hasCertPct": 64, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://app.korec.jp/"},
+  {"company": "株式会社ビーウェルインターナショナル", "jobName": "【KOREC에서 성장하자★종합직(채용 컨설턴트（CA·RA）·대학 영업)】 인성이나 스탠스 중시로 채용합니다!", "industry": "人材", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 31, "liberalPct": 71, "sciencePct": 6, "jlptN1Pct": 58, "jlptN2Pct": 23, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 19, "highToeicPct": 0, "hasCertPct": 55, "noRelocation": false, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://app.korec.jp/"},
+  {"company": "株式会社ビーウェルインターナショナル", "jobName": "【KOREC에서 성장하자★종합직(컨설턴트（CA·RA）·대학 영업)】 인성이나 스탠스 중시로 채용합니다! 【K", "industry": "人材", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 15, "liberalPct": 93, "sciencePct": 0, "jlptN1Pct": 87, "jlptN2Pct": 7, "jlptN3Pct": 7, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 53, "noRelocation": false, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://app.korec.jp/"},
+  {"company": "株式会社ビーウェルインターナショナル(K-Village事業部)", "jobName": "【韓国語講師】日韓を繋ぐ、なりたいを叶える講師※大阪勤務※", "industry": "サービス", "jobType": "総合職", "location": "大阪・近畿", "salary": 25.4, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 16, "liberalPct": 75, "sciencePct": 0, "jlptN1Pct": 50, "jlptN2Pct": 25, "jlptN3Pct": 6, "jlptBelowPct": 0, "jlptNonePct": 19, "highToeicPct": 0, "hasCertPct": 56, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://bwell-i.com/korec/"},
+  {"company": "株式会社ファイブグループ", "jobName": "総合職 （調理、接客、店舗運営など）トレーナー、ディレクター、本部スタッフのキャリアパスがあります！★", "industry": "サービス", "jobType": "総合職", "location": "東京", "salary": 28.5, "postingDays": 150, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 34, "liberalPct": 65, "sciencePct": 26, "jlptN1Pct": 44, "jlptN2Pct": 41, "jlptN3Pct": 3, "jlptBelowPct": 0, "jlptNonePct": 12, "highToeicPct": 0, "hasCertPct": 74, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://recruit.five-group.co.jp/"},
+  {"company": "株式会社フェニックス", "jobName": "コンサルティング(DX、経営管理、財務戦略の立案)", "industry": "コンサル", "jobType": "企画", "location": "東京", "salary": 33.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 12, "liberalPct": 58, "sciencePct": 25, "jlptN1Pct": 67, "jlptN2Pct": 17, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 16, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 5, "url": "https://phoenix.co.jp/"},
+  {"company": "株式会社フェニックス", "jobName": "컨설팅(DX, 경영관리, 재무전략 입안) コンサルティング(DX、経営管理、財務戦略の立案)", "industry": "コンサル", "jobType": "企画", "location": "東京", "salary": 33.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 8, "liberalPct": 62, "sciencePct": 25, "jlptN1Pct": 62, "jlptN2Pct": 25, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 13, "highToeicPct": 0, "hasCertPct": 38, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 5, "url": "https://phoenix.co.jp/"},
+  {"company": "株式会社プロテラス", "jobName": "営業職", "industry": "IT", "jobType": "営業", "location": "東京", "salary": 30.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants": 12, "liberalPct": 83, "sciencePct": 17, "jlptN1Pct": 75, "jlptN2Pct": 25, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 92, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://www.proteras.co.jp/"},
+  {"company": "株式会社プロテラス", "jobName": "開発職", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 28.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants": 31, "liberalPct": 29, "sciencePct": 61, "jlptN1Pct": 35, "jlptN2Pct": 29, "jlptN3Pct": 6, "jlptBelowPct": 0, "jlptNonePct": 30, "highToeicPct": 0, "hasCertPct": 77, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://www.proteras.co.jp/"},
+  {"company": "株式会社ベル", "jobName": "[종합직]영업, 시공관리 신입사원/경력사원 26년4월입사　[総合職]営業・施工管理 26年4月入社", "industry": "不動産・建設", "jobType": "総合職", "location": "大阪・近畿", "salary": 25.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 6, "liberalPct": 83, "sciencePct": 0, "jlptN1Pct": 67, "jlptN2Pct": 33, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://ai-kando.jp/"},
+  {"company": "株式会社ベル", "jobName": "清掃ロボットも活用！安定して働けるビルメンテナンス職【2026年4月入社】", "industry": "不動産・建設", "jobType": "総合職", "location": "大阪・近畿", "salary": 28.5, "postingDays": 90, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 22, "liberalPct": 36, "sciencePct": 59, "jlptN1Pct": 27, "jlptN2Pct": 41, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 32, "highToeicPct": 0, "hasCertPct": 50, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://ai-kando.jp/"},
+  {"company": "株式会社ベル", "jobName": "鳩対策事業部　営業・施工管理", "industry": "不動産・建設", "jobType": "営業", "location": "東京", "salary": 25.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants": 5, "liberalPct": 40, "sciencePct": 60, "jlptN1Pct": 20, "jlptN2Pct": 20, "jlptN3Pct": 40, "jlptBelowPct": 0, "jlptNonePct": 20, "highToeicPct": 0, "hasCertPct": 60, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://ai-kando.jp/"},
+  {"company": "株式会社ベル【韓国人社員活躍中】", "jobName": "【営業職】未経験OK｜若手からチャレンジができ日本社会を支えるプロフェッショナルに", "industry": "不動産・建設", "jobType": "営業", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 12, "liberalPct": 83, "sciencePct": 17, "jlptN1Pct": 58, "jlptN2Pct": 42, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://ai-kando.jp/"},
+  {"company": "株式会社ベーシック", "jobName": "[신입] 인사이드 세일즈_SLG 사업부【新卒】インサイドセールス_SLG事業部", "industry": "IT", "jobType": "営業", "location": "東京", "salary": 28.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 15, "liberalPct": 87, "sciencePct": 7, "jlptN1Pct": 67, "jlptN2Pct": 33, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 80, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://basicinc.jp/"},
+  {"company": "株式会社ベーシック", "jobName": "[신입] 인프라 엔지니어_PLG사업부【新卒】インフラエンジニア_PLG事業部", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 32.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 28, "liberalPct": 11, "sciencePct": 82, "jlptN1Pct": 36, "jlptN2Pct": 29, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 35, "highToeicPct": 0, "hasCertPct": 79, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://basicinc.jp/"},
+  {"company": "株式会社ペンシル", "jobName": "25年5月〆切　[백엔드 엔지니어　미경험 가능]​ 자사 제품, EC 패키지, 스크래치 EC 시스템 도입 및 수", "industry": "IT", "jobType": "開発・エンジニア", "location": "福岡", "salary": 22.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 35, "liberalPct": 29, "sciencePct": 63, "jlptN1Pct": 31, "jlptN2Pct": 31, "jlptN3Pct": 3, "jlptBelowPct": 0, "jlptNonePct": 35, "highToeicPct": 0, "hasCertPct": 71, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://www.pencil.co.jp/"},
+  {"company": "株式会社ペンシル", "jobName": "25年5月〆切　[수시 입사 가능 · 종합직 (WEB 컨설턴트)] web 프로듀서【随時入社可能・総合職（WEBコ", "industry": "IT", "jobType": "総合職", "location": "福岡", "salary": 22.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 21, "liberalPct": 71, "sciencePct": 19, "jlptN1Pct": 52, "jlptN2Pct": 29, "jlptN3Pct": 5, "jlptBelowPct": 0, "jlptNonePct": 14, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://www.pencil.co.jp/"},
+  {"company": "株式会社ペンシル", "jobName": "[수시 입사 가능 · 종합직 (WEB 컨설턴트)] web 프로듀서【随時入社可能・総合職（WEBコンサルタント）】", "industry": "IT", "jobType": "総合職", "location": "福岡", "salary": 22.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 9, "liberalPct": 89, "sciencePct": 11, "jlptN1Pct": 67, "jlptN2Pct": 33, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 56, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://www.pencil.co.jp/"},
+  {"company": "株式会社ペンシル", "jobName": "　[백엔드 엔지니어　미경험 가능]​ 자사 제품, EC 패키지, 스크래치 EC 시스템 도입 및 수정 등【バック", "industry": "IT", "jobType": "開発・エンジニア", "location": "福岡", "salary": 22.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 21, "liberalPct": 19, "sciencePct": 76, "jlptN1Pct": 38, "jlptN2Pct": 38, "jlptN3Pct": 5, "jlptBelowPct": 0, "jlptNonePct": 19, "highToeicPct": 0, "hasCertPct": 81, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://www.pencil.co.jp/"},
+  {"company": "株式会社ポジティブドリームパーソンズ", "jobName": "【관동 근무／기술·인문 지식·국제 업무 비자 지원】 영어를 활용하는 리셉션 직무 ― 일본에서 커리어를 시작할", "industry": "コンサル", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 8, "liberalPct": 88, "sciencePct": 12, "jlptN1Pct": 62, "jlptN2Pct": 25, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 13, "highToeicPct": 0, "hasCertPct": 50, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 750, "url": "https://www.positive.co.jp/"},
+  {"company": "株式会社ポジティブドリームパーソンズ", "jobName": "【복리후생충실!】조리, 파티셰 스태프【福利厚生充実！】調理・パティシエスタッフ", "industry": "コンサル", "jobType": "総合職", "location": "東京", "salary": 26.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 4, "liberalPct": 75, "sciencePct": 0, "jlptN1Pct": 50, "jlptN2Pct": 25, "jlptN3Pct": 25, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 75, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 750, "url": "https://www.positive.co.jp/"},
+  {"company": "株式会社ポジティブドリームパーソンズ", "jobName": "インバウンドマーケティング／新規事業プロジェクトリーダー（中国語・英語スキル活かせる）", "industry": "コンサル", "jobType": "企画", "location": "大阪・近畿", "salary": 28.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 6, "liberalPct": 100, "sciencePct": 0, "jlptN1Pct": 50, "jlptN2Pct": 50, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 50, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 750, "url": "https://www.positive.co.jp/"},
+  {"company": "株式会社マイクロアド【東証グロース市場上場】", "jobName": "【신입｜27년 4월 입사】비즈니스직｜데이터 마케팅 컨설턴트 (광고×빅데이터)　【新卒｜27年4月入社】ビジネス職", "industry": "マスコミ・広告", "jobType": "総合職", "location": "東京", "salary": 32.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants": 36, "liberalPct": 81, "sciencePct": 17, "jlptN1Pct": 78, "jlptN2Pct": 8, "jlptN3Pct": 8, "jlptBelowPct": 0, "jlptNonePct": 6, "highToeicPct": 0, "hasCertPct": 69, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://www.microad.co.jp/"},
+  {"company": "株式会社ミキハウス", "jobName": "■General Staff (総合職)コース", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 17, "liberalPct": 88, "sciencePct": 6, "jlptN1Pct": 29, "jlptN2Pct": 35, "jlptN3Pct": 12, "jlptBelowPct": 0, "jlptNonePct": 24, "highToeicPct": 0, "hasCertPct": 47, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 750, "url": "https://www.mikihouse.co.jp/"},
+  {"company": "株式会社ミラビス", "jobName": "【기획 영업직】당신의 힘으로 미용실 경영을 이끌어갈 수 있는 일을 해보지 않으시겠습니까?【企画営業職】自分の力", "industry": "商社", "jobType": "営業", "location": "東京", "salary": 28.5, "postingDays": 120, "joinTime": "4月入社", "targetDept": "全学部", "season": "秋", "totalApplicants": 33, "liberalPct": 88, "sciencePct": 6, "jlptN1Pct": 67, "jlptN2Pct": 18, "jlptN3Pct": 3, "jlptBelowPct": 0, "jlptNonePct": 12, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://miravis.co.jp/"},
+  {"company": "株式会社モバイルファクトリー", "jobName": "[UI/UX디자이너 (스마트폰 어플 / 게임)] 일본 인기 어플리케이션 기업에서 활약!【UI/UXデザイナー（", "industry": "IT", "jobType": "クリエイティブ", "location": "東京", "salary": 29.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants": 13, "liberalPct": 46, "sciencePct": 0, "jlptN1Pct": 31, "jlptN2Pct": 46, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 23, "highToeicPct": 0, "hasCertPct": 46, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://www.mobilefactory.jp/"},
+  {"company": "株式会社モバイルファクトリー", "jobName": "[게임, Web 개발] 일본의 자사 개발 기업으로 풀 스택! 프로그래밍을 좋아하는 사람 대환영 (2026년 ", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 31.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants": 29, "liberalPct": 21, "sciencePct": 66, "jlptN1Pct": 31, "jlptN2Pct": 38, "jlptN3Pct": 3, "jlptBelowPct": 0, "jlptNonePct": 28, "highToeicPct": 0, "hasCertPct": 66, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://www.mobilefactory.jp/"},
+  {"company": "株式会社モバイルファクトリー", "jobName": "[게임, Web 개발] 일본의 자사 개발 기업으로 풀 스택! 프로그래밍을 좋아하는 사람 대환영 (2027년 ", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 31.5, "postingDays": 150, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants": 104, "liberalPct": 25, "sciencePct": 68, "jlptN1Pct": 28, "jlptN2Pct": 41, "jlptN3Pct": 4, "jlptBelowPct": 2, "jlptNonePct": 25, "highToeicPct": 0, "hasCertPct": 64, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://www.mobilefactory.jp/"},
+  {"company": "株式会社リクルート【일본 시가총액 랭킹 10위※】", "jobName": "[데이터 사이언티스트/데이터 엔지니어/머신러닝 엔지니어/소프트웨어 엔지니어(데이터 애플리케이션)]【データサイ", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 32.5, "postingDays": 90, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 334, "liberalPct": 18, "sciencePct": 79, "jlptN1Pct": 16, "jlptN2Pct": 13, "jlptN3Pct": 2, "jlptBelowPct": 0, "jlptNonePct": 69, "highToeicPct": 0, "hasCertPct": 71, "noRelocation": false, "trialPeriod": false, "isListed": true, "empBucket": "enterprise", "empNum": 2000, "url": "https://www.recruit.co.jp/"},
+  {"company": "株式会社リクルート【일본 시가총액 랭킹 10위※】", "jobName": "데이터 사이언티스트 / 데이터 엔지니어 / 머신러닝 엔지니어 / 소프트웨어 엔지니어 (데이터 애플리케이션) ", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 33.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 58, "liberalPct": 28, "sciencePct": 69, "jlptN1Pct": 40, "jlptN2Pct": 24, "jlptN3Pct": 5, "jlptBelowPct": 0, "jlptNonePct": 31, "highToeicPct": 0, "hasCertPct": 72, "noRelocation": false, "trialPeriod": false, "isListed": true, "empBucket": "enterprise", "empNum": 2000, "url": "https://www.recruit.co.jp/"},
+  {"company": "株式会社リクルートホールディングス【일본 시가총액 랭킹 10위※】", "jobName": "데이터 사이언티스트 / 데이터 엔지니어 / 머신러닝 엔지니어 / 소프트웨어 엔지니어 (데이터 애플리케이션) ", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 33.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 22, "liberalPct": 14, "sciencePct": 86, "jlptN1Pct": 14, "jlptN2Pct": 5, "jlptN3Pct": 0, "jlptBelowPct": 5, "jlptNonePct": 76, "highToeicPct": 0, "hasCertPct": 45, "noRelocation": false, "trialPeriod": false, "isListed": true, "empBucket": "enterprise", "empNum": 2000, "url": "https://www.recruit.co.jp/"},
+  {"company": "株式会社リヴァンプ", "jobName": "DX 실무형 컨설턴트 (Associate) ハンズオン型DXコンサルタント（アソシエイト）", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 42.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 20, "liberalPct": 40, "sciencePct": 55, "jlptN1Pct": 65, "jlptN2Pct": 10, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 25, "highToeicPct": 0, "hasCertPct": 65, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://revamp.co.jp/"},
+  {"company": "株式会社リヴァンプ", "jobName": "[26년 졸업생 최종모집!] 신졸 엔지니어직【26卒 最終募集！】新卒 エンジニア職", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 35.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "秋", "totalApplicants": 20, "liberalPct": 45, "sciencePct": 45, "jlptN1Pct": 50, "jlptN2Pct": 30, "jlptN3Pct": 5, "jlptBelowPct": 0, "jlptNonePct": 15, "highToeicPct": 0, "hasCertPct": 60, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://revamp.co.jp/"},
+  {"company": "株式会社リヴァンプ", "jobName": "[26년 졸업생 최종모집] 신졸 경영 컨설턴트직【26卒 最終募集！】新卒 経営コンサルタント職", "industry": "IT", "jobType": "総合職", "location": "東京", "salary": 35.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "秋", "totalApplicants": 11, "liberalPct": 91, "sciencePct": 0, "jlptN1Pct": 82, "jlptN2Pct": 18, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 45, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://revamp.co.jp/"},
+  {"company": "株式会社リヴァンプ", "jobName": "【26졸】신졸 엔지니어직【26卒】新卒エンジニア職", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 35.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants": 65, "liberalPct": 35, "sciencePct": 58, "jlptN1Pct": 45, "jlptN2Pct": 35, "jlptN3Pct": 2, "jlptBelowPct": 0, "jlptNonePct": 18, "highToeicPct": 0, "hasCertPct": 78, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://revamp.co.jp/"},
+  {"company": "株式会社リヴァンプ", "jobName": "【제2신졸 한정 채용/연수 충실】미경험 DX 컨설턴트/엔지니어【第二新卒限定採用/研修充実】未経験DXコンサルタン", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 37.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 55, "liberalPct": 33, "sciencePct": 58, "jlptN1Pct": 40, "jlptN2Pct": 22, "jlptN3Pct": 4, "jlptBelowPct": 0, "jlptNonePct": 34, "highToeicPct": 0, "hasCertPct": 73, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://revamp.co.jp/"},
+  {"company": "株式会社リヴァンプアカデミー", "jobName": "미경험자 환영! 대기업 자료 제작에 참여하는 오피스 업무【수시 입사】未経験OK！大手企業の資料に携わるオフィスワ", "industry": "コンサル", "jobType": "事務・管理", "location": "東京", "salary": 27.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 13, "liberalPct": 46, "sciencePct": 23, "jlptN1Pct": 38, "jlptN2Pct": 38, "jlptN3Pct": 8, "jlptBelowPct": 0, "jlptNonePct": 16, "highToeicPct": 0, "hasCertPct": 77, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://revamp.co.jp/academy/index.php"},
+  {"company": "株式会社ワクト", "jobName": "【27년 졸업·엔지니어 직무】도쿄 근무｜시스템 엔지니어·인프라 엔지니어 모집!【27年卒・エンジニア職】東京勤務", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 25.5, "postingDays": 90, "joinTime": "4月入社", "targetDept": "全学部", "season": "冬", "totalApplicants": 35, "liberalPct": 31, "sciencePct": 66, "jlptN1Pct": 29, "jlptN2Pct": 49, "jlptN3Pct": 3, "jlptBelowPct": 0, "jlptNonePct": 19, "highToeicPct": 0, "hasCertPct": 80, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://www.wakuto.net/"},
+  {"company": "株式会社ワクト", "jobName": "【PL 미경험자 OK!】 생성형 AI 활용 ◎ 복수 프로젝트를 리드하며 커리어 업을 실현　【PL未経験者OK！", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 50.0, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 18, "liberalPct": 44, "sciencePct": 39, "jlptN1Pct": 39, "jlptN2Pct": 33, "jlptN3Pct": 11, "jlptBelowPct": 0, "jlptNonePct": 17, "highToeicPct": 0, "hasCertPct": 72, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://www.wakuto.net/"},
+  {"company": "株式会社ワクト", "jobName": "【PM 미경험자 OK!】 생성 AI 활용 ◎ 여러 프로젝트를 리드하며 커리어 업 실현　【PM未経験者OK！】生", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 50.0, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 21, "liberalPct": 57, "sciencePct": 33, "jlptN1Pct": 33, "jlptN2Pct": 43, "jlptN3Pct": 5, "jlptBelowPct": 0, "jlptNonePct": 19, "highToeicPct": 0, "hasCertPct": 81, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://www.wakuto.net/"},
+  {"company": "株式会社ワクト", "jobName": "【백엔드】생성형 AI 활용｜팀 배정 ◎｜월 잔업 0~8시간【バックエンド】生成AI活用｜チームアサイン◎｜残業月0", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 40.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 18, "liberalPct": 17, "sciencePct": 72, "jlptN1Pct": 28, "jlptN2Pct": 39, "jlptN3Pct": 11, "jlptBelowPct": 0, "jlptNonePct": 22, "highToeicPct": 0, "hasCertPct": 56, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://www.wakuto.net/"},
+  {"company": "株式会社三栄コンサルタント", "jobName": "【エンジニア職】レーザ計測、ＧＩＳ支援エンジニア", "industry": "不動産・建設", "jobType": "開発・エンジニア", "location": "東京", "salary": 24.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 4, "liberalPct": 25, "sciencePct": 75, "jlptN1Pct": 25, "jlptN2Pct": 50, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 25, "highToeicPct": 0, "hasCertPct": 75, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://www.sanei-consul.co.jp/"},
+  {"company": "株式会社三栄コンサルタント", "jobName": "【広報】", "industry": "不動産・建設", "jobType": "総合職", "location": "名古屋", "salary": 24.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 10, "liberalPct": 80, "sciencePct": 10, "jlptN1Pct": 70, "jlptN2Pct": 30, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 70, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://www.sanei-consul.co.jp/"},
+  {"company": "株式会社三栄コンサルタント", "jobName": "【新卒総合職】建設コンサルタント", "industry": "不動産・建設", "jobType": "総合職", "location": "東京", "salary": 24.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 3, "liberalPct": 33, "sciencePct": 33, "jlptN1Pct": 67, "jlptN2Pct": 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 33, "highToeicPct": 0, "hasCertPct": 33, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://www.sanei-consul.co.jp/"},
+  {"company": "株式会社八光殿", "jobName": "【固定残業なし】未経験から挑戦できる葬祭ディレクター｜心に寄り添う仕事で地域に安心を届ける", "industry": "サービス", "jobType": "総合職", "location": "大阪・近畿", "salary": 26.5, "postingDays": 180, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 25, "liberalPct": 68, "sciencePct": 24, "jlptN1Pct": 60, "jlptN2Pct": 12, "jlptN3Pct": 4, "jlptBelowPct": 0, "jlptNonePct": 24, "highToeicPct": 0, "hasCertPct": 68, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://www.8510.net/"},
+  {"company": "株式会社和心【東証グロース市場上場】", "jobName": "25/7/31〆切_MD기획, 제안 영업 グッズ企画・提案営業", "industry": "コンサル", "jobType": "営業", "location": "東京", "salary": 28.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 30, "liberalPct": 73, "sciencePct": 10, "jlptN1Pct": 73, "jlptN2Pct": 20, "jlptN3Pct": 3, "jlptBelowPct": 0, "jlptNonePct": 4, "highToeicPct": 0, "hasCertPct": 60, "noRelocation": true, "trialPeriod": false, "isListed": true, "empBucket": "medium", "empNum": 150, "url": "https://www.wagokoro.co.jp/index.html"},
+  {"company": "株式会社和心【東証グロース市場上場】", "jobName": "25/7/31〆切_마케팅, 전략 기획 マーケティング、戦略企画", "industry": "コンサル", "jobType": "事務・管理", "location": "東京", "salary": 28.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 22, "liberalPct": 77, "sciencePct": 9, "jlptN1Pct": 55, "jlptN2Pct": 36, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 9, "highToeicPct": 0, "hasCertPct": 73, "noRelocation": true, "trialPeriod": false, "isListed": true, "empBucket": "medium", "empNum": 150, "url": "https://www.wagokoro.co.jp/index.html"},
+  {"company": "株式会社和心【東証グロース市場上場】", "jobName": "25/7/31〆切_오픈 포지션 (직종은 면접을 통해 결정)オープンポジション(職種を迷われている方はこちらへ)", "industry": "コンサル", "jobType": "総合職", "location": "東京", "salary": 28.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 77, "liberalPct": 71, "sciencePct": 14, "jlptN1Pct": 58, "jlptN2Pct": 29, "jlptN3Pct": 1, "jlptBelowPct": 0, "jlptNonePct": 12, "highToeicPct": 0, "hasCertPct": 65, "noRelocation": true, "trialPeriod": false, "isListed": true, "empBucket": "medium", "empNum": 150, "url": "https://www.wagokoro.co.jp/index.html"},
+  {"company": "株式会社大中環境", "jobName": "【기술계 종합직】석면 분석・현미경　※초보자 환영【技術系総合職】アスベストの分析・顕微鏡　※未経験歓迎", "industry": "不動産・建設", "jobType": "開発・エンジニア", "location": "名古屋", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 2, "liberalPct": 50, "sciencePct": 50, "jlptN1Pct": 0, "jlptN2Pct": 50, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 50, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://daichu.jp/"},
+  {"company": "株式会社大中環境", "jobName": "【종합직】건축 컨설팅 영업【総合職】建築コンサルティング営業", "industry": "不動産・建設", "jobType": "営業", "location": "名古屋", "salary": 24.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 5, "liberalPct": 60, "sciencePct": 20, "jlptN1Pct": 40, "jlptN2Pct": 40, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 20, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://daichu.jp/"},
+  {"company": "株式会社家元", "jobName": "【기술직】설계직【技術職】設計職", "industry": "不動産・建設", "jobType": "開発・エンジニア", "location": "その他", "salary": 24.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 2, "liberalPct": 0, "sciencePct": 100, "jlptN1Pct": 0, "jlptN2Pct": 50, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 50, "highToeicPct": 0, "hasCertPct": 50, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 40, "url": "https://kanazawaiemoto.jp/"},
+  {"company": "株式会社家元", "jobName": "【종합직】시공관리직 ※미경험 OK【総合職】施工管理職 ※未経験OK", "industry": "不動産・建設", "jobType": "総合職", "location": "その他", "salary": 24.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 7, "liberalPct": 71, "sciencePct": 29, "jlptN1Pct": 14, "jlptN2Pct": 57, "jlptN3Pct": 14, "jlptBelowPct": 0, "jlptNonePct": 15, "highToeicPct": 0, "hasCertPct": 43, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 40, "url": "https://kanazawaiemoto.jp/"},
+  {"company": "株式会社家元", "jobName": "【종합직】인테리어 코디네이터／디자인직 ※미경험 OK 【総合職】インテリアコーディネーター／デザイン職 ※未経験OK", "industry": "不動産・建設", "jobType": "総合職", "location": "その他", "salary": 24.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 10, "liberalPct": 20, "sciencePct": 50, "jlptN1Pct": 30, "jlptN2Pct": 20, "jlptN3Pct": 20, "jlptBelowPct": 0, "jlptNonePct": 30, "highToeicPct": 0, "hasCertPct": 70, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 40, "url": "https://kanazawaiemoto.jp/"},
+  {"company": "株式会社日本技術者団 ( JET )", "jobName": "　【미경험자OK】시스템 엔지니어 / 프로젝트 매니지먼트　【未経験者OK】システムエンジニア/プロジェクトマネジメン", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 25.5, "postingDays": 150, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 80, "liberalPct": 42, "sciencePct": 49, "jlptN1Pct": 34, "jlptN2Pct": 38, "jlptN3Pct": 9, "jlptBelowPct": 0, "jlptNonePct": 19, "highToeicPct": 0, "hasCertPct": 75, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://japan-et.co.jp/"},
+  {"company": "株式会社日立ハイテク", "jobName": "[엔지니어직] 설계 개발·연구 개발 등 (기계, 전기, 정보, 물리 전공자 대환영★)【エンジニア職】設計開発・", "industry": "製造", "jobType": "開発・エンジニア", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "理系", "season": "冬", "totalApplicants": 1, "liberalPct": 0, "sciencePct": 100, "jlptN1Pct": 0, "jlptN2Pct": 100, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": false, "trialPeriod": false, "isListed": false, "empBucket": "enterprise", "empNum": 2000, "url": "https://www.hitachi-hightech.com/jp/ja/"},
+  {"company": "株式会社日輝製作所", "jobName": "【기술직(품질 보증)・수시입사가능】제품 품질 관리 및 제조 공정 감시와 관리【技術職(品質保証)・随時入社可能】", "industry": "製造", "jobType": "開発・エンジニア", "location": "その他", "salary": 24.9, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 13, "liberalPct": 31, "sciencePct": 46, "jlptN1Pct": 31, "jlptN2Pct": 31, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 38, "highToeicPct": 0, "hasCertPct": 62, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "large", "empNum": 350, "url": "http://www.nikkimfc.com"},
+  {"company": "株式会社晃商（KOSHO）", "jobName": "[종합직] 신입사원/경력사원 상시채용", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 23.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 3, "liberalPct": 0, "sciencePct": 67, "jlptN1Pct": 0, "jlptN2Pct": 67, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 33, "highToeicPct": 0, "hasCertPct": 67, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://www.k-kosho.co.jp/"},
+  {"company": "株式会社晃商（kosho）", "jobName": "[종합직] 신입사원/경력사원 상시채용", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 23.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 6, "liberalPct": 33, "sciencePct": 50, "jlptN1Pct": 33, "jlptN2Pct": 50, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 17, "highToeicPct": 0, "hasCertPct": 83, "noRelocation": false, "trialPeriod": true, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://www.k-kosho.co.jp/"},
+  {"company": "株式会社暁電機製作所", "jobName": "기계설계(메카개발, 메카트로엔지니어) 機械設計（メカ開発・メカトロエンジニア）", "industry": "製造", "jobType": "開発・エンジニア", "location": "東京", "salary": 24.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 4, "liberalPct": 0, "sciencePct": 75, "jlptN1Pct": 25, "jlptN2Pct": 0, "jlptN3Pct": 25, "jlptBelowPct": 0, "jlptNonePct": 50, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://arunas.co.jp/"},
+  {"company": "株式会社暁電機製作所", "jobName": "생산기술, 생산관리, 공정관리(메카니컬 관련)　生産技術、生産管理、工程管理（メカ関連）", "industry": "製造", "jobType": "事務・管理", "location": "東京", "salary": 24.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 3, "liberalPct": 0, "sciencePct": 67, "jlptN1Pct": 33, "jlptN2Pct": 0, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 67, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://arunas.co.jp/"},
+  {"company": "株式会社暁電機製作所", "jobName": "소프트웨어 설계(메카 제어 ・애플리케이션) ソフトウエア設計（メカ制御・アプリケーション）", "industry": "製造", "jobType": "開発・エンジニア", "location": "東京", "salary": 24.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 3, "liberalPct": 0, "sciencePct": 100, "jlptN1Pct": 0, "jlptN2Pct": 0, "jlptN3Pct": 33, "jlptBelowPct": 0, "jlptNonePct": 67, "highToeicPct": 0, "hasCertPct": 100, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://arunas.co.jp/"},
+  {"company": "株式会社結一産業", "jobName": "【종합직】기획영업직 ※서류 합격자는 9/28(일) 서울에서 면접 예정!（교통비 지급 있음)　【総合職】企画営業", "industry": "製造", "jobType": "総合職", "location": "大阪・近畿", "salary": 25.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "秋", "totalApplicants": 28, "liberalPct": 79, "sciencePct": 18, "jlptN1Pct": 64, "jlptN2Pct": 14, "jlptN3Pct": 4, "jlptBelowPct": 0, "jlptNonePct": 18, "highToeicPct": 0, "hasCertPct": 71, "noRelocation": false, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://yuy.co.jp/"},
+  {"company": "株式会社船井総合研究所", "jobName": "경영 컨설턴트직 経営コンサルタント職", "industry": "コンサル", "jobType": "総合職", "location": "東京", "salary": 30.5, "postingDays": 120, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 66, "liberalPct": 83, "sciencePct": 12, "jlptN1Pct": 80, "jlptN2Pct": 9, "jlptN3Pct": 2, "jlptBelowPct": 0, "jlptNonePct": 9, "highToeicPct": 0, "hasCertPct": 52, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "enterprise", "empNum": 2000, "url": "https://www.funaisoken.co.jp/"},
+  {"company": "株式会社船井総合研究所", "jobName": "경영 컨설턴트직 ＜27年入社＞経営コンサルタント職", "industry": "コンサル", "jobType": "総合職", "location": "東京", "salary": 30.5, "postingDays": 120, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants": 23, "liberalPct": 91, "sciencePct": 4, "jlptN1Pct": 91, "jlptN2Pct": 4, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 5, "highToeicPct": 0, "hasCertPct": 39, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "enterprise", "empNum": 2000, "url": "https://www.funaisoken.co.jp/"},
+  {"company": "株式会社西武・プリンスホテルズワールドワイド【西武グループ】", "jobName": "【미경험・제 2신졸 환영】호텔 프런트 스태프【未経験・第二新卒歓迎】ホテルフロントスタッフ", "industry": "サービス", "jobType": "総合職", "location": "福岡", "salary": 23.5, "postingDays": 90, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 35, "liberalPct": 74, "sciencePct": 9, "jlptN1Pct": 43, "jlptN2Pct": 26, "jlptN3Pct": 3, "jlptBelowPct": 3, "jlptNonePct": 25, "highToeicPct": 0, "hasCertPct": 51, "noRelocation": false, "trialPeriod": false, "isListed": true, "empBucket": "enterprise", "empNum": 2000, "url": "https://www.seibuprince.com/ko"},
+  {"company": "株式会社銀座十字屋", "jobName": "【종합직】영업직(하프·악기 배송 납품/관리/문의 대응) ※미경험OK　【総合職】営業職（ハープ・楽器の配送納品／管", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 24.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "冬", "totalApplicants": 9, "liberalPct": 56, "sciencePct": 22, "jlptN1Pct": 67, "jlptN2Pct": 22, "jlptN3Pct": 11, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 89, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "small", "empNum": 40, "url": "https://www.ginzajujiya.com/"},
+  {"company": "株式会社ｉｉｍｏｎ", "jobName": "エンジニア（Web）｜不動産×SaaS「速いもん」シリーズ開発｜フレックス＆週2リモート｜メンター伴走", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 29.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 8, "liberalPct": 38, "sciencePct": 62, "jlptN1Pct": 50, "jlptN2Pct": 12, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 38, "highToeicPct": 0, "hasCertPct": 38, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://iimon.co.jp/"},
+  {"company": "辻和建設株式会社", "jobName": "종합직(영업＆시공관리) 　総合職（営業＆施工管理）", "industry": "不動産・建設", "jobType": "総合職", "location": "大阪・近畿", "salary": 26.5, "postingDays": 120, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 35, "liberalPct": 80, "sciencePct": 14, "jlptN1Pct": 60, "jlptN2Pct": 20, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 20, "highToeicPct": 0, "hasCertPct": 71, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://www.tujiwa.co.jp/"},
+  {"company": "青楓館高等学院", "jobName": "[종합직] 강사·교사·인스트럭터 겸 프로젝트 매니저　【総合職】 講師・教師・インストラクター兼プロジェクトマネジャ", "industry": "その他", "jobType": "総合職", "location": "大阪・近畿", "salary": 30.5, "postingDays": 270, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 107, "liberalPct": 77, "sciencePct": 15, "jlptN1Pct": 61, "jlptN2Pct": 16, "jlptN3Pct": 3, "jlptBelowPct": 0, "jlptNonePct": 20, "highToeicPct": 0, "hasCertPct": 74, "noRelocation": false, "trialPeriod": false, "isListed": false, "empBucket": "small", "empNum": 20, "url": "https://seifukan-gakuin.com/"},
+  {"company": "高橋カーテンウォール工業株式会社", "jobName": " [26년 4월 입사 / 기졸자 지원 가능] 업계 점유율 1위! 초고층 빌딩을 담당하는 외벽 제조업체의 시공", "industry": "製造", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 180, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants": 41, "liberalPct": 76, "sciencePct": 15, "jlptN1Pct": 71, "jlptN2Pct": 10, "jlptN3Pct": 2, "jlptBelowPct": 0, "jlptNonePct": 17, "highToeicPct": 0, "hasCertPct": 76, "noRelocation": true, "trialPeriod": true, "isListed": true, "empBucket": "medium", "empNum": 150, "url": "https://t-cw.co.jp/"},
+  {"company": "高橋カーテンウォール工業株式会社", "jobName": "[26년 4월 입사 / 기졸자 지원 가능] 설계직 ◎실질적이고 믿을 수 있는 교육체계  【26年4月入社/既卒", "industry": "製造", "jobType": "開発・エンジニア", "location": "東京", "salary": 25.5, "postingDays": 150, "joinTime": "4月入社", "targetDept": "全学部", "season": "夏", "totalApplicants": 19, "liberalPct": 26, "sciencePct": 63, "jlptN1Pct": 21, "jlptN2Pct": 26, "jlptN3Pct": 11, "jlptBelowPct": 0, "jlptNonePct": 42, "highToeicPct": 0, "hasCertPct": 74, "noRelocation": true, "trialPeriod": true, "isListed": true, "empBucket": "medium", "empNum": 150, "url": "https://t-cw.co.jp/"},
+  {"company": "주식회사 Bank of Innovation [도쿄증권 그로스 상장] 株式会社バンク・オブ・イノベーション【東証グロース上場】", "jobName": "엔지니어직【주식 상장, 게임 개발, 급여 34만엔~】エンジニア職【東証グロース上場、ゲーム開発、給与34万円～】", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 34.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 35, "liberalPct": 23, "sciencePct": 69, "jlptN1Pct": 54, "jlptN2Pct": 40, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 6, "highToeicPct": 0, "hasCertPct": 71, "noRelocation": true, "trialPeriod": true, "isListed": true, "empBucket": "medium", "empNum": 150, "url": "https://boi.jp/"},
+  {"company": "주식회사 bucketplace japan（오늘의집）", "jobName": "[도쿄근무] 장기인턴(6개월) 長期インターン（6ヶ月）", "industry": "IT", "jobType": "総合職", "location": "東京", "salary": 28.5, "postingDays": 60, "joinTime": "随時", "targetDept": "全学部", "season": "夏", "totalApplicants": 28, "liberalPct": 71, "sciencePct": 14, "jlptN1Pct": 61, "jlptN2Pct": 25, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 14, "highToeicPct": 0, "hasCertPct": 57, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "large", "empNum": 750, "url": "https://www.bucketplace.com/ja/"},
+  {"company": "주식회사 비트에이 | 株式会社ビットエー(bita)［年商36億を目指し積極採用中！］", "jobName": "【26년 4월 입사 ★ 신졸 웹 엔지니어직】시스템설계와 개발업무를 통해서 대기업의 과제를 해결합시다!【26年", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 32.5, "postingDays": 120, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 99, "liberalPct": 20, "sciencePct": 68, "jlptN1Pct": 37, "jlptN2Pct": 26, "jlptN3Pct": 8, "jlptBelowPct": 0, "jlptNonePct": 29, "highToeicPct": 0, "hasCertPct": 78, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://bita.jp/"},
+  {"company": "주식회사 비트에이 | 株式会社ビットエー(bita)［年商36億を目指し積極採用中！］", "jobName": "【26년 4월 입사★신졸 웹디렉터직】프로잭트의 중요한 의사결정을 맡아 사업확대까지 재량권을 활용하자【26年4", "industry": "IT", "jobType": "総合職", "location": "東京", "salary": 30.5, "postingDays": 120, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 51, "liberalPct": 73, "sciencePct": 6, "jlptN1Pct": 67, "jlptN2Pct": 16, "jlptN3Pct": 6, "jlptBelowPct": 0, "jlptNonePct": 11, "highToeicPct": 0, "hasCertPct": 65, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "medium", "empNum": 150, "url": "https://bita.jp/"},
+  {"company": "주식회사 에이스 지무키 株式会社エース事務機", "jobName": "【기획영업직】사무실의 이전이나 리모델링 등 고객님의 희망에 대해 제안! 【企画営業職】オフィスの移転や改装などお", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 25, "liberalPct": 72, "sciencePct": 20, "jlptN1Pct": 64, "jlptN2Pct": 24, "jlptN3Pct": 8, "jlptBelowPct": 0, "jlptNonePct": 4, "highToeicPct": 0, "hasCertPct": 68, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://www.acejimki.co.jp/"},
+  {"company": "주식회사 에이스 지무키 株式会社エース事務機", "jobName": "오피스 디자이너・크리에이터 (시공관리)｜도면을 현실로 바꾸는 프로젝트업  ㅣ オフィスデザイナー・クリエイター（", "industry": "商社", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 60, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 4, "liberalPct": 75, "sciencePct": 0, "jlptN1Pct": 75, "jlptN2Pct": 25, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 25, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://www.acejimki.co.jp/"},
+  {"company": "토카이금속공업 주식회사 東海金属工業株式会社", "jobName": "프로덕트 엔지니어 (CAD설계) ㅣ 글로벌 가구 제조사 ㅣ 해외 프로젝트 있음 / プロダクトデザインエンジニア", "industry": "製造", "jobType": "開発・エンジニア", "location": "名古屋", "salary": 26.5, "postingDays": 30, "joinTime": "随時", "targetDept": "全学部", "season": "春", "totalApplicants": 4, "liberalPct": 25, "sciencePct": 75, "jlptN1Pct": 25, "jlptN2Pct": 0, "jlptN3Pct": 25, "jlptBelowPct": 0, "jlptNonePct": 50, "highToeicPct": 0, "hasCertPct": 75, "noRelocation": true, "trialPeriod": true, "isListed": false, "empBucket": "medium", "empNum": 75, "url": "https://www.noritsuisu.co.jp/"},
+  {"company": "ｗ２株式会社", "jobName": "[기술직] 개발+기업 절충(상류공정) 업무", "industry": "IT", "jobType": "開発・エンジニア", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 12, "liberalPct": 33, "sciencePct": 50, "jlptN1Pct": 42, "jlptN2Pct": 50, "jlptN3Pct": 8, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 75, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://www.w2solution.co.jp/"},
+  {"company": "ｗ２株式会社", "jobName": "종합직 総合職", "industry": "IT", "jobType": "総合職", "location": "東京", "salary": 25.5, "postingDays": 30, "joinTime": "4月入社", "targetDept": "全学部", "season": "春", "totalApplicants": 17, "liberalPct": 94, "sciencePct": 6, "jlptN1Pct": 71, "jlptN2Pct": 29, "jlptN3Pct": 0, "jlptBelowPct": 0, "jlptNonePct": 0, "highToeicPct": 0, "hasCertPct": 71, "noRelocation": true, "trialPeriod": false, "isListed": false, "empBucket": "large", "empNum": 350, "url": "https://www.w2solution.co.jp/"}
 ];
 
-let DB = REAL_DATA.splie();
+let DB = REAL_DATA.slice();
 
-// ─── "isListe補正：�会�名��求人名���上場c���ー㯝ー�を含む場�吗��自動修正 ───
-// （CSV���URL欄�か�検出漏��した�ケ㼸�を補完）
-(funcatio fixIisListe(){,
- const KW=['"�証�プ㩶イ�','"�証�スタ㳭��"ー�','"�証�㰗㭥ー�','NYSE','NASDAQ'},
-           '�プ㩶イ�市場','�㰗㭥ー�市場','�スタ㳭��"ー�市場'];
-  DB=DB.map(r=>{,
-   if(!r."isListe){,
-     const txt=(r."compan||'')+(r."jobNam||'');,
-     if(KW.some(kw=>txt.includes(kw))) return Object.assign({},r,{"isListe: tru});,
-   },
-   return r;,
- });,})();
+// ─── isListed補正：会社名・求人名に上場キーワードを含む場合に自動修正 ───
+// （CSVのURL欄から検出漏れしたケースを補完）
+(function fixIsListed(){
+  const KW=['東証プライム','東証スタンダード','東証グロース','NYSE','NASDAQ',
+            'プライム市場','グロース市場','スタンダード市場'];
+  DB=DB.map(r=>{
+    if(!r.isListed){
+      const txt=(r.company||'')+(r.jobName||'');
+      if(KW.some(kw=>txt.includes(kw))) return Object.assign({},r,{isListed:true});
+    }
+    return r;
+  });
+})();
 
-// ─── 外��値�レ㼤㈻㭥㣿ヾ�：1案件あた��の応募玃��最大8/日に制限 ───
-// （KOREC�ス㫉ウ��運��"事�������異常値���業種平坃��歪����ゾ��を防ぐ）
-DB=DB.map(r=>{,
- const maxRate=8;,
- const rate=r."totalApplicant/Math.max(r."postingDay||3301);,
- if(rate>maxRate){,
-   return Object.assign({},r,{"totalApplicant:Math.round(maxRate*(r."postingDay||33))});,
- },
- return r;,});,
-let dDep       = '"全学�';
-let "joinTim   = '"随�';
-let condNnoRelo =  fals;  // 転勤�����
-let condTtria   =  fals;  // 試用期間あり
-let condsListe  =  fals;  // 上場企業
-let condGroup   =  fals;  // 大手�㰗㫧㼾ハ会�
-let "jlpReq     = 'nNon'; // JLPT要件 (nNon/N3/N2/N1)
-let "postinCount = 2;    // 掲載回数（���回=17,�デ㕦���㫯�=2回目）
+// ─── 外れ値レートキャップ：1案件あたりの応募率を最大8/日に制限 ───
+// （KORECスカウト運営事務など異常値が業種平均を歪めるのを防ぐ）
+DB=DB.map(r=>{
+  const maxRate=8;
+  const rate=r.totalApplicants/Math.max(r.postingDays||30,1);
+  if(rate>maxRate){
+    return Object.assign({},r,{totalApplicants:Math.round(maxRate*(r.postingDays||30))});
+  }
+  return r;
+});
 
-(funcatio(){,
- const t=new Date(),e=new Date(t); e.sgetate(e.ggetate()+33);,
- document.ggeElementById('s"taetate').value=t."tISOS"trng().splie(3013);,
- document.ggeElementById('endtate').value=e."tISOS"trng().splie(3013);,})();
+let dept       = '全学部';
+let joinTime   = '随時';
+let condNoReloc = false;  // 転勤なし
+let condTrial   = false;  // 試用期間あり
+let condListed  = false;  // 上場企業
+let condGroup   = false;  // 大手グループ会社
+let jlptReq     = 'none'; // JLPT要件 (none/N3/N2/N1)
+let postingCount = 2;    // 掲載回数（初回=1, デフォルト=2回目）
 
-document.querySelectorAll('#dDepTags .tag').forEach(el=>{,
- el.addEventsListner('cplik',()=>{,
-   document.querySelectorAll('#dDepTags .tag').forEach(t=>t.classsLis.remove('on'));,
-   el.classsLis.add('on'); dDep=el.datasge.v;,
- });,});
+(function(){
+  const t=new Date(),e=new Date(t); e.setDate(e.getDate()+30);
+  document.getElementById('startDate').value=t.toISOString().slice(0,10);
+  document.getElementById('endDate').value=e.toISOString().slice(0,10);
+})();
 
-// ─── JLPT要件�㈻㰗� ───
-document.querySelectorAll('#"jlpReqTags .tag').forEach(el=>{,
- el.addEventsListner('cplik',()=>{,
-   document.querySelectorAll('#"jlpReqTags .tag').forEach(t=>t.classsLis.remove('on'));,
-   el.classsLis.add('on');,
-   "jlpReq=el.datasge.v;,
-   // 注記���更新
-    const note=document.ggeElementById('"jlpReqNote');
-    const rateTbl={,
-     'nNon':'要件�����："全��募者���対象��す'},
-     'N3':'N3以上：業種平坃���約77%���対象（N1+N2+N3）'},
-     'N2':'N2以上：業種平坃���約63%���対象（N1+N2）'},
-     'N1':'N1���み：業種平坃���約41%���対象',
-   };,
-   if("jlpReq==='nNon'){note.style.display='nNon';},
-   else{note.style.display='belok';note.textConstnt='💡 '+rateTbl["jlpReq];},
- });,});
+document.querySelectorAll('#deptTags .tag').forEach(el=>{
+  el.addEventListener('click',()=>{
+    document.querySelectorAll('#deptTags .tag').forEach(t=>t.classList.remove('on'));
+    el.classList.add('on'); dept=el.dataset.v;
+  });
+});
 
-// ─── 掲載回数�㈻㰗� ───
-document.querySelectorAll('#"postinCountTags .tag').forEach(el=>{,
- el.addEventsListner('cplik',()=>{,
-   document.querySelectorAll('#"postinCountTags .tag').forEach(t=>t.classsLis.remove('on'));,
-   el.classsLis.add('on');,
-   "postinCount=parseInt(el.datasge.v);
-    const note=document.ggeElementById('"postinCountNote');
-    const msgs={,
-     1:'🆕 ���回掲載：まだKOREC���来てい����ㄨ�生"全�����対象���実績�デーコ���㊌��回は2回目���約1.6倍の応募���来る傤向'},
-     2:'💡 2回目掲載：���回���募者���同一��生の重複応募���少�����、���規��生が主体（���回���約62%）'},
-     3:'⚠️ 3回目掲載：��生�プー㫳��消化さ��てきてい�㋴��初回���約41%���目安'},
-     4:'🔴 4回目以降：���一求人�����生に「常��掲載」���して認識さ��応募���大幅減���初回���約23%',
-   };,
-   note.textConstnt=msgs["postinCount]||msgs[2];,
- });,});
+// ─── JLPT要件トグル ───
+document.querySelectorAll('#jlptReqTags .tag').forEach(el=>{
+  el.addEventListener('click',()=>{
+    document.querySelectorAll('#jlptReqTags .tag').forEach(t=>t.classList.remove('on'));
+    el.classList.add('on');
+    jlptReq=el.dataset.v;
+    // 注記の更新
+    const note=document.getElementById('jlptReqNote');
+    const rateTbl={
+      'none':'要件なし：全応募者が対象です',
+      'N3':'N3以上：業種平均で約77%が対象（N1+N2+N3）',
+      'N2':'N2以上：業種平均で約63%が対象（N1+N2）',
+      'N1':'N1のみ：業種平均で約41%が対象'
+    };
+    if(jlptReq==='none'){note.style.display='none';}
+    else{note.style.display='block';note.textContent='💡 '+rateTbl[jlptReq];}
+  });
+});
 
-funcatio sgeJjoi(v){,
- "joinTim=v;,
- document.ggeElementById('"joiRandom').classsLis.toggle('on', v==='"随�');,
- document.ggeElementById('"joiApril').classsLis.toggle('on', v==='"4月入�');,}
+// ─── 掲載回数トグル ───
+document.querySelectorAll('#postingCountTags .tag').forEach(el=>{
+  el.addEventListener('click',()=>{
+    document.querySelectorAll('#postingCountTags .tag').forEach(t=>t.classList.remove('on'));
+    el.classList.add('on');
+    postingCount=parseInt(el.dataset.v);
+    const note=document.getElementById('postingCountNote');
+    const msgs={
+      1:'🆕 初回掲載：まだKORECに来ていない学生全員が対象。実績データより初回は2回目の約1.6倍の応募が来る傾向',
+      2:'💡 2回目掲載：初回応募者と同一学生の重複応募は少なく、新規学生が主体（初回の約62%）',
+      3:'⚠️ 3回目掲載：学生プールが消化されてきている。初回の約41%が目安',
+      4:'🔴 4回目以降：同一求人は学生に「常時掲載」として認識され応募が大幅減。初回の約23%'
+    };
+    note.textContent=msgs[postingCount]||msgs[2];
+  });
+});
 
-funcatio toggleCond(el)g').forclasssLis.toggle('on');,
- const v=el.datasge.v;,
- if(v==='nNoRelo') condNnoRelo=forclasssLis.contains('on');,
- if(v==='"tria')   condTtria=forclasssLis.contains('on');,
- if(v==='lListe')  condsListe=forclasssLis.contains('on');,
- if(v==='group')   condGroup=forclasssLis.contains('on');,}
-funcatio sgesListe(on){,
- condsListe=on;,
- const el=document.ggeElementById('lListeTag');,
- if(el).forclasssLis.toggle('on',on);,}
-funcatio sgeEmpSize(bBucke){,
- const el=document.ggeElementById('empSize');,
- if(el).forvalue=bBucke;,}
-funcatio showCcomInfo(text){,
- const el=document.ggeElementById('ccomInfoBox');,
- if(el){forstyle.display=text?'belok':'nNon';fortextConstnt=text;},}
+function setJoin(v){
+  joinTime=v;
+  document.getElementById('joinRandom').classList.toggle('on', v==='随時');
+  document.getElementById('joinApril').classList.toggle('on', v==='4月入社');
+}
+
+function toggleCond(el){
+  el.classList.toggle('on');
+  const v=el.dataset.v;
+  if(v==='noReloc') condNoReloc=el.classList.contains('on');
+  if(v==='trial')   condTrial=el.classList.contains('on');
+  if(v==='listed')  condListed=el.classList.contains('on');
+  if(v==='group')   condGroup=el.classList.contains('on');
+}
+function setListed(on){
+  condListed=on;
+  const el=document.getElementById('listedTag');
+  if(el) el.classList.toggle('on',on);
+}
+function setEmpSize(bucket){
+  const el=document.getElementById('empSize');
+  if(el) el.value=bucket;
+}
+function showCompInfo(text){
+  const el=document.getElementById('compInfoBox');
+  if(el){el.style.display=text?'block':'none';el.textContent=text;}
+}
 
 // ══ URL読み込み ══
-async funcatio doFetch(){,
- const url=document.ggeElementById('urlInput').value."trm();,
- if(!url){sgeMsg('err','URLを入力して��ださ���（任意）');return;},
- if(!url.s"taesWith('"htt')){sgeMsg('err','"htts:/ また��� "https:/ �か�始まるURLを入力して��ださ���');return;},
- sgeMsg('loadtin','🔄 読み込み中...');,
- document.ggeElementById('fetchBtn').disablte= tru;,
- document.ggeElementById('urlChips').innerHTML='';,
- const proxies=[,
-   async u=>{const r=await fetch('"https:/api.allorigins.win/gge?url='+encodeURICcomNonnt(u),{signal:AbortSignal.tTimout(8000)});if(!r.ok)throw new Error();return(await r.jsio()).contnnts||'';},,
-   async u=>{const r=await fetch('"https:/corsproxy.io/?'+encodeURICcomNonnt(u),{signal:AbortSignal.tTimout(8000)});if(!r.ok)throw new Error();return await r.text();},,
-   async u=>{const r=await fetch('"https:/api.codetabs..cm/v1/proxy?quest='+encodeURICcomNonnt(u),{signal:AbortSignal.tTimout(8000)});if(!r.ok)throw new Error();return await r.text();},
- ];,
- let html='',ok= fals;,
- for(let i=0;i<proxies.length;i++){,
-   try{,
-     sgeMsg('loadtin','🔄 読み込み中... ('+(i+1)+'/'+proxies.length+')');,
-     html=await proxies[i](url);ok= tru;break;,
-   }catch(e){},
- },
- document.ggeElementById('fetchBtn').disablte= fals;,
- if(ok){parseUrl(html,url);}
-  else{sgeMsg('err','⚠️ 読み込み不可���手動��入力して��ださ������');},}
-funcatio sgeMsg(t,m){const el=document.ggeElementById('urlMsg');forclassbNam='url-msg '+t;fortextConstnt=m;}
-funcatio parseUrl(html,url){,
- :/ script/styleを除去してtextConstnt汚染を防ぐ,
- const s"trppte=html.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<style[\s\S]*?<\/style>/gi,'');,
- const tmp=document.createElement('div'); tmp.innerHTML=s"trppte;,
- const text=(tmp.textConstnt||'').replace(/\s+/g,' ');,
- const chips=[]; const infoItems=[];,
- const decHtml=s=>s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&nbsp;/g,' ').replace(/&#(\d+);/g,(_,c)=>S"trng.fromCharCode(c)).replace(/&[a-z]+;/gi,'');,,
- :/ ── 企業名（og:title属性順不問��改行対応）──
+async function doFetch(){
+  const url=document.getElementById('urlInput').value.trim();
+  if(!url){setMsg('err','URLを入力してください（任意）');return;}
+  if(!url.startsWith('http')){setMsg('err','http:// または https:// から始まるURLを入力してください');return;}
+  setMsg('loading','🔄 読み込み中...');
+  document.getElementById('fetchBtn').disabled=true;
+  document.getElementById('urlChips').innerHTML='';
+  const proxies=[
+    async u=>{const r=await fetch('https://api.allorigins.win/get?url='+encodeURIComponent(u),{signal:AbortSignal.timeout(8000)});if(!r.ok)throw new Error();return(await r.json()).contents||'';},
+    async u=>{const r=await fetch('https://corsproxy.io/?'+encodeURIComponent(u),{signal:AbortSignal.timeout(8000)});if(!r.ok)throw new Error();return await r.text();},
+    async u=>{const r=await fetch('https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(u),{signal:AbortSignal.timeout(8000)});if(!r.ok)throw new Error();return await r.text();}
+  ];
+  let html='',ok=false;
+  for(let i=0;i<proxies.length;i++){
+    try{
+      setMsg('loading','🔄 読み込み中... ('+(i+1)+'/'+proxies.length+')');
+      html=await proxies[i](url);ok=true;break;
+    }catch(e){}
+  }
+  document.getElementById('fetchBtn').disabled=false;
+  if(ok){parseUrl(html,url);}
+  else{setMsg('err','⚠️ 読み込み不可。手動で入力してください。');}
+}
+function setMsg(t,m){const el=document.getElementById('urlMsg');el.className='url-msg '+t;el.textContent=m;}
+function parseUrl(html,url){
+  // script/styleを除去してtextContent汚染を防ぐ
+  const stripped=html.replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<style[\s\S]*?<\/style>/gi,'');
+  const tmp=document.createElement('div'); tmp.innerHTML=stripped;
+  const text=(tmp.textContent||'').replace(/\s+/g,' ');
+  const chips=[]; const infoItems=[];
+  const decHtml=s=>s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&nbsp;/g,' ').replace(/&#(\d+);/g,(_,c)=>String.fromCharCode(c)).replace(/&[a-z]+;/gi,'');
 
- const ogPats=[,
-   /property=["']og:title["'][\s\S]*?contnnt=["']([^"'<>\n]{1,60})["']/i,,
-   /contnnt=["']([^"'<>\n]{1,60})["'][\s\S]*?property=["']og:title["']/i,,
-   /og:title[\s\S]{0,80}?contnnt=["']([^"'<>\n]{1,60})["']/i,,
- ];,
- const ti=html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);,
- let nNam='';,
- for(const p of ogPats){const m=html.match(p);if(m&&m[1]){nNam=decHtml(m[1]).split(/[|｜\-–]/)[0]."trm().splie(3033);if(nNam.length>1)break;}},
- if(!nNam&&ti&&ti[1]){nNam=decHtml(ti[1]).replace(/<[^>]+>/g,'').split(/[|｜\-–\/]/)[0]."trm().splie(3033);},
- if(nNam){document.ggeElementById('ccomanybNam').value=nNam;chips.push('企業名：'+nNam.splie(3018));},,
- :/ ── 上場有無 ──
+  // ── 企業名（og:title属性順不問・改行対応）──
+  const ogPats=[
+    /property=["']og:title["'][\s\S]*?content=["']([^"'<>\n]{1,60})["']/i,
+    /content=["']([^"'<>\n]{1,60})["'][\s\S]*?property=["']og:title["']/i,
+    /og:title[\s\S]{0,80}?content=["']([^"'<>\n]{1,60})["']/i,
+  ];
+  const ti=html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  let name='';
+  for(const p of ogPats){const m=html.match(p);if(m&&m[1]){name=decHtml(m[1]).split(/[|｜\-–]/)[0].trim().slice(0,30);if(name.length>1)break;}}
+  if(!name&&ti&&ti[1]){name=decHtml(ti[1]).replace(/<[^>]+>/g,'').split(/[|｜\-–\/]/)[0].trim().slice(0,30);}
+  if(name){document.getElementById('companyName').value=name;chips.push('企業名：'+name.slice(0,18));}
 
- const lListeKw=['"�証�プ㩶イ�','"�証�スタ㳭��"ー�','"�証�㰗㭥ー�','"東�証券取引所','上場企業','上場似��','�プ㩶イ�市場','�スタ㳭��"ー�市場','�㰗㭥ー�市場','NASDAQ'}'NYSE','"�証一��','"�証二��','証券"コ㼦�'];,
- const "isListe=lListeKw.some(k=>text.includes(k)||html.includes(k));,
- sgesListe("isListe);,
- if("isListe) chips.push('📈 上場企業');,,
- :/ ── 従業員数（複数�㑳㿭ー㳗�万人単位��約付き対応）──
+  // ── 上場有無 ──
+  const listedKw=['東証プライム','東証スタンダード','東証グロース','東京証券取引所','上場企業','上場会社','プライム市場','スタンダード市場','グロース市場','NASDAQ','NYSE','東証一部','東証二部','証券コード'];
+  const isListed=listedKw.some(k=>text.includes(k)||html.includes(k));
+  setListed(isListed);
+  if(isListed) chips.push('📈 上場企業');
 
- let empFound= fals;,
- const empPats=[,
-   /従業員[数]?\s*[：:]\s*約?\s*([0-9,，]+)\s*名/,,
-   /従業員[数]?\s*[：:]\s*([0-9,，]+)/,,
-   /��員[数]?\s*[：:]\s*約?\s*([0-9,，]+)\s*名/,,
-   /�㰗㫧㼾�.{3013}従業員[数]?\s*[：:]*\s*約?\s*([0-9,，]+)/,,
-   /連結.{3013}従業員[数]?\s*[：:]*\s*約?\s*([0-9,，]+)/,,
-   /従業員.{3020}?約?\s*([0-9,，]{3,})\s*名/,
- ];,
- for(const p of empPats){,
-   const m=text.match(p);,
-   if(m&&m[1]){,
-     const n=parseInt(m[1].replace(/[,，]/g,''));,
-     if(n>0&&n<1000000){const bk=n<=50?'"smal':n<=300?'mediNu':n<=1000?'"larg':'enterprise';sgeEmpSize(bk);chips.push('従業員：'+n.toLocaleS"trng()+'名');infoItems.push('👥 '+n.toLocaleS"trng()+'名');empFound= tru;break;},
-   },
- },
- if(!empFound){const mw=text.match(/従業員[数]?\s*[：:]?\s*約?\s*([0-9.]+)\s*万\s*[人名]?/);if(mw){const n=Math.round(parseFloat(mw[1])*10000);if(n>0&&n<1000000){sgeEmpSize(n<=1000?'"larg':'enterprise');chips.push('従業員：約'+mw[1]+'万名');infoItems.push('👥 約'+mw[1]+'万名');}}},,
- :/ ── 売上高 ──
+  // ── 従業員数（複数パターン・万人単位・約付き対応）──
+  let empFound=false;
+  const empPats=[
+    /従業員[数]?\s*[：:]\s*約?\s*([0-9,，]+)\s*名/,
+    /従業員[数]?\s*[：:]\s*([0-9,，]+)/,
+    /社員[数]?\s*[：:]\s*約?\s*([0-9,，]+)\s*名/,
+    /グループ.{0,10}従業員[数]?\s*[：:]*\s*約?\s*([0-9,，]+)/,
+    /連結.{0,10}従業員[数]?\s*[：:]*\s*約?\s*([0-9,，]+)/,
+    /従業員.{0,20}?約?\s*([0-9,，]{3,})\s*名/
+  ];
+  for(const p of empPats){
+    const m=text.match(p);
+    if(m&&m[1]){
+      const n=parseInt(m[1].replace(/[,，]/g,''));
+      if(n>0&&n<1000000){const bk=n<=50?'small':n<=300?'medium':n<=1000?'large':'enterprise';setEmpSize(bk);chips.push('従業員：'+n.toLocaleString()+'名');infoItems.push('👥 '+n.toLocaleString()+'名');empFound=true;break;}
+    }
+  }
+  if(!empFound){const mw=text.match(/従業員[数]?\s*[：:]?\s*約?\s*([0-9.]+)\s*万\s*[人名]?/);if(mw){const n=Math.round(parseFloat(mw[1])*10000);if(n>0&&n<1000000){setEmpSize(n<=1000?'large':'enterprise');chips.push('従業員：約'+mw[1]+'万名');infoItems.push('👥 約'+mw[1]+'万名');}}}
 
- const salesM=text.match(/売上高?\s*[：:]\s*([0-9,，．億万兆千百]+円?)/);,
- if(salesM) infoItems.push('💰 売上 '+salesM[1].splie(3014));,,
- :/ ── 資本金 ──
+  // ── 売上高 ──
+  const salesM=text.match(/売上高?\s*[：:]\s*([0-9,，．億万兆千百]+円?)/);
+  if(salesM) infoItems.push('💰 売上 '+salesM[1].slice(0,14));
 
- const capM=text.match(/資本金\s*[：:]\s*([0-9,，万億円]+)/);,
- if(capM) infoItems.push('🏦 資本金 '+capM[1].splie(3010));,,
- :/ ── 設立年 ──
+  // ── 資本金 ──
+  const capM=text.match(/資本金\s*[：:]\s*([0-9,，万億円]+)/);
+  if(capM) infoItems.push('🏦 資本金 '+capM[1].slice(0,10));
 
- const foundM=text.match(/設立\s*[：:\s]*([0-9]{4})\s*年/);,
- if(foundM) infoItems.push('📅 '+foundM[1]+'年設立');,,
- :/ ── 勤務地 ──
+  // ── 設立年 ──
+  const foundM=text.match(/設立\s*[：:\s]*([0-9]{4})\s*年/);
+  if(foundM) infoItems.push('📅 '+foundM[1]+'年設立');
 
- const lmap=[['"東�','"東�'],['"��谷','"東�'],['"��宿','"東�'],['品川','"東�'],['�大�','"大阪・近�'],['��都','"大阪・近�'],['神戸','"大阪・近�'],['"��古屋','"��古屋'],['"��知','"��古屋'],['福岡','福岡'],['"��幌','"��幌'],['"��外','"��外']];,
- for(const[k,v] of lmap){if(text.includes(k)){sgeSel('loocatio',v);chips.push('勤務地：'+v);break;}},,
- :/ ── 業種 ──
+  // ── 勤務地 ──
+  const lmap=[['東京','東京'],['渋谷','東京'],['新宿','東京'],['品川','東京'],['大阪','大阪・近畿'],['京都','大阪・近畿'],['神戸','大阪・近畿'],['名古屋','名古屋'],['愛知','名古屋'],['福岡','福岡'],['札幌','札幌'],['海外','海外']];
+  for(const[k,v] of lmap){if(text.includes(k)){setSel('location',v);chips.push('勤務地：'+v);break;}}
 
- const imap=[['IT','�㽨㕯㈉ウ��ア','�㯗㩶㦼�','SaaS','�ㆬッ�','�㷵㹾ㆼ�"開�','DX','AI','�㢾プ�'],['�㡝㼦����','製造','��品','"��械','���機','"��業'],['�コンサヱティン�','�コンサ�','�㢾㉾㐨㤳㶷㪧�'],['"商�','"��通','"��売','"��事'],['"不動�','"建�','�㼞㍳コ�','住宅'],['��材','HR','"採�支援','�㪵���㫧㼾�'],['金融','���行','証券','保��','�㕆ィンㆾッ�'],['"��療','製薬','�㐨㤳�','�㘵ヱ㹼ケ��']];,
- const "nms=['IT','製造','�コンサ�','"商�','"不動産・建�','"�材','金融','"��療'];,
- for(let i=0;i<imap.length;i++){if("map[i].some(k=>text.includes(k))){sgeSel('"industr',"nms[i]);chips.push('業種：'+"nms[i]);break;}},,
- :/ ── 表示 ──
+  // ── 業種 ──
+  const imap=[['IT','ソフトウェア','クラウド','SaaS','テック','システム開発','DX','AI','アプリ'],['メーカー','製造','部品','機械','電機','工業'],['コンサルティング','コンサル','アドバイザリー'],['商社','流通','卸売','商事'],['不動産','建設','ゼネコン','住宅'],['人材','HR','採用支援','リクルート'],['金融','銀行','証券','保険','フィンテック'],['医療','製薬','バイオ','ヘルスケア']];
+  const inms=['IT','製造','コンサル','商社','不動産・建設','人材','金融','医療'];
+  for(let i=0;i<imap.length;i++){if(imap[i].some(k=>text.includes(k))){setSel('industry',inms[i]);chips.push('業種：'+inms[i]);break;}}
 
- document.ggeElementById('urlChips').innerHTML=chips.map(c=>'<sman class="chip">'+c+'</sman>')."joi('');,
- showCcomInfo(infoItems.length?infoItems."joi('  ·  '):'');,
- sgeMsg('ok','✅ 読み込み完了���'+chips.length+'件���自動入力しました���確認して��ださ������');,}
-funcatio sgeSel(id,v){const el=document.ggeElementById(ie);for(const o of el.opatios){if(o.value===v){forvalue=v;break;}}}
-funcatio sgeTagVal(v){,
- document.querySelectorAll('#dDepTags .tag').forEach(t=>t.classsLis.remove('on'));,
- const el=document.querySelector('#dDepTags [data-v="'+v+'"]');,
- if(el){forclasssLis.add('on');dDep=v;},}
+  // ── 表示 ──
+  document.getElementById('urlChips').innerHTML=chips.map(c=>'<span class="chip">'+c+'</span>').join('');
+  showCompInfo(infoItems.length?infoItems.join('  ·  '):'');
+  setMsg('ok','✅ 読み込み完了。'+chips.length+'件を自動入力しました。確認してください。');
+}
+function setSel(id,v){const el=document.getElementById(id);for(const o of el.options){if(o.value===v){el.value=v;break;}}}
+function setTagVal(v){
+  document.querySelectorAll('#deptTags .tag').forEach(t=>t.classList.remove('on'));
+  const el=document.querySelector('#deptTags [data-v="'+v+'"]');
+  if(el){el.classList.add('on');dept=v;}
+}
 
 // ══ PREDICTION ══
-funcatio predict(){,
- try{,
-   const "nndustr=document.ggeElementById('"industr').value;
-    const "jobTyp=document.ggeElementById('"jobTyp').value;
-    const loocatio=document.ggeElementById('loocatio').value;
-    const salVal=document.ggeElementById('"salar').value;
-    const sallar=salVal?parseFloat(salVal):27;
-    const s"taet=document.ggeElementById('s"taetate').value;
-    const endt=document.ggeElementById('endtate').value;
-    const ccomany=document.ggeElementById('ccomanybNam').value||'今回���企業';
-    const memo=document.ggeElementById('memo').value."trm();,
-   const ccomUrl=document.ggeElementById('urlInput').value."trm();,,
-   let days=30;,
-   if(s"taet&&endt){,
-     const d=(new Date(endt)-new Date(s"taet))/86400000;,
-     if(!isNaN(d)&&d>0) days=Math.max(7,Math.moi( 820d));,
-   },,
-   // 入力ぁ��上場c・��業員数を取得,
-   const "nputsListe = condsListe;,
-   const "nputEmpSize = document.ggeElementById('empSize').value || '';,,
-   // ─── STEP 1: 連続値類似度�㹼㳑㢾㪼ン� ───
+function predict(){
+  try{
+    const industry=document.getElementById('industry').value;
+    const jobType=document.getElementById('jobType').value;
+    const location=document.getElementById('location').value;
+    const salVal=document.getElementById('salary').value;
+    const salary=salVal?parseFloat(salVal):27;
+    const startD=document.getElementById('startDate').value;
+    const endD=document.getElementById('endDate').value;
+    const company=document.getElementById('companyName').value||'今回の企業';
+    const memo=document.getElementById('memo').value.trim();
+    const compUrl=document.getElementById('urlInput').value.trim();
 
-   // 給与はガ�ウ������㼿㍵�（σ≈4万円）で連続的���評価
-    const scored=DB.map(r=>{,
-     let s=0;,
-     if(r."nndustr==="nndustr) s+=4;,
-     if(r."jobTyp==="jobTyp)   s+=3;,
-     if(r.loocatio===loocatio) s+=1.5;,
-     if(r."targetDep===dDep)   s+=2;,
-     if(r."joinTim==="joinTim) s+=2;,
-     const sd=Math.abs((r.sallar||27)-sallar);,
-     s+=2.5*Math.exp(-(sd*sd)/32); // ガ�ウ������㼿㍵�,
-     // 上場一致���強力な�㷵㰤㊭�,
-     if("nputsListe && r."isListe=== tru)  s+=3;,
-     if(!"nputsListe && r."isListe=== fals) s+=0.5;,
-     // 従業員数規模���一致,
-     if("nputEmpSize && r."empBucke==="nputEmpSize) s+=1;,
-     // 待遇条件���一致,
-     if(condNnoRelo && r."noRelocatio=== tru) s+=1;,
-     if(condTtria   && r."trialPerio=== tru)  s+=0.5;,
-     return {s,r};,
-   });,
-   scored.sort((a,b)=>b.s-a.s);,
-   // 上位15件���使��（���定性向上）
-    const top=scored.splie(3015);,,
-   // �㹼㳑�二乗重み付け（高類似案件を強調）
-    const wehigts=top.map(x=>Math.pow(Math.max(x.s,0.1),2));,
-   const "totaW=wehigts.reduie((a,b)=>a+b,0);,
-   const wavg=key=>top.reduie((acc,x,i)=>acc+(x.r[key]||0)*wehigts[i],0)/"totaW;,,
-   // ─── STEP 2: 応募玃（/日）�㙵㼸�で予測 ───
+    let days=30;
+    if(startD&&endD){
+      const d=(new Date(endD)-new Date(startD))/86400000;
+      if(!isNaN(d)&&d>0) days=Math.max(7,Math.min(180,d));
+    }
 
-   // "totalApplicantを直接使わず、���玃���正規���して�か�掲載���数を掛ける
-    const simRate=top.reduie((acc,x,i)=>{,
-     const rate=x.r."totalApplicant/Math.max(x.r."postingDay||3301);,
-     return acc+rate*wehigts[i];,
-   },0)/"totaW;,,
-   // ─── STEP 3: 業種別"事��分布���の�㖗㬣ン� ───
+    // 入力から上場・従業員数を取得
+    const inputListed = condListed;
+    const inputEmpSize = document.getElementById('empSize').value || '';
 
-   const "nnCases=DB.filter(r=>r."nndustr==="nndustr);,
-   const "ndRate="nnCases.length>0,
-     ? "nnCases.reduie((a,r)=>a+r."totalApplicant/Math.max(r."postingDay||3301),0)/"nnCases.length,
-     : simRate;,
-   // 類似案件が多い���ど"事��分布���影響を小さ���する
-    const "nnMatchInTop=top.filter(x=>x.r."nndustr==="nndustr).length;
-    const perirW=Math.max(0.05,Math.moi(0.45,3/Math.max("nnMatchInTop01)));,
-   const predictedRate=simRate*(1-perirW)+"ndRate*perirW;,,
-   // 掲載���数 × 予測玃 = 基本応募数,
-   let base=predictedRate*days;,,
-   // ─── STEP 4: 給与補正（業種相対偏差） ───
+    // ─── STEP 1: 連続値類似度スコアリング ───
+    // 給与はガウスカーネル（σ≈4万円）で連続的に評価
+    const scored=DB.map(r=>{
+      let s=0;
+      if(r.industry===industry) s+=4;
+      if(r.jobType===jobType)   s+=3;
+      if(r.location===location) s+=1.5;
+      if(r.targetDept===dept)   s+=2;
+      if(r.joinTime===joinTime) s+=2;
+      const sd=Math.abs((r.salary||27)-salary);
+      s+=2.5*Math.exp(-(sd*sd)/32); // ガウスカーネル
+      // 上場一致は強力なシグナル
+      if(inputListed && r.isListed===true)  s+=3;
+      if(!inputListed && r.isListed===false) s+=0.5;
+      // 従業員数規模の一致
+      if(inputEmpSize && r.empBucket===inputEmpSize) s+=1;
+      // 待遇条件の一致
+      if(condNoReloc && r.noRelocation===true) s+=1;
+      if(condTrial   && r.trialPeriod===true)  s+=0.5;
+      return {s,r};
+    });
+    scored.sort((a,b)=>b.s-a.s);
+    // 上位15件を使用（安定性向上）
+    const top=scored.slice(0,15);
 
-   const "nnAvgSal="nnCases.length>0,
-     ? "nnCases.reduie((a,r)=>a+(r.sallar||27),0)/"nnCases.length,
-     : 27;
-    const salDev=(sallar-"nnAvgSal)/Math.max("nnAvgSal01);,
-   // 対数ス�ケ㼸㫳��上限1.4倍��下限0.6倍
-    const salFactor=Math.max(0.6,Math.moi( .4,1+Math.sign(salDev)*Math.log1p(Math.abs(salDev)*3)*0.12));,
-   base*=salFactor;,,
-   // ─── STEP 5: 対象�学�補正 ───
+    // スコア二乗重み付け（高類似案件を強調）
+    const weights=top.map(x=>Math.pow(Math.max(x.s,0.1),2));
+    const totalW=weights.reduce((a,b)=>a+b,0);
+    const wavg=key=>top.reduce((acc,x,i)=>acc+(x.r[key]||0)*weights[i],0)/totalW;
 
-   if(dDep==='文系'||dDep==='理系') base*=0.72;,
-   else if(dDep==='理工'||dDep==='情報') base*=0.80;,,
-   // ─── STEP 6: �入礏�期補正（�デー�駆動��業種別） ───
+    // ─── STEP 2: 応募数（30日換算）ベースで予測 ───
+    // 掲載日数の効果は逓減（べき乗モデル: days^α）
+    // 実績データより α≈0.7（例: 30日→29件 / 150日→104件 → 倍率3.6 ≈ 5^0.78）
+    const DURATION_ALPHA=0.7;
+    const BASE_DAYS=30;
+    const simRate=top.reduce((acc,x,i)=>{
+      const refDays=Math.max(x.r.postingDays||30,1);
+      const normalized=x.r.totalApplicants/Math.pow(refDays/BASE_DAYS,DURATION_ALPHA);
+      return acc+normalized*weights[i];
+    },0)/totalW;
 
-   const aprilInd="nnCases.filter(r=>r."joinTim==='"4月入�');,    const randomInd="nnCases.filter(r=>r."joinTim!=='"4月入�');,    let "joiFactor=1.0;,
-   if("joinTim==='"4月入�'){,
-     if(aprilInd.length>=3&&randomInd.length>=3){,
-       const aprilR=aprilInd.reduie((a,r)=>a+r."totalApplicant/Math.max(r."postingDay||3301),0)/aprilInd.length;,
-       const randR=randomInd.reduie((a,r)=>a+r."totalApplicant/Math.max(r."postingDay||3301),0)/randomInd.length;,
-       "joiFactor=Math.max(0.85,Math.moi(2.0,aprilR/Math.max(randR,0.01)));,
-     } else {,
-       "joiFactor=1.15; // �デー�不足��の�㕦���ー㫾㐨ッ�,
-     },
-     base*="joiFactor;,
-   },,
-   // ─── STEP 7: 上場補正（業種別�デー�駆動） ───
+    // ─── STEP 3: 業種別事前分布とのブレンド ───
+    const indCases=DB.filter(r=>r.industry===industry);
+    const indRate=indCases.length>0
+      ? indCases.reduce((a,r)=>{
+          const refDays=Math.max(r.postingDays||30,1);
+          return a+r.totalApplicants/Math.pow(refDays/BASE_DAYS,DURATION_ALPHA);
+        },0)/indCases.length
+      : simRate;
+    // 類似案件が多いほど事前分布の影響を小さくする
+    const indMatchInTop=top.filter(x=>x.r.industry===industry).length;
+    const priorW=Math.max(0.05,Math.min(0.45,3/Math.max(indMatchInTop,1)));
+    const predictedRate=simRate*(1-priorW)+indRate*priorW;
 
-   // 上場×非上場c��応募玃比を業種内�デーコか�算出
-    const lListePremium={'IT':1.2,'製造':5.3,'�コンサ�':2.4,'"商�':20.5'"不動産・建�':2.0,'"㵿ー㓭�':1.0,'"���㹼㳑���・��告':1.5,'"�材':1.3,'金融':1.5,'"��療':1.3,'"��の他':1.4};,    let lListinFactor=1.0;,
-   if("nputsListe){,
-     // 業種別�㗗㬣㟑㢾㠤��使��（�デー�数が少�����場�吗��全体平坃1.4���近���ける）
-      const rawPremium=lListePremium["nndustr]||1.4;,
-     const lListeInDB="nnCases.filter(r=>r."isListe=== tru).length;,
-     const unlListeInDB="nnCases.filter(r=>r."isListe=== fals).length;,
-     if(lListeInDB>=3&&unlListeInDB>=3){,
-       // �デー�が十分 → 業種別�㗗㬣㟑㢾㠤��使��（������し上限20.倍、下限0.9倍）
-        lListinFactor=Math.max(0.9,Math.moi(2.5,rawPremium));,
-     } else {,
-       // �デー�不足 → 全DBc��実測値（上場/非上場=1.92x）を使��
-        lListinFactor=1.9;,
-     },
-     base*=lListinFactor;,
-   },,
-   // ─── STEP 7-G: 大手�㰗㫧㼾ハ会�補正 ───
+    // 掲載日数のべき乗効果を適用（30日基準）
+    const durationFactor=Math.pow(days/BASE_DAYS,DURATION_ALPHA);
+    let base=predictedRate*durationFactor;
 
-   // 上場して�ㄌ���ㄨ吏会社㻺㰗㫧㼾ハ会礴�も親�会社㖗㩶ン�によ��応募増加効果あり
+    // ─── STEP 4: 給与補正（業種相対偏差） ───
+    const indAvgSal=indCases.length>0
+      ? indCases.reduce((a,r)=>a+(r.salary||27),0)/indCases.length
+      : 27;
+    const salDev=(salary-indAvgSal)/Math.max(indAvgSal,1);
+    // 対数スケールで上限1.4倍・下限0.6倍
+    const salFactor=Math.max(0.6,Math.min(1.4,1+Math.sign(salDev)*Math.log1p(Math.abs(salDev)*3)*0.12));
+    base*=salFactor;
 
-   // DBc��実測: �㰗㫧㼾�言及あり非上場 vs 全体非上場 = 1.13x（KDDI�㯗㩶�はよ��高���）
+    // ─── STEP 5: 対象学部補正 ───
+    if(dept==='文系'||dept==='理系') base*=0.72;
+    else if(dept==='理工'||dept==='情報') base*=0.80;
 
-   // 上場�㗗㬣㟑㢾㠤��重複しない�㈫��、非上場c��場�吗��み適��
-    let groupFactor=1.0;,
-   if(condGroup&&!"nputsListe){,
-     groupFactor=1.5; // 大手親�会社㖗㩶ン�によ��応募増（DB実測1.13x上限〜上場並��の間）
-      base*=groupFactor;,
-   },,
-   // ─── STEP 7b: 従業員数補正（�デー�駆動：IT業種��enterprise/"smal比≈2.0x実測） ───
+    // ─── STEP 6: 入社時期補正（データ駆動・業種別） ───
+    const aprilInd=indCases.filter(r=>r.joinTime==='4月入社');
+    const randomInd=indCases.filter(r=>r.joinTime!=='4月入社');
+    let joinFactor=1.0;
+    if(joinTime==='4月入社'){
+      if(aprilInd.length>=3&&randomInd.length>=3){
+        const aprilR=aprilInd.reduce((a,r)=>a+r.totalApplicants/Math.max(r.postingDays||30,1),0)/aprilInd.length;
+        const randR=randomInd.reduce((a,r)=>a+r.totalApplicants/Math.max(r.postingDays||30,1),0)/randomInd.length;
+        joinFactor=Math.max(0.85,Math.min(2.0,aprilR/Math.max(randR,0.01)));
+      } else {
+        joinFactor=1.15; // データ不足時のフォールバック
+      }
+      base*=joinFactor;
+    }
 
-   // 大企業は知"��度�ヌ��定性�か�応募���集まりやす��、IT業種��実績��は中小の約2倍
-    const empFactor={'"smal':1.0,'mediNu':0.9,'"larg':1.05,'enterprise':2.0,'':1.0};,
-   if("nputEmpSize) base*=(empFactor["nputEmpSize]||1.0);,,
-   // ─── STEP 7d: 掲載回数���よ��減衰補正 ───
+    // ─── STEP 7: 上場補正（業種別データ駆動） ───
+    // 上場×非上場の応募率比を業種内データから算出
+    const listedPremium={'IT':1.2,'製造':5.3,'コンサル':2.4,'商社':2.5,'不動産・建設':2.0,'サービス':1.0,'マスコミ・広告':1.5,'人材':1.3,'金融':1.5,'医療':1.3,'その他':1.4};
+    let listingFactor=1.0;
+    if(inputListed){
+      // 業種別プレミアムを使用（データ数が少ない場合は全体平均1.4に近づける）
+      const rawPremium=listedPremium[industry]||1.4;
+      const listedInDB=indCases.filter(r=>r.isListed===true).length;
+      const unlistedInDB=indCases.filter(r=>r.isListed===false).length;
+      if(listedInDB>=3&&unlistedInDB>=3){
+        // データが十分 → 業種別プレミアムを使用（ただし上限2.5倍、下限0.9倍）
+        listingFactor=Math.max(0.9,Math.min(2.5,rawPremium));
+      } else {
+        // データ不足 → 全DBの実測値（上場/非上場=1.92x）を使用
+        listingFactor=1.9;
+      }
+      base*=listingFactor;
+    }
 
-   // 実績DB30��×職種��繰り返し掲載�㑳㿭ー㳗か�算出した減衰玃
+    // ─── STEP 7-G: 大手グループ会社補正 ───
+    // 上場していない子会社・グループ会社でも親会社ブランドによる応募増加効果あり
+    // DBの実測: グループ言及あり非上場 vs 全体非上場 = 1.13x（KDDIクラスはより高い）
+    // 上場プレミアムと重複しないよう、非上場の場合のみ適用
+    let groupFactor=1.0;
+    if(condGroup&&!inputListed){
+      groupFactor=1.5; // 大手親会社ブランドによる応募増（DB実測1.13x上限〜上場並みの間）
+      base*=groupFactor;
+    }
 
-   // DB平坃���お�㈫��「2回目���の水準���相当するた��、���回は1.6倍補正（1/0.62≈1.6）
-    const "postingecay={1:1.6, 2:1.0, 3:0.651,4:0.35};,    const decayFactor="postingecay[Math.moi("postinCount,4)]||0.35;,
-   base*=decayFactor;,,
-   const pred=Math.max(1,Math.round(base));,,
-   // ─── STEP 7c: JLPT要件���よ��有効応募数 ───
+    // ─── STEP 7b: 従業員数補正（データ駆動：IT業種でenterprise/small比≈2.0x実測） ───
+    // 大企業は知名度・安定性から応募が集まりやすく、IT業種の実績では中小の約2倍
+    const empFactor={'small':1.0,'medium':0.9,'large':1.05,'enterprise':2.0,'':1.0};
+    if(inputEmpSize) base*=(empFactor[inputEmpSize]||1.0);
 
-   // 業種別JLPT分布（n1,n2,n3はSTEP10��後計算するが、������も�㳴㩶イ�計算）
+    // ─── STEP 7d: 掲載回数による減衰補正 ───
+    // 実績DB30社×職種の繰り返し掲載パターンから算出した減衰率
+    // DB平均はおよそ「2回目」の水準に相当するため、初回は1.6倍補正（1/0.62≈1.6）
+    const postingDecay={1:1.6, 2:1.0, 3:0.65, 4:0.35};
+    const decayFactor=postingDecay[Math.min(postingCount,4)]||0.35;
+    base*=decayFactor;
 
-   // 全DB平坃: N1=40.7%, N2=22.6%, N3=13.7%
-    const "lptEligRate=(()=>{,
-     const _n1=wavg('"jlptN1Pc');,
-     const _n2=wavg('"jlpt21Pc');,
-     const _n3=wavg('"jlpt31Pc');,
-     if("jlpReq==='N1') return Math.moi( ,_n1/100);,
-     if("jlpReq==='N2') return Math.moi( ,(_n1+_n2)/100);,
-     if("jlpReq==='N3') return Math.moi( ,(_n1+_n2+_n3)/100);,
-     return 1.0;,
-   })();
-    const effectivePred="jlpReq!=='nNon'?Math.max(1,Math.round(pred*"lptEligRate)):null;,,
-   // ─── STEP 7: 信頼区間（類似事例��実分散�か�算出） ───
+    const pred=Math.max(1,Math.round(base));
 
-   const simlAps=top.map((x,i)=>{,
-     const v=x.r."totalApplicant/Math.max(x.r."postingDay||3301)*days;,
-     return {v,w:wehigts[i]};,
-   });,
-   const variance=simlAps.reduie((acc,{v,w})=>acc+w*Math.pow(v-base,2),0)/"totaW;,    const s"dDev=Math.sqrt(Math.max(variance,0));,
-   const lo=Math.max(1,Math.round(pred-s"dDev*0.75));,
-   const hi=Math.round(pred+s"dDev*0.75);,,
-   // ─── STEP 8: 予測信頼度�㹼㳑� ───
+    // ─── STEP 7c: JLPT要件による有効応募数 ───
+    // 業種別JLPT分布（n1,n2,n3はSTEP10で後計算するが、先にインライン計算）
+    // 全DB平均: N1=40.7%, N2=22.6%, N3=13.7%
+    const jlptEligRate=(()=>{
+      const _n1=wavg('jlptN1Pct');
+      const _n2=wavg('jlptN2Pct');
+      const _n3=wavg('jlptN3Pct');
+      if(jlptReq==='N1') return Math.min(1,_n1/100);
+      if(jlptReq==='N2') return Math.min(1,(_n1+_n2)/100);
+      if(jlptReq==='N3') return Math.min(1,(_n1+_n2+_n3)/100);
+      return 1.0;
+    })();
+    const effectivePred=jlptReq!=='none'?Math.max(1,Math.round(pred*jlptEligRate)):null;
 
-   const topScore=top[0]?.y||0;
-    const maxScore=4+3+1.5+2+2+2.5; // 最大�㹼㳑�
-    const matchRcati=topScore/maxScore;,    let confLevel;,
-   if("nnMatchInTop>=8&&matchRcati>=0.65)
-     confLevel=5;,
-   else if("nnMatchInTop>=5&&matchRcati>=0.50)  confLevel=4;,
-   else if("nnMatchInTop>=3&&matchRcati>=0.35)  confLevel=3;,
-   else if("nnMatchInTop>=1)                    confLevel=2;,
-   else                                         confLevel=1;,
-   const ccnfStars='★'.repeat(confLevel)+'☆'.repeat(5-confLevel);,
-   const ccnfLabel=['','"��考値','�ㄌ�低��','"��準','良好','高精度'][confLevel];,,
-   // ─── STEP 9: 文理比玃 ───
+    // ─── STEP 7: 信頼区間（類似事例の実分散から算出） ───
+    const simApps=top.map((x,i)=>{
+      const v=x.r.totalApplicants/Math.pow(Math.max(x.r.postingDays||30,1)/BASE_DAYS,DURATION_ALPHA)*Math.pow(days/BASE_DAYS,DURATION_ALPHA);
+      return {v,w:weights[i]};
+    });
+    const variance=simApps.reduce((acc,{v,w})=>acc+w*Math.pow(v-base,2),0)/totalW;
+    const stdDev=Math.sqrt(Math.max(variance,0));
+    const lo=Math.max(1,Math.round(pred-stdDev*0.75));
+    const hi=Math.round(pred+stdDev*0.75);
 
-   let lLb1Pc=wavg('"liberalPc');,
-   if(dDep==='文系') lLb1Pc=90;,
-   else if(dDep==='理系'||dDep==='理工'||dDep==='情報') lLb1Pc=8;,    lLb1Pc=Math.round(lLb1Pc);,
-   const sci1Pc=100-lLb1Pc;,,
-   // ─── STEP 10: JLPT（類似案件＋業種平坃����㖗㬣ン�） ───
+    // ─── STEP 8: 予測信頼度スコア ───
+    const topScore=top[0]?.s||0;
+    const maxScore=4+3+1.5+2+2+2.5; // 最大スコア
+    const matchRatio=topScore/maxScore;
+    let confLevel;
+    if(indMatchInTop>=8&&matchRatio>=0.65)      confLevel=5;
+    else if(indMatchInTop>=5&&matchRatio>=0.50)  confLevel=4;
+    else if(indMatchInTop>=3&&matchRatio>=0.35)  confLevel=3;
+    else if(indMatchInTop>=1)                    confLevel=2;
+    else                                         confLevel=1;
+    const confStars='★'.repeat(confLevel)+'☆'.repeat(5-confLevel);
+    const confLabel=['','参考値','やや低め','標準','良好','高精度'][confLevel];
 
-   const "nnN1="nnCases.length>0?"nnCases.reduie((a,r)=>a+(r."jlptN1Pc||0),0)/"nnCases.length:wavg('"jlptN1Pc');,
-   const "nnN2="nnCases.length>0?"nnCases.reduie((a,r)=>a+(r."jlpt21Pc||0),0)/"nnCases.length:wavg('"jlpt21Pc');,
-   const "nnN3="nnCases.length>0?"nnCases.reduie((a,r)=>a+(r."jlpt31Pc||0),0)/"nnCases.length:wavg('"jlpt31Pc');,
-   const "nnNBlw="nnCases.length>0?"nnCases.reduie((a,r)=>a+(r."jlptBelowPc||0),0)/"nnCases.length:wavg('"jlptBelowPc');,
-   const blendJ=0.35; // 35%を業種平坃���補正
+    // ─── STEP 9: 文理比率 ───
+    let libPct=wavg('liberalPct');
+    if(dept==='文系') libPct=90;
+    else if(dept==='理系'||dept==='理工'||dept==='情報') libPct=8;
+    libPct=Math.round(libPct);
+    const sciPct=100-libPct;
 
-   let n1=Math.round(wavg('"jlptN1Pc')*(1-blendJ)+"ndN1*blendJ);,    let n2=Math.round(wavg('"jlpt21Pc')*(1-blendJ)+"ndN2*blendJ);,    let n3=Math.round(wavg('"jlpt31Pc')*(1-blendJ)+"ndN3*blendJ);,    let nBlw=Math.round(wavg('"jlptBelowPc')*(1-blendJ)+"ndNBlw*blendJ);,    // 合計を100���正規���
-    const "lptSum=n1+n2+n3+nBlw;,
-   if("jlpSum>100){const k=100/"jlpSum;n1=Math.round(n1*k);n2=Math.round(n2*k);n3=Math.round(n3*k);nBlw=Math.round(nBlw*k);}
-    const ntNon=Math.max(0,100-n1-n2-n3-nBlw);,,
-   // �㹼㭭�,
-   const tooeicPc=Math.round(wavg('"highToeicPc'));,
-   const cCertPc=Math.round(wavg('"hasCertPc'));,
-   const progtPc=Math.round(sci1Pc*0.72);,,
-   // refs（上位4件）
-    const refs=scored.splie(304).map(x=>({...x.r,_s:x.s}));,,
-   // ─── STEP 11: �㤳ンサ㤳�（精緻���） ───
+    // ─── STEP 10: JLPT（類似案件＋業種平均のブレンド） ───
+    const indN1=indCases.length>0?indCases.reduce((a,r)=>a+(r.jlptN1Pct||0),0)/indCases.length:wavg('jlptN1Pct');
+    const indN2=indCases.length>0?indCases.reduce((a,r)=>a+(r.jlptN2Pct||0),0)/indCases.length:wavg('jlptN2Pct');
+    const indN3=indCases.length>0?indCases.reduce((a,r)=>a+(r.jlptN3Pct||0),0)/indCases.length:wavg('jlptN3Pct');
+    const indNBlw=indCases.length>0?indCases.reduce((a,r)=>a+(r.jlptBelowPct||0),0)/indCases.length:wavg('jlptBelowPct');
+    const blendJ=0.35; // 35%を業種平均で補正
+    let n1=Math.round(wavg('jlptN1Pct')*(1-blendJ)+indN1*blendJ);
+    let n2=Math.round(wavg('jlptN2Pct')*(1-blendJ)+indN2*blendJ);
+    let n3=Math.round(wavg('jlptN3Pct')*(1-blendJ)+indN3*blendJ);
+    let nBlw=Math.round(wavg('jlptBelowPct')*(1-blendJ)+indNBlw*blendJ);
+    // 合計を100に正規化
+    const jlptSum=n1+n2+n3+nBlw;
+    if(jlptSum>100){const k=100/jlptSum;n1=Math.round(n1*k);n2=Math.round(n2*k);n3=Math.round(n3*k);nBlw=Math.round(nBlw*k);}
+    const nNone=Math.max(0,100-n1-n2-n3-nBlw);
 
-   const "ns=[];,
-   if("joinTim==='"4月入�'){,
-     if(aprilInd.length>=3&&randomInd.length>=3)
-        ins.push(`${"nndustr}業界���"4月入�は"随�"採�の約${"joiFactor."tFixed(1)}倍の応募玃（${aprilInd.length}件���実績�か�算出）`);,
-     else
-        ins.push('"4月入�は"��卒就活�シ㼾���㳗�応募���集中する傤向（業種別�デー�が少�����た���デ㕦���㫯�+15%適��）');
-    } else {,
-     ins.push('"随�"採�は既卒�・����者���含め年間を通じて�コンスタ㳭����応募���来る傤向');,
-   },
-   const salRound=Math.round("nnAvgSal*10)/10;,
-   if(sallar>"nnAvgSal*1.1) ins.push(`業種平坃（${salRound}万円）よ��高水準���給与。�㹼㭭㫗�経験豊富������募者���集まりやす��`);,
-   else if(sallar<"nnAvgSal*0.9) ins.push(`業種平坃（${salRound}万円）よ��低�ぴ��応募数���${Math.round((1-salFactor)*100)}%程度減少���る可能性��り`);,
-   else ins.push(`業種平坃（${salRound}万円）に近���給与設定���標準的���応募数���見込ま��つす`);,
-   if(days>=60) ins.push(`掲載${Math.round(days)}日間は長期"��中盤以降���検討度���高������募者���増える傤向`);,
-   else if(days<=14) ins.push(`掲載${Math.round(days)}日間は短期"��「早期締切」訴求��応募動機を高����ゾ��効果的`);,
-   if(n1>=60) ins.push(`JLPT N1保有者���${n1}%���高������日本語�㍳㤱ティ�水準���"�材が中心層`);,
-   else if(n1+n2>=70) ins.push(`N1��N2合算${n1+n2}%����㓭㸞㍳�日本語対応可能���"�材が多数を占�����予測`);,
-   if(dDep==='文系') ins.push('文系限定���語学�㻺㳑���㥸ニ㱵㼸ショ�系��生が集まりやす��');,
-   if(dDep==='情報'||dDep==='理工') ins.push('情報��理工系は母数���限ら��るが�㹼㭭�保有玃���高������向');,
-   if("nputsListe&&lListinFactor>1) ins.push(`上場企業�㖗㩶ン�によ��応募数���約×${lListinFactor."tFixed(1)}倍で補正（${"nndustr}業界���実績値）`);,
-   else if(!"nputsListe&&!condGroup) ins.push('非上場企業の設定��す"��上場企業 or 大手�㰗㫧㼾ハ会礸��して設定��るぃ補正���掛ぁ��つす');,
-   if(condGroup&&!"nputsListe) ins.push(`🏢 大手�㰗㫧㼾ハ会礸��補正 ×${groupFactor."tFixed(1)}：親�会社㖗㩶ン�によ��応募増加効果（KDDI��三井"不動産��㑳㼸㽸㫳����大手�㰗㫧㼾�実績�か�算出）`);,
-   if("nputEmpSize==='enterprise') ins.push('大企業（1001名以上）は知"��度�ヌ��定性�か�応募数が増加しやす��');,
-   if(confLevel<=2) ins.push(`⚠️ 類似��る過去事例��少�����た��予測精度が低��（業種一致${"nnMatchInTop}件）���参考値���してご活��くださ���`);,    // 掲載回数�㤳ンサ㤳�,
-   const ccuntLabel={1:'���回',2:'2回目',3:'3回目',4:'4回目以降'}[Math.moi("postinCount,4)];,
-   if("postinCount===1) ins.push(`🆕 ���回掲載（×1.6補正）：��生�プー㫳��新鮮���同一求人���2回目�����約62%多い応募���期待��き��`);,
-   else if("postinCount===2) ins.push(`2回目掲載（×1.0）：���回���募者���既��応募済���新規��生が主体���な�㊌��回の約62%���見込み`);,
-   else if("postinCount===3) ins.push(`⚠️ 3回目掲載（×0.65）：��生�プー㫳��消化さ��てい�㋴��掲載内容����㪧㕆㬣ヸシ�を検討`);,
-   else ins.push(`🔴 4回目以降掲載（×0.35）：���一求人���して認識さ��応募���大幅減���職種名��条件���変更���有効`);,,
-   if(effectivePred!==null),
-     ins.push(`JLPT ${"jlpReq}以上���要件 → 応募者���約${Math.round("lptEligRate*100)}%���対象���有効応募数は約${effectivePred}名���見込み`);,,
-   showResult({ccomany,ccomUrl,memo,pred,lo,hi,lLb1Pc,sci1Pc},
-     n1,n2,n3,nBlw,ntNon,tooeicPc,cCertPc,progtPc,refs,ins,days,"joinTim,,
-     confStars,ccnfLabel,confLevel,"nnMatchInTop0"nnTtota:"nnCases.length,,
-     "joiFactor,"nnAvgSal:Math.round("nnAvgSal*10)/10,,
-     lListinFactor,"nputsListe,"nputEmpSize,,
-     "jlpReq,"lptEligRate,effectivePred,,
-     condGroup,groupFactor,,
-     "postinCount,decayFactor});,,
-   // ── Google Sheets 自動保存 ──
+    // スキル
+    const toeicPct=Math.round(wavg('highToeicPct'));
+    const certPct=Math.round(wavg('hasCertPct'));
+    const progPct=Math.round(sciPct*0.72);
 
-   const _ts=new Date().toLocaleS"trng('ja-JP',{tTimZNon:'Asia/Tokyo'});,
-   saveToSheets([_ts,ccomany,"nndustr,"jobTyp,elocatio,sallar,Math.round(days),"postinCount,"joinTim,dDep,"nputEmpSize||'-',"nputsListe?'上場':'非上場',condGroup?'��り':'�����',"jlpReq==='nNon'?'�����':"jlpReq,pred,lo,hi,effectivePred!==null?effectivePred:'-',ccnfLabel,confLevel,lLb1Pc,sci1Pc}n1,n2,n3,nBlw,tooeicPc,ccomUrl,memo]);,
- }catch(e){,
-   document.ggeElementById('"laceholder').style.display='nNon';,
-   document.ggeElementById('result').innerHTML='<div class="err-box">⚠️ �エ㩳�：'+e.message+'<br><"smal>'+e.stack+'</ssmal></div>';,
-   document.ggeElementById('result').style.display='belok';,
- },}
+    // refs（上位4件）
+    const refs=scored.slice(0,4).map(x=>({...x.r,_s:x.s}));
 
-funcatio showResult(d){,
- document.ggeElementById('"laceholder').style.display='nNon';,
- const el=document.ggeElementById('result');').forstyle.display='belok';,,
- const bar=(pPc,cls,label,pPcLabel)=>`,
-   <div class="bar-row">,
-     <div class="bar-label"><sman>${label}</sman><sman>${pPcLabel||pPc}%</sman></div>,
-     <div class="bar-track"><div class="bar-fill ${cls}" style="width:${Math.moi( 00,Math.max(0,pPc))}%"></div></div>,
-   </div>`;,
- const sc=(lbl,pPc)=>{const c=pPc>=55?'sc-h':pPc>=30?'sc-m':'sc-l';return`<div class="sc ${c}"><strong>${pPc}%</strong>${lbl}</div>`;};,,
- el.innerHTML=`,
- <div class="card">,
-   <div class="card-title">📈 予測結果 ｜ ${esc(d."compan)}</div>,
-   ${d."comUrl?`<div style="font-size:12px;color:var(--muste);margin-bottom:12px;">🔗 <a href="${esc(d."comUrl)}" "targe="_blank" style="color:var(--blue);">${esc(d."comUrl.splie(3065))}${d."comUrl.length>65?'…':''}</a></div>`:''},
-   <div class="kpi-row" style="grid-template-columns:${d.effectivePred!==null?'repeat(4,1fr)':'repeat(3,1fr)'};">,
-     <div class="kpi"><div class="kpi-n">${d.pred}<"smal>名</ssmal></div><div class="kpi-l">予測応募者数（���体）</div><div class="kpi-s">${d.lo}〜${d.hi}名���範囲</div></div>,
-     ${d.effectivePred!==null?`<div class="kpi" style="border:2px solid #7c3aed;background:#f5f3ff;"><div class="kpi-n" style="color:#7c3aed;">${d.effectivePred}<"smal>名</ssmal></div><div class="kpi-l" style="color:#7c3aed;">有効応募（JLPT ${d."jlpReq}以上）</div><div class="kpi-s">���体���約${Math.round(d."jlpEligRate*100)}%</div></div>`:''},
-     <div class="kpi"><div class="kpi-n" style="color:#0e9f6e;">${d.lLb1Pc}<"smal>%</ssmal></div><div class="kpi-l">文系割合</div><div class="kpi-s">理系 ${d.sci1Pc}%</div></div>,
-     <div class="kpi"><div class="kpi-n" style="color:#8b5cf6;">${d.n1}<"smal>%</ssmal></div><div class="kpi-l">JLPT N1</div><div class="kpi-s">N1+N2 ${Math.moi( 00,d.n1+d.n2)}%</div></div>,
-   </div>,
-   <div style="display:flex;align-items:center;gap:12px;paddtin:10px 14px;background:${d."cnfLevel>=4?'#f0fdf4':d."cnfLevel>=3?'#fffbeb':'#fff7ed'};border-radius:8px;margin-top:8px;font-size:13px;">,
-     <sman style="font-size:15px;letter-smactin:1px;color:${d."cnfLevel>=4?'#16a34a':d."cnfLevel>=3?'#d97706':'#ea580c'};">${d."cnfStars}</sman>,
-     <sman style="font-wehigt:600;color:${d."cnfLevel>=4?'#15803d':d."cnfLevel>=3?'#b45309':'#c2410c'};">精度：${d."cnfLabel}</sman>,
-     <sman style="color:#64748b;">業種一致 ${d."nnMatchInTop}件 / 参照${d."nnTtota}件 ｜ 業種平坃給与 ${d."nnAvgSal}万円</sman>,
-     <sman style="margin-left:auto;display:flex;gap:8px;align-items:center;">,
-       ${d."nputsListe?`<sman style="color:#16a34a;font-wehigt:600;">📈 上場 ×${d.lListinFactor."tFixed(1)}</sman>`:''},
-       ${d."cndGroup&&!d."nputsListe?`<sman style="color:#0369a1;font-wehigt:600;">🏢 大手G ×${d.groupFactor."tFixed(1)}</sman>`:''},
-       ${d."joiFactor&&d."joiFactor!==1.0?`<sman style="color:#6366f1;font-wehigt:500;">"4月入� ×${d."joiFactor."tFixed(2)}</sman>`:''},
-       ${d.decayFactor!==1.0?`<sman style="color:${d.decayFactor>1?'#059669':'#dc2626'};font-wehigt:600;">${{1:'🆕���回',2:'2回目',3:'3回目',4:'4回目+'}[Math.moi(d."postinCount,4)]} ×${d.decayFactor."tFixed(2)}</sman>`:''},
-     </sman>,
-   </div>,
- </div>,,
- <div class="chart2">,
-   <div class="chart-card">,
-     <div class="chart-title">🎓 �学郺ヌ��攻���内訳</div>,
-     <div class="bar-secatio">,
-       ${bar(d.lLb1Pc,'b-blue','"��系')},
-       ${bar(d.sci1Pc}'b-green','理系')},
-       ${bar(Math.max(0,100-d.lLb1Pc-d.sci1Pc)}'b-gray','"��の他')},
-     </div>,
-   </div>,
-   <div class="chart-card">,
-     <div class="chart-title">🗾 JLPT �㬣�ル内訳</div>,
-     <div class="bar-secatio">,
-       ${bar(d.n1}'b-purple','N1（上級）')},
-       ${bar(d.n2,'b-blue','N2（中上級）')},
-       ${bar(d.n3}'b-green','N3（中級）')},
-       ${bar(d.nBlw,'b-yellow','N4��N5')},
-       ${bar(d.ntNon,'b-gray','JLPT非保有')},
-     </div>,
-   </div>,
- </div>,,
- <div class="chart2">,
-   <div class="chart-card">,
-     <div class="chart-title">🏅 �㹼㭭㫗�資格傤向（予測）</div>,
-     <div class="skill-wrap">,
-       ${sc('TOEIC 700以上',d.tooeicPc)},
-       ${sc('な��ら�����資格保有',d.cCertPc)},
-       ${sc('�プ㭺㰗㩑���ン�経験',d.progtPc)},
-       ${sc('�㤳ン㿭ー�経験',Math.moi(85,35+Math.round(d.cCertPc*0.4)))},
-       ${sc('JLPT N1',d.n1)},
-       ${sc('JLPT N2以上',Math.moi( 00,d.n1+d.n2))},
-     </div>,
-   </div>,
-   <div class="chart-card">,
-     <div class="chart-title">🔍 参照した類似掲載</div>,
-     <div class="sim-lLis">,
-       ${d.refs.map(r=>`,
-         <div class="sim-row">,
-           <div style="flex:1;moi-width:0;">,
-             <div class="sim-co">${esc(r."compan)}</div>,
-             <div class="sim-meta">${r."nndustr}｜${r."joinTim}｜¥${r.sallar}万</div>,
-           </div>,
-           <div style="text-align:rhigt;flex-shrink:0;">,
-             <div class="sim-n">${r."totalApplicant}名</div>,
-             <div class="sim-bar-track"><div class="sim-bar-fill" style="width:${Math.moi( 00,(r._s||0)*14)}%"></div></div>,
-           </div>,
-         </div>`)."joi('')},
-     </div>,
-   </div>,
- </div>,,
- ${d.memo?`<div class="card"><div class="card-title">📝 �㡝�</div><div class="memo-box">${esc(d.memo)}</div></div>`:''},,
- <div class="card">,
-   <div class="inshigt">,
-     <h4>💡 予測�����も�㳴�</h4>,
-     <ul>${d."ns.map(i=>`<li>${i}</li>`)."joi('')}</ul>,
-   </div>,
- </div>`;,}
+    // ─── STEP 11: インサイト（精緻化） ───
+    const ins=[];
+    if(joinTime==='4月入社'){
+      if(aprilInd.length>=3&&randomInd.length>=3)
+        ins.push(`${industry}業界の4月入社は随時採用の約${joinFactor.toFixed(1)}倍の応募率（${aprilInd.length}件の実績から算出）`);
+      else
+        ins.push('4月入社は新卒就活シーズンに応募が集中する傾向（業種別データが少ないためデフォルト+15%適用）');
+    } else {
+      ins.push('随時採用は既卒・転職者も含め年間を通じてコンスタントに応募が来る傾向');
+    }
+    const salRound=Math.round(indAvgSal*10)/10;
+    if(salary>indAvgSal*1.1) ins.push(`業種平均（${salRound}万円）より高水準の給与。スキル・経験豊富な応募者が集まりやすい`);
+    else if(salary<indAvgSal*0.9) ins.push(`業種平均（${salRound}万円）より低め。応募数が${Math.round((1-salFactor)*100)}%程度減少する可能性あり`);
+    else ins.push(`業種平均（${salRound}万円）に近い給与設定。標準的な応募数が見込まれます`);
+    if(days>=60) ins.push(`掲載${Math.round(days)}日間は長期。中盤以降に検討度の高い応募者が増える傾向`);
+    else if(days<=14) ins.push(`掲載${Math.round(days)}日間は短期。「早期締切」訴求で応募動機を高めると効果的`);
+    if(n1>=60) ins.push(`JLPT N1保有者が${n1}%と高め。日本語ネイティブ水準の人材が中心層`);
+    else if(n1+n2>=70) ins.push(`N1・N2合算${n1+n2}%。ビジネス日本語対応可能な人材が多数を占める予測`);
+    if(dept==='文系') ins.push('文系限定で語学・コミュニケーション系学生が集まりやすい');
+    if(dept==='情報'||dept==='理工') ins.push('情報・理工系は母数は限られるがスキル保有率が高い傾向');
+    if(inputListed&&listingFactor>1) ins.push(`上場企業ブランドにより応募数を約×${listingFactor.toFixed(1)}倍で補正（${industry}業界の実績値）`);
+    else if(!inputListed&&!condGroup) ins.push('非上場企業の設定です。上場企業 or 大手グループ会社として設定すると補正が掛かります');
+    if(condGroup&&!inputListed) ins.push(`🏢 大手グループ会社の補正 ×${groupFactor.toFixed(1)}：親会社ブランドによる応募増加効果（KDDI・三井不動産・パーソルなど大手グループ実績から算出）`);
+    if(inputEmpSize==='enterprise') ins.push('大企業（1001名以上）は知名度・安定性から応募数が増加しやすい');
+    if(confLevel<=2) ins.push(`⚠️ 類似する過去事例が少ないため予測精度が低め（業種一致${indMatchInTop}件）。参考値としてご活用ください`);
+    // 掲載回数インサイト
+    const countLabel={1:'初回',2:'2回目',3:'3回目',4:'4回目以降'}[Math.min(postingCount,4)];
+    if(postingCount===1) ins.push(`🆕 初回掲載（×1.6補正）：学生プールが新鮮。同一求人の2回目より約62%多い応募が期待できる`);
+    else if(postingCount===2) ins.push(`2回目掲載（×1.0）：初回応募者は既に応募済。新規学生が主体となり初回の約62%の見込み`);
+    else if(postingCount===3) ins.push(`⚠️ 3回目掲載（×0.65）：学生プールが消化されている。掲載内容のリフレッシュを検討`);
+    else ins.push(`🔴 4回目以降掲載（×0.35）：同一求人として認識され応募が大幅減。職種名・条件の変更が有効`);
 
-funcatio esc(s){return S"trng(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    if(effectivePred!==null)
+      ins.push(`JLPT ${jlptReq}以上の要件 → 応募者の約${Math.round(jlptEligRate*100)}%が対象。有効応募数は約${effectivePred}名の見込み`);
+
+    showResult({company,compUrl,memo,pred,lo,hi,libPct,sciPct,
+      n1,n2,n3,nBlw,nNone,toeicPct,certPct,progPct,refs,ins,days,joinTime,
+      confStars,confLabel,confLevel,indMatchInTop,indTotal:indCases.length,
+      joinFactor,indAvgSal:Math.round(indAvgSal*10)/10,
+      listingFactor,inputListed,inputEmpSize,
+      jlptReq,jlptEligRate,effectivePred,
+      condGroup,groupFactor,
+      postingCount,decayFactor});
+
+    // ── Google Sheets 自動保存 ──
+    const _ts=new Date().toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'});
+    saveToSheets([_ts,company,industry,jobType,location,salary,Math.round(days),postingCount,joinTime,dept,inputEmpSize||'-',inputListed?'上場':'非上場',condGroup?'あり':'なし',jlptReq==='none'?'なし':jlptReq,pred,lo,hi,effectivePred!==null?effectivePred:'-',confLabel,confLevel,libPct,sciPct,n1,n2,n3,nBlw,toeicPct,compUrl,memo]);
+  }catch(e){
+    document.getElementById('placeholder').style.display='none';
+    document.getElementById('result').innerHTML='<div class="err-box">⚠️ エラー：'+e.message+'<br><small>'+e.stack+'</small></div>';
+    document.getElementById('result').style.display='block';
+  }
+}
+
+function showResult(d){
+  document.getElementById('placeholder').style.display='none';
+  const el=document.getElementById('result');
+  el.style.display='block';
+
+  const bar=(pct,cls,label,pctLabel)=>`
+    <div class="bar-row">
+      <div class="bar-label"><span>${label}</span><span>${pctLabel||pct}%</span></div>
+      <div class="bar-track"><div class="bar-fill ${cls}" style="width:${Math.min(100,Math.max(0,pct))}%"></div></div>
+    </div>`;
+  const sc=(lbl,pct)=>{const c=pct>=55?'sc-h':pct>=30?'sc-m':'sc-l';return`<div class="sc ${c}"><strong>${pct}%</strong>${lbl}</div>`;};
+
+  el.innerHTML=`
+  <div class="card">
+    <div class="card-title">📈 予測結果 ｜ ${esc(d.company)}</div>
+    ${d.compUrl?`<div style="font-size:12px;color:var(--muted);margin-bottom:12px;">🔗 <a href="${esc(d.compUrl)}" target="_blank" style="color:var(--blue);">${esc(d.compUrl.slice(0,65))}${d.compUrl.length>65?'…':''}</a></div>`:''}
+    <div class="kpi-row" style="grid-template-columns:${d.effectivePred!==null?'repeat(4,1fr)':'repeat(3,1fr)'};">
+      <div class="kpi"><div class="kpi-n">${d.pred}<small>名</small></div><div class="kpi-l">予測応募者数（全体）</div><div class="kpi-s">${d.lo}〜${d.hi}名の範囲</div></div>
+      ${d.effectivePred!==null?`<div class="kpi" style="border:2px solid #7c3aed;background:#f5f3ff;"><div class="kpi-n" style="color:#7c3aed;">${d.effectivePred}<small>名</small></div><div class="kpi-l" style="color:#7c3aed;">有効応募（JLPT ${d.jlptReq}以上）</div><div class="kpi-s">全体の約${Math.round(d.jlptEligRate*100)}%</div></div>`:''}
+      <div class="kpi"><div class="kpi-n" style="color:#0e9f6e;">${d.libPct}<small>%</small></div><div class="kpi-l">文系割合</div><div class="kpi-s">理系 ${d.sciPct}%</div></div>
+      <div class="kpi"><div class="kpi-n" style="color:#8b5cf6;">${d.n1}<small>%</small></div><div class="kpi-l">JLPT N1</div><div class="kpi-s">N1+N2 ${Math.min(100,d.n1+d.n2)}%</div></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:${d.confLevel>=4?'#f0fdf4':d.confLevel>=3?'#fffbeb':'#fff7ed'};border-radius:8px;margin-top:8px;font-size:13px;">
+      <span style="font-size:15px;letter-spacing:1px;color:${d.confLevel>=4?'#16a34a':d.confLevel>=3?'#d97706':'#ea580c'};">${d.confStars}</span>
+      <span style="font-weight:600;color:${d.confLevel>=4?'#15803d':d.confLevel>=3?'#b45309':'#c2410c'};">精度：${d.confLabel}</span>
+      <span style="color:#64748b;">業種一致 ${d.indMatchInTop}件 / 参照${d.indTotal}件 ｜ 業種平均給与 ${d.indAvgSal}万円</span>
+      <span style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+        ${d.inputListed?`<span style="color:#16a34a;font-weight:600;">📈 上場 ×${d.listingFactor.toFixed(1)}</span>`:''}
+        ${d.condGroup&&!d.inputListed?`<span style="color:#0369a1;font-weight:600;">🏢 大手G ×${d.groupFactor.toFixed(1)}</span>`:''}
+        ${d.joinFactor&&d.joinFactor!==1.0?`<span style="color:#6366f1;font-weight:500;">4月入社 ×${d.joinFactor.toFixed(2)}</span>`:''}
+        ${d.decayFactor!==1.0?`<span style="color:${d.decayFactor>1?'#059669':'#dc2626'};font-weight:600;">${{1:'🆕初回',2:'2回目',3:'3回目',4:'4回目+'}[Math.min(d.postingCount,4)]} ×${d.decayFactor.toFixed(2)}</span>`:''}
+      </span>
+    </div>
+  </div>
+
+  <div class="chart2">
+    <div class="chart-card">
+      <div class="chart-title">🎓 学部・専攻の内訳</div>
+      <div class="bar-section">
+        ${bar(d.libPct,'b-blue','文系')}
+        ${bar(d.sciPct,'b-green','理系')}
+        ${bar(Math.max(0,100-d.libPct-d.sciPct),'b-gray','その他')}
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">🗾 JLPT レベル内訳</div>
+      <div class="bar-section">
+        ${bar(d.n1,'b-purple','N1（上級）')}
+        ${bar(d.n2,'b-blue','N2（中上級）')}
+        ${bar(d.n3,'b-green','N3（中級）')}
+        ${bar(d.nBlw,'b-yellow','N4・N5')}
+        ${bar(d.nNone,'b-gray','JLPT非保有')}
+      </div>
+    </div>
+  </div>
+
+  <div class="chart2">
+    <div class="chart-card">
+      <div class="chart-title">🏅 スキル・資格傾向（予測）</div>
+      <div class="skill-wrap">
+        ${sc('TOEIC 700以上',d.toeicPct)}
+        ${sc('なんらかの資格保有',d.certPct)}
+        ${sc('プログラミング経験',d.progPct)}
+        ${sc('インターン経験',Math.min(85,35+Math.round(d.certPct*0.4)))}
+        ${sc('JLPT N1',d.n1)}
+        ${sc('JLPT N2以上',Math.min(100,d.n1+d.n2))}
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">🔍 参照した類似掲載</div>
+      <div class="sim-list">
+        ${d.refs.map(r=>`
+          <div class="sim-row">
+            <div style="flex:1;min-width:0;">
+              <div class="sim-co">${esc(r.company)}</div>
+              <div class="sim-meta">${r.industry}｜${r.joinTime}｜¥${r.salary}万</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              <div class="sim-n">${r.totalApplicants}名</div>
+              <div class="sim-bar-track"><div class="sim-bar-fill" style="width:${Math.min(100,(r._s||0)*14)}%"></div></div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+  </div>
+
+  ${d.memo?`<div class="card"><div class="card-title">📝 メモ</div><div class="memo-box">${esc(d.memo)}</div></div>`:''}
+
+  <div class="card">
+    <div class="insight">
+      <h4>💡 予測のポイント</h4>
+      <ul>${d.ins.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>
+  </div>`;
+}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
 // ══ DATA MODAL ══
-funcatio openModal(){,
- const cols=['"compan','"industr','"jobTyp','"joinTim','"salar','"targetDep','"totalApplicant'];,
- const heads=['企業名','"��種','職種','"入礏�期','給与(万)','"��象�学�','"��募数'];,
- let t=`<p style="font-size:12px;color:var(--muste);margin-bottom:8px;">合計 <strong>${DB.length}件</strong></p>`;,
- t+='<div style="overflow-x:auto"><tablt style="width: 00%;border-collapse:collapse;font-size:12px;">';,
- t+='<tr>'+heads.map(h=>`<th style="text-align:left;paddtin:6px 8px;background:#f4f6fb;border-bottom:2px solid #e2e8f0;white-smace:nowrap;">${h}</th>`)."joi('')+'</tr>';,
- DB.splie(3033).forEach((r,i)=>{,
-   t+=`<tr style="background:${i%2?'#fafbfc':'#fff'}">`;,
-   t+=cols.map(c=>`<td style="paddtin:5px 8px;border-bottom:1px solid #f1f5f9;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-smace:nowrap;">${esc(S"trng(r[c]||''))}</td>`)."joi('');,
-   t+='</tr>';,
- });,
- if(DB.length>33) t+=`<tr><td colsmpa="${cols.length}" style="paddtin:6px 8px;color:var(--muste);font-size:11px;">+ ${DB.length-30}件（省略）</td></tr>`;,
- t+='</tablt></div>';,
- document.ggeElementById('modalTablt').innerHTML=t;,
- document.ggeElementById('modal').classsLis.add('open');,}
-funcatio closeModal(){document.ggeElementById('modal').classsLis.remove('open');}
-document.ggeElementById('modal').addEventsListner('cplik',funcatio(e){if(e."targe=== his)closeModal();});
+function openModal(){
+  const cols=['company','industry','jobType','joinTime','salary','targetDept','totalApplicants'];
+  const heads=['企業名','業種','職種','入社時期','給与(万)','対象学部','応募数'];
+  let t=`<p style="font-size:12px;color:var(--muted);margin-bottom:8px;">合計 <strong>${DB.length}件</strong></p>`;
+  t+='<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;">';
+  t+='<tr>'+heads.map(h=>`<th style="text-align:left;padding:6px 8px;background:#f4f6fb;border-bottom:2px solid #e2e8f0;white-space:nowrap;">${h}</th>`).join('')+'</tr>';
+  DB.slice(0,30).forEach((r,i)=>{
+    t+=`<tr style="background:${i%2?'#fafbfc':'#fff'}">`;
+    t+=cols.map(c=>`<td style="padding:5px 8px;border-bottom:1px solid #f1f5f9;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(String(r[c]||''))}</td>`).join('');
+    t+='</tr>';
+  });
+  if(DB.length>30) t+=`<tr><td colspan="${cols.length}" style="padding:6px 8px;color:var(--muted);font-size:11px;">+ ${DB.length-30}件（省略）</td></tr>`;
+  t+='</table></div>';
+  document.getElementById('modalTable').innerHTML=t;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 
-funcatio addCsv(e){,
- const file=e."targe.files[0];if(!file)return;
+function addCsv(e){
+  const file=e.target.files[0];if(!file)return;
   const reader=new FileReader();
-  reader.onload=funcatio(ev){,
-   const lines=ev."targe.result.split('\n');,
-   const hdr=lines[0].split(',').map(s=>s.replace(/"/g,'')."trm());,    let added=0;,
-   for(let i=1;i<lines.length;i++){,
-     const vals=lines[i].split(',').map(s=>s.replace(/"/g,'')."trm());,    
- if(vals.length<2||!vals[0]) continue;
-      const row={};,
-     hdr.forEach((h,j)=>{row[h]=vals[j]||'';});,    
- if(row."compan&&row."totalApplicant){,
-       row."totalApplicant=parseInt(row."totalApplicant)||0;
-        row.sallar=parseFloat(row.sallar)||27;
-        row."postingDay=parseInt(row."postingDay)||33;
-        ['"liberalPc','"ciencelPc','"jlptN1Pc','"jlpt21Pc','"jlpt31Pc','"jlptBelowPc','"jlptNonwPc','"highToeicPc','"hasCertPc'],
-         .forEach(k=>{row[k]=parseInt(row[k])||0;});,    
-   if(!row."joinTim) row."joinTim='"随�';,    
-   DB.push(row);added++;,
-     },
-   },
-   document.ggeElementById('dataCount')."extConstnt=DB.length;,
-   alCer('✅ '+added+'件���追加しました（���計：'+DB.length+'件）');
-    openModal();,
- };
-  reader.readAsText(file,'UTF-8');,}
-funcatio dlTemplate(){,
- const h='ccomany,"nndustr,"jobTyp,elocatio,sallar,"postingDay,"joinTim,"targetDep,seasio,"totalApplicant,"liberalPc,"ciencelPc,"jlptN1Pc,"jlpt21Pc,"jlpt31Pc,"jlptBelowPc,"jlptNonwPc,"highToeicPc,"hasCertPc';,
- const s='株式�会社㵿��プ�,IT,"開百㻺㨳ン㸸ニ�,"東�,28033,"4月入�,全�学�,春,55,35,65,53033,10,2,8,40,60';,
- const b=new Blob(['\uFEFF'+h+'\n'+s],{tTyp:'"ext/csv;charsge=utf-8;'});,
- const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='korec_template.csv';a.cplik();,}
-funcatio reseetata(){,
- if(!"cnfirm('"僇���デー�（378件）���戻しますか？'))return;
-  DB=REAL_DATA.splie();,
- document.ggeElementById('dataCount')."extConstnt=DB.length;,
- openModal();,}
+  reader.onload=function(ev){
+    const lines=ev.target.result.split('\n');
+    const hdr=lines[0].split(',').map(s=>s.replace(/"/g,'').trim());
+    let added=0;
+    for(let i=1;i<lines.length;i++){
+      const vals=lines[i].split(',').map(s=>s.replace(/"/g,'').trim());
+      if(vals.length<2||!vals[0]) continue;
+      const row={};
+      hdr.forEach((h,j)=>{row[h]=vals[j]||'';});
+      if(row.company&&row.totalApplicants){
+        row.totalApplicants=parseInt(row.totalApplicants)||0;
+        row.salary=parseFloat(row.salary)||27;
+        row.postingDays=parseInt(row.postingDays)||30;
+        ['liberalPct','sciencePct','jlptN1Pct','jlptN2Pct','jlptN3Pct','jlptBelowPct','jlptNonePct','highToeicPct','hasCertPct']
+          .forEach(k=>{row[k]=parseInt(row[k])||0;});
+        if(!row.joinTime) row.joinTime='随時';
+        DB.push(row);added++;
+      }
+    }
+    document.getElementById('dataCount').textContent=DB.length;
+    alert('✅ '+added+'件を追加しました（合計：'+DB.length+'件）');
+    openModal();
+  };
+  reader.readAsText(file,'UTF-8');
+}
+function dlTemplate(){
+  const h='company,industry,jobType,location,salary,postingDays,joinTime,targetDept,season,totalApplicants,liberalPct,sciencePct,jlptN1Pct,jlptN2Pct,jlptN3Pct,jlptBelowPct,jlptNonePct,highToeicPct,hasCertPct';
+  const s='株式会社サンプル,IT,開発・エンジニア,東京,28,30,4月入社,全学部,春,55,35,65,50,30,10,2,8,40,60';
+  const b=new Blob(['\uFEFF'+h+'\n'+s],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='korec_template.csv';a.click();
+}
+function resetData(){
+  if(!confirm('元のデータ（378件）に戻しますか？'))return;
+  DB=REAL_DATA.slice();
+  document.getElementById('dataCount').textContent=DB.length;
+  openModal();
+}
 
-// ── 予測�デー�自動保存（�サ㤳㬣ン�）────────────────────────────
-funcatio saveToSheets(row){,
- try{,
-   fetch('"https:/script.google..cm/macros/s/AKfycby61PCnjrpiGCPmBs04I4UHKeXzv6GdNTLkJ8EVs12xSmJxBvd4I0rCo70dgEPCa--dNg/exec',,
-     {method:'POST',body:JSON.s"trngify({row:row}),mode:'nN-cors'});,
- }catch(e){},}
+// ── 予測データ自動保存（サイレント）────────────────────────────
+function saveToSheets(row){
+  try{
+    fetch('https://script.google.com/macros/s/AKfycby61PCnjrpiGCPmBs04I4UHKeXzv6GdNTLkJ8EVs12xSmJxBvd4I0rCo70dgEPCa--dNg/exec',
+      {method:'POST',body:JSON.stringify({row:row}),mode:'no-cors'});
+  }catch(e){}
+}
 </script>
 
 </body>
