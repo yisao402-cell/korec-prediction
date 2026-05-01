@@ -201,7 +201,7 @@ label.lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);margin
         <div class="tag on" data-v="N2">N2以上</div>
         <div class="tag" data-v="N1">N1のみ</div>
       </div>
-      <div id="jlptReqNote" style="display:none;margin-top:5px;font-size:11.5px;color:#64748b;"></div>
+      <div id="jlptReqNote" style="display:block;margin-top:5px;font-size:11.5px;color:#64748b;">💡 N2以上：業種平均で約63%が対象（N1+N2）</div>
     </div>
 
     <div class="fg">
@@ -220,9 +220,7 @@ label.lbl{display:block;font-size:11px;font-weight:700;color:var(--muted);margin
         <div class="tag" data-v="3">3回目</div>
         <div class="tag" data-v="4">4回目以降</div>
       </div>
-      <div id="postingCountNote" style="margin-top:5px;font-size:11.5px;color:#64748b;">
-        💡 実績データから：2回目=初回の62%、3回目=41%、4回目以降=23%に減衰（DBの30社×職種から算出）
-      </div>
+      <div id="postingCountNote" style="margin-top:5px;font-size:11.5px;color:#64748b;">🆕 初回掲載：まだKORECに来ていない学生全員が対象。実績データより初回は2回目の約1.6倍の応募が来る傾向</div>
     </div>
 
     <div class="row2">
@@ -742,8 +740,8 @@ let condNoReloc = false;  // 転勤なし
 let condTrial   = false;  // 試用期間あり
 let condListed  = false;  // 上場企業
 let condGroup   = false;  // 大手グループ会社
-let jlptReq     = 'none'; // JLPT要件 (none/N3/N2/N1)
-let postingCount = 2;    // 掲載回数（初回=1, デフォルト=2回目）
+let jlptReq     = 'N2';  // JLPT要件 (none/N3/N2/N1)
+let postingCount = 1;    // 掲載回数（初回=1, デフォルト=初回）
 
 (function(){
   const t=new Date(),e=new Date(t); e.setDate(e.getDate()+30);
